@@ -33,6 +33,6 @@
     "start": "node server/index.js",
     "start:dev": "npx nodemon server/index.js -w server",
     "build:dev": "webpack -w",
-    "test": "/node_modules/jest/bin/jest.js"
+    "test": "node_modules/jest/bin/jest.js"
   }
 }
