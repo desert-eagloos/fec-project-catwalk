@@ -11,15 +11,15 @@ module.exports = {
     path: DIST_DIR,
   },
   resolve: {
-    alias: {
-      Components: path.resolve(__dirname, 'src/components/'),
-    },
+    modules: [
+      path.resolve(__dirname, 'src'), 'node_modules',
+    ],
     extensions: ['.js', '.jsx', '.css'],
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx$/,
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
@@ -28,8 +28,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'css-loader',
           'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
         ],
       },
     ],
