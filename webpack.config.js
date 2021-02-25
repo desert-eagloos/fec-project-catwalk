@@ -14,7 +14,7 @@ module.exports = {
     alias: {
       Components: path.resolve(__dirname, 'src/components/'),
     },
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.css'],
   },
   module: {
     rules: [
@@ -24,6 +24,13 @@ module.exports = {
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
         },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'css-loader',
+          'style-loader',
+        ],
       },
     ],
   },
