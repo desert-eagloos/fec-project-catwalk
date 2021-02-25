@@ -2,7 +2,7 @@ import React from 'react';
 
 const App = () => (
   <h1>
-    Hello World!!! How are you?
+    Hello World!!!
   </h1>
 );
 
