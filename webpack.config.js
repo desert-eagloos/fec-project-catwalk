@@ -17,22 +17,15 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css'],
   },
   module: {
+    loaders: [
+      {
+        exclude: ['node_modules'], loader: 'babel-loader', test: /\.jsx?$/, options: { presets: ['@babel/preset-env', '@babel/preset-react'] },
+      },
+      { loader: 'style-loader!css-loader', test: /\.css$/ },
+      { loader: 'url-loader', test: /\.gif$/},
+      { loader: 'file-loader', test: /\.(ttf|eot|svg)$/},
+    ],
     rules: [
-      {
-        test: /\.jsx$/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-        },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'postcss-loader',
-        ],
-      },
     ],
   },
 };

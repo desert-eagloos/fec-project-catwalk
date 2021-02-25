@@ -24,12 +24,14 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "file-loader": "^6.2.0",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "nodemon": "^2.0.7",
     "postcss-loader": "^5.0.0",
     "react-test-renderer": "^17.0.1",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.24.2",
     "webpack-cli": "^4.5.0"
   },
@@ -38,5 +40,15 @@
     "start:dev": "npx nodemon server/index.js -w server",
     "build:dev": "webpack -w",
     "test": "node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "/node_modules"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
