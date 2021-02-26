@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Welcome (Snapshot) Welcome renders Hello World!!! 1`] = `
-<h1>
+<h1
+  className="headers"
+>
   Hello World!!!
 </h1>
 `;
