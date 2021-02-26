@@ -9,8 +9,8 @@ import Welcome from '../client/src/components/App';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Welcome (Snapshot)', () => {
-  it('Welcome renders Hello World!!!', () => {
+  it('Welcome renders PROJECT CATWALK', () => {
     const welcome = shallow(<Welcome />);
-    expect(welcome.find('h1').text()).toEqual('Hello World!!!');
+    expect(welcome.find('div').text()).toEqual('Hello World!');
   });
 });
