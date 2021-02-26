@@ -22,7 +22,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'] 
+          presets: ['@babel/preset-env', '@babel/preset-react'],
         },
         loader: 'babel-loader',
       },
