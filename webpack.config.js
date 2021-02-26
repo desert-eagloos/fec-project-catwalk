@@ -12,20 +12,27 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, 'src'), 'node_modules',
+      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'node_modules'),
     ],
     extensions: ['.js', '.jsx', '.css'],
   },
   module: {
-    loaders: [
-      {
-        exclude: ['node_modules'], loader: 'babel-loader', test: /\.jsx?$/, options: { presets: ['@babel/preset-env', '@babel/preset-react'] },
-      },
-      { loader: 'style-loader!css-loader', test: /\.css$/ },
-      { loader: 'url-loader', test: /\.gif$/},
-      { loader: 'file-loader', test: /\.(ttf|eot|svg)$/},
-    ],
     rules: [
+      {
+        test: /\.jsx?$/,
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader', options: { modules: true } },
+        ],
+      },
     ],
   },
 };
