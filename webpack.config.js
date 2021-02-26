@@ -33,14 +33,6 @@ module.exports = {
           { loader: 'css-loader', options: { modules: true } },
         ],
       },
-      {
-        test: /\.gif$/,
-        loader: 'url-loader',
-      },
-      {
-        test: /\.(ttf|eot|svg)$/,
-        loader: 'file-loader',
-      },
     ],
   },
 };
