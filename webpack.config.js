@@ -15,6 +15,11 @@ module.exports = {
       path.resolve(__dirname, 'src'),
       path.resolve(__dirname, 'node_modules'),
     ],
+    alias: {
+      components: path.resolve(__dirname, 'src', 'components'),
+      css: path.resolve(__dirname, 'src', 'css'),
+
+    },
     extensions: ['.js', '.jsx', '.css'],
   },
   module: {
@@ -28,10 +33,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader', options: { modules: true } },
-        ],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },

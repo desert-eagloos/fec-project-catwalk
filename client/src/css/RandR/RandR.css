@@ -1,0 +1,27 @@
+.module-container, .module-randr-items-container {
+  display: flex;
+}
+
+.module-container {
+  flex-direction: column;
+}
+
+
+.module-randr-items-container {
+  align-content: stretch;
+  justify-content:baseline;
+}
+
+.randr-ratings-container {
+  flex-direction: column;
+}
+
+.randr-review-container {
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: .5em;
+}
+
+.randr-review-entry {
+  border: 1px solid black;
+}
