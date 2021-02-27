@@ -1,27 +1,110 @@
-.module-container, .module-randr-items-container {
-  display: flex;
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.module-container {
-  flex-direction: column;
+.module-randr-container {
+  display: grid;
+  grid-template-areas:  "title title"
+                        "randr randr";
+  grid-gap: 1em;
 }
 
+.randr-title {
+  grid-area: title;
+}
 
-.module-randr-items-container {
-  align-content: stretch;
-  justify-content:baseline;
+.randr-items {
+  grid-area: randr;
+  display: grid;
+  grid-template-areas: "ratings reviews";
+  grid-template-columns: max-content 1fr;
+  grid-gap: 1em;
+}
+
+.randr-title, .randr-items {
+  border: 5px solid #87b5ff;
+  border-radius: 5px;
+  font-size: 2em;
+  font-weight: bold;
+  background-color: #1c57b5;
 }
 
 .randr-ratings-container {
-  flex-direction: column;
+  border: 2px solid #a7a51f;
+  border-radius: 2px;
+  grid-area: ratings;
+  display: grid;
+  grid-template-areas:  
+  "avg stars stars"
+  "breakdown breakdown breakdown"
+  "size size size"
+  "comfort comfort comfort";
 }
 
-.randr-review-container {
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-left: .5em;
+.randr-ratings-container > div {
+  border: 2px solid #a7a51f;
+  border-radius: 2px;
 }
 
-.randr-review-entry {
-  border: 1px solid black;
+.randr-ratings-container > div:nth-child(1) {
+  grid-area: avg;
 }
+
+.randr-ratings-container > div:nth-child(2) {
+  grid-area: stars;
+}
+
+.randr-ratings-container > div:nth-child(3) {
+  grid-area: breakdown;
+}
+
+.randr-ratings-container > div:nth-child(4) {
+  grid-area: size;
+}
+
+.randr-ratings-container > div:nth-child(5) {
+  grid-area: comfort;
+}
+
+.randr-reviews-container {
+  border: 2px solid #17a59f;
+  border-radius: 2px;
+  grid-area: reviews;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  "total total"
+  "ratinguserdate ratinguserdate"
+  "reviewtitle reviewtitle"
+  "reviewbody reviewbody"
+  "helpfulreport helpfulreport";
+}
+
+.randr-reviews-container > div {
+  border: 2px solid #17a59f;
+  border-radius: 2px;
+}
+
+.randr-reviews-container > div:nth-child(1) {
+  grid-area: total;
+}
+
+.randr-reviews-container > div:nth-child(2) {
+  grid-area: ratinguserdate;
+  display: flex;
+  justify-content: space-between;
+}
+
+.randr-reviews-container > div:nth-child(3) {
+  grid-area: reviewtitle;
+}
+
+.randr-reviews-container > div:nth-child(4) {
+  grid-area: reviewbody;
+}
+
+.randr-reviews-container > div:nth-child(5) {
+  grid-area: helpfulreport;
+}
+
