@@ -1,0 +1,36 @@
+.randr-ratings-container {
+  border: 2px solid #a7a51f;
+  border-radius: 2px;
+  grid-area: ratings;
+  display: grid;
+  grid-template-areas:  
+  "avg stars stars"
+  "breakdown breakdown breakdown"
+  "size size size"
+  "comfort comfort comfort";
+}
+
+.randr-ratings-container > div {
+  border: 2px solid #a7a51f;
+  border-radius: 2px;
+}
+
+.randr-ratings-container > div:nth-child(1) {
+  grid-area: avg;
+}
+
+.randr-ratings-container > div:nth-child(2) {
+  grid-area: stars;
+}
+
+.randr-ratings-container > div:nth-child(3) {
+  grid-area: breakdown;
+}
+
+.randr-ratings-container > div:nth-child(4) {
+  grid-area: size;
+}
+
+.randr-ratings-container > div:nth-child(5) {
+  grid-area: comfort;
+}
