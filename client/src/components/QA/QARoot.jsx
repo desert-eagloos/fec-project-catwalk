@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import testData from './testData.js';
+import QuestionList from './QuestionList.jsx';
 
-class QARoot extends React.Component {
-  constructor (props) {
-    super (props);
-    this.state = {
+const QARoot = (props) => {
+  const [data, setData] = useState(testData);
 
-    }
-  }
-
-  render () {
-    return (
-      <div>
-        QARoot Section
-      </div>
-    )
-  }
+  return (
+    <div>
+      <u>QA Section</u>
+      <QuestionList data={data}/>
+    </div>
+  )
 }
 
 export default QARoot;
