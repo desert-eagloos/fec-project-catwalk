@@ -11,14 +11,9 @@ module.exports = {
     path: DIST_DIR,
   },
   resolve: {
-    modules: [
-      path.resolve(__dirname, 'src'),
-      path.resolve(__dirname, 'node_modules'),
-    ],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     alias: {
-      components: path.resolve(__dirname, 'src', 'components'),
-      css: path.resolve(__dirname, 'src', 'css'),
-
+      utils: path.resolve(__dirname, 'src/utils'),
     },
     extensions: ['.js', '.jsx', '.css'],
   },
@@ -34,6 +29,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(svg|eot|woff|woff2|ttf)$/i,
+        use: ['file-loader'],
       },
     ],
   },

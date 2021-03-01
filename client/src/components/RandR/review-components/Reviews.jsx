@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/RandR/Reviews.css';
+import '../../../css/RandR/Reviews/Reviews.css';
 
 const Reviews = () => (
   <div className="randr-reviews-container">
