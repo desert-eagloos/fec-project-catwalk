@@ -11,6 +11,6 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Welcome (Snapshot)', () => {
   it('Welcome renders PROJECT CATWALK', () => {
     const welcome = shallow(<Welcome />);
-    expect(welcome.find('div').text()).toEqual('Hello World!<Overview />');
+    expect(welcome.find('div').text()).toEqual('Hello World!<Overview /><QARoot />');
   });
 });

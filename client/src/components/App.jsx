@@ -4,6 +4,7 @@ import axios from 'axios';
 
 /* --- Import CSS files --- */
 import '../css/app.css';
+import QARoot from './QA/QARoot.jsx';
 import Overview from './Overview';
 
 /* --- Import Module Components --- */
@@ -29,8 +30,9 @@ function App() {
 
   return (
     <div className="app-container">
-      <RandR product={product} />
       <Overview />
+      <QARoot />
+      <RandR product={product} />
     </div>
   );
 }
