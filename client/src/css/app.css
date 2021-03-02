@@ -16,10 +16,10 @@ body {
 
 * {
   font-family: 'Libre Baskerville', serif;
+  color: #4A2737;
 }
 
 .logo {
   margin-block-start: 0%;
   margin-block-end: 0%;
-  color: #4A2737;
 }
