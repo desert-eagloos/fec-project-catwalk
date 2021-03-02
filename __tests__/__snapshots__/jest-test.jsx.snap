@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Creates a React-Bootsrap Component Creates a Button 1`] = `
+<div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    type="button"
+  />
+</div>
+`;
+
 exports[`Welcome (Snapshot) Welcome renders Hello World!!! 1`] = `
 <div>
   Hello World!
