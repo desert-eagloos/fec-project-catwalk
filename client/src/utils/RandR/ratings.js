@@ -1,5 +1,3 @@
-import { func } from "prop-types";
-
 export function getAverageRating(ratings) {
   let weightedTotal = 0;
   let ratingTotal = 0;
@@ -18,6 +16,18 @@ export function getStarBreakdown(ratings) {
   return ratings.reduce((breakdown, rating) => breakdown[rating] + 1, {});
 }
 
-export function colorizeStars(rating) {
-  return '';
+export function roundToNearestQuarter(float) {
+  const decimal = -(Math.floor(float) - float);
+  let result = 0;
+
+  if (decimal < 0.25) {
+    result = Math.floor(float) + 0.25;
+  } else if (decimal < 0.5) {
+    result = Math.floor(float) + 0.5;
+  } else if (decimal < 0.99) {
+    result = Math.floor(float) + 0.75;
+  } else {
+    result = Math.ceil(float);
+  }
+  return result;
 }
