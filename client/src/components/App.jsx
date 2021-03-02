@@ -11,28 +11,28 @@ import Overview from './Overview';
 import RandR from './RandR/RandR';
 
 function App() {
-  const [product, setProduct] = useState();
-  const [isLoading, setLoading] = useState(true);
+  // const [product, setProduct] = useState();
+  // const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get('/products/18201');
-      setProduct(result.data);
-      setLoading(false);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios.get('/products/18201');
+  //     setProduct(result.data);
+  //     setLoading(false);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
-  if (isLoading) {
-    return <div> Still Loading data...</div>;
-  }
+  // if (isLoading) {
+  //   return <div> Still Loading data...</div>;
+  // }
 
   return (
     <div className="app-container">
       <Overview />
       <QARoot />
-      <RandR product={product} />
+      <RandR id="18201" />
     </div>
   );
 }

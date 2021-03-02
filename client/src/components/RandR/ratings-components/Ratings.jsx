@@ -15,7 +15,7 @@ function Ratings({ id }) {
 
   useEffect(() => {
     const getRatings = async () => {
-      const response = await axios.get(`/reviews/meta/${id}`);
+      const response = await axios.get(`/reviews/meta/${Number(id)}`);
       setRating(getAverageRating(response.data.ratings));
       setLoading(false);
     };

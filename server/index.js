@@ -73,7 +73,7 @@ app.get('/reviews/meta/:id', (req, res) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => {
+  .then((response) => {
       res.status(200);
       res.send(response.data);
     })

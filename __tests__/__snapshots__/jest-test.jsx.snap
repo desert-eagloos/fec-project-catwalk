@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Welcome (Snapshot) Welcome renders Hello World!!! 1`] = `
-<div>
-  Hello World!
+exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
+<div
+  className="app-container"
+>
   <div
     className="overview-component"
   >
@@ -162,6 +163,60 @@ exports[`Welcome (Snapshot) Welcome renders Hello World!!! 1`] = `
         Q:
         What gives you the right?
         <div />
+      </div>
+    </div>
+  </div>
+  <div
+    className="module-randr-container"
+  >
+    <div
+      className="randr-title"
+    >
+      <h2>
+        Ratings and Reviews
+      </h2>
+    </div>
+    <div
+      className="randr-items"
+    >
+      <div>
+        Loading Ratings...
+      </div>
+      <div
+        className="randr-reviews-container"
+      >
+        <div>
+          Total reviews and sorting
+        </div>
+        <div>
+          <div>
+            star rating
+          </div>
+          <div>
+            user and date posted
+          </div>
+        </div>
+        <div>
+          review title
+        </div>
+        <div>
+          review body
+        </div>
+        <div>
+          helpful and report
+        </div>
+        <div>
+          <button
+            type="button"
+          >
+            More Reviews
+          </button>
+          <button
+            type="button"
+          >
+            Add a Review
+          </button>
+        </div>
       </div>
     </div>
   </div>
