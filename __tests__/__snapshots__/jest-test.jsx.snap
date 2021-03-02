@@ -1,11 +1,291 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-<<<<<<< HEAD
-exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
-<div
-  className="app-container"
->
-=======
+exports[`Creates Ratings and Reviews Components Creates a Rating Breakdown Component Creates a Rating Breakdown 1`] = `
+<div>
+  <table>
+    <thead>
+      <tr>
+        <td>
+           100% recommend this product
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          5
+        </td>
+        <td>
+          <div
+            className="stars-outer"
+          >
+            <div
+              className="stars-inner"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          4
+        </td>
+        <td>
+          <div
+            className="stars-outer"
+          >
+            <div
+              className="stars-inner"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          3
+        </td>
+        <td>
+          <div
+            className="stars-outer"
+          >
+            <div
+              className="stars-inner"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          2
+        </td>
+        <td>
+          <div
+            className="stars-outer"
+          >
+            <div
+              className="stars-inner"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          1
+        </td>
+        <td>
+          <div
+            className="stars-outer"
+          >
+            <div
+              className="stars-inner"
+            />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Creates Ratings and Reviews Components Creates a Star Rating Component Creates a Star 1`] = `
+<div>
+  <span
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "direction": "ltr",
+        "display": "inline-block",
+      }
+    }
+  >
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={Object {}}
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "0%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={Object {}}
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "0%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={Object {}}
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "0%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={Object {}}
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "0%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={Object {}}
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "0%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+  </span>
+</div>
+`;
+
 exports[`Creates a React-Bootsrap Component Creates a Button 1`] = `
 <div>
   <button
@@ -16,10 +296,10 @@ exports[`Creates a React-Bootsrap Component Creates a Button 1`] = `
 </div>
 `;
 
-exports[`Welcome (Snapshot) Welcome renders Hello World!!! 1`] = `
-<div>
-  Hello World!
->>>>>>> origin/feature/react-bootstrap
+exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
+<div
+  className="app-container"
+>
   <div
     className="overview-component"
   >
