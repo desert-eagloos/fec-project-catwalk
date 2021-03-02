@@ -1,14 +1,14 @@
 import React from 'react';
 import '../css/app.css';
 import QARoot from './QA/QARoot.jsx';
+import Overview from './Overview';
 
-const App = () => {
-  return (
-    <div>
-      <div>Hello World!</div>
-      <QARoot/>
-    </div>
-    )
-};
+const App = () => (
+  <div>
+    Hello World!
+    <Overview />
+    <QARoot />
+  </div>
+);
 
 export default App;
