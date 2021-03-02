@@ -1,3 +1,5 @@
+import { func } from "prop-types";
+
 export function getAverageRating(ratings) {
   let weightedTotal = 0;
   let ratingTotal = 0;
@@ -14,4 +16,8 @@ export function getAverageRating(ratings) {
 
 export function getStarBreakdown(ratings) {
   return ratings.reduce((breakdown, rating) => breakdown[rating] + 1, {});
+}
+
+export function colorizeStars(rating) {
+  return '';
 }

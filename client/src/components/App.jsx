@@ -2,7 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+/* --- Import CSS files --- */
 import '../css/app.css';
+
+/* --- Import Module Components --- */
 import RandR from './RandR/RandR';
 
 function App() {
