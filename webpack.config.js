@@ -11,10 +11,10 @@ module.exports = {
     path: DIST_DIR,
   },
   resolve: {
-    modules: [
-      path.resolve(__dirname, 'src'),
-      path.resolve(__dirname, 'node_modules'),
-    ],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    alias: {
+      utils: path.resolve(__dirname, 'src/utils'),
+    },
     extensions: ['.js', '.jsx', '.css'],
   },
   module: {
@@ -28,10 +28,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader', options: { modules: true } },
-        ],
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(svg|eot|woff|woff2|ttf)$/i,
+        use: ['file-loader'],
       },
     ],
   },

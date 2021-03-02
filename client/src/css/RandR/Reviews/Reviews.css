@@ -1,0 +1,47 @@
+.randr-reviews-container {
+  border: 2px solid #17a59f;
+  border-radius: 2px;
+  grid-area: reviews;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  "total total"
+  "ratinguserdate ratinguserdate"
+  "reviewtitle reviewtitle"
+  "reviewbody reviewbody"
+  "helpfulreport helpfulreport"
+  "buttons buttons";
+}
+
+.randr-reviews-container > div {
+  border: 2px solid #17a59f;
+  border-radius: 2px;
+}
+
+.randr-reviews-container > div:nth-child(1) {
+  grid-area: total;
+}
+
+.randr-reviews-container > div:nth-child(2) {
+  grid-area: ratinguserdate;
+  display: flex;
+  justify-content: space-between;
+}
+
+.randr-reviews-container > div:nth-child(3) {
+  grid-area: reviewtitle;
+}
+
+.randr-reviews-container > div:nth-child(4) {
+  grid-area: reviewbody;
+}
+
+.randr-reviews-container > div:nth-child(5) {
+  grid-area: helpfulreport;
+}
+
+.randr-reviews-container > div:nth-child(6) {
+  grid-area: buttons;
+  display: flex;
+  column-gap: 1rem;
+}

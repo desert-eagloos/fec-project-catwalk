@@ -1,0 +1,66 @@
+.randr-ratings-container {
+  border: 2px solid #a7a51f;
+  border-radius: 2px;
+  grid-area: ratings;
+  display: grid;
+  grid-template-areas:  
+  "avg stars stars"
+  "breakdown breakdown breakdown"
+  "size size size"
+  "comfort comfort comfort";
+}
+
+.randr-ratings-container > div {
+  border: 2px solid #a7a51f;
+  border-radius: 2px;
+}
+
+.randr-ratings-container > div:nth-child(1) {
+  grid-area: avg;
+}
+
+.randr-ratings-container > div:nth-child(2) {
+  grid-area: stars;
+}
+
+.randr-ratings-container > div:nth-child(3) {
+  grid-area: breakdown;
+  width: 100%;
+}
+
+.randr-ratings-container > div:nth-child(4) {
+  grid-area: size;
+}
+
+.randr-ratings-container > div:nth-child(5) {
+  grid-area: comfort;
+}
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 50%;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+
+table {
+  font-size: 1rem;
+  width:max-content;
+}
