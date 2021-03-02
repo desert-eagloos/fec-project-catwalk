@@ -1,14 +1,12 @@
 import React from 'react';
 import '../css/app.css';
-import Overview from './Overview.jsx';
+import Overview from './Overview';
 
-const App = () => {
-  return (
-    <div>
-      Hello World!
-      <Overview />
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    Hello World!
+    <Overview />
+  </div>
+);
 
 export default App;
