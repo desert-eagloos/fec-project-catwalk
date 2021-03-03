@@ -32,7 +32,7 @@ function Ratings({ id }) {
     <div className="randr-ratings-container">
       <div>{rating}</div>
       <Stars rating={rating} />
-      <RatingsBreakdown ratings={ratings} />
+      <RatingsBreakdown key="bc1" ratings={ratings} />
       <div>Size</div>
       <div>Comfort</div>
     </div>

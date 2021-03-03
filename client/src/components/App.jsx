@@ -7,12 +7,7 @@ import '../css/app.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import QARoot from './QA/QARoot';
-<<<<<<< HEAD
-import Overview from './Overview';
-=======
 import Overview from './Overview/Overview';
-
->>>>>>> origin/feature/rating-breakdown
 
 /* --- Import Module Components --- */
 import RandR from './RandR/RandR';

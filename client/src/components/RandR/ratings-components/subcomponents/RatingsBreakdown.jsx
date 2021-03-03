@@ -21,8 +21,8 @@ export default function RatingsBreakdown({ ratings }) {
       {
         Object.entries(copyRatings)
           .sort((a, b) => b[0].localeCompare(a[0]))
-          .map(([rating, value]) => (
-            <div className="breakdown-rating">
+          .map(([rating, value], i) => (
+            <div key={`rating${i + Math.floor(Math.random() * 1) + 1}`} className="breakdown-rating">
               <span>{ rating }</span>
               <span><ProgressBar now={(value / totalRatings) * 100} /></span>
             </div>
@@ -36,5 +36,11 @@ RatingsBreakdown.defaultProps = {
 };
 
 RatingsBreakdown.propTypes = {
-  ratings: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number)),
+  ratings: PropTypes.shape({
+    5: PropTypes.number,
+    4: PropTypes.number,
+    3: PropTypes.number,
+    2: PropTypes.number,
+    1: PropTypes.number,
+  }),
 };
