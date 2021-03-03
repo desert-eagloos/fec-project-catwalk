@@ -34,12 +34,12 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get('/products/18201');
+      const result = await axios.get('/products/18201')
+        .catch();
       setProduct(result.data);
     };
 
-    fetchData()
-      .catch();
+    fetchData();
   }, []);
 
   return (
