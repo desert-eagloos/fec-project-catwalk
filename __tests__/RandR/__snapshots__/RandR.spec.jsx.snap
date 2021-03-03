@@ -1,0 +1,345 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creates Ratings and Reviews Components Creates a Rating Breakdown Component Creates a Rating Breakdown 1`] = `
+<div
+  className="breakdown-container"
+>
+  <div
+    className="breakdown-rating"
+  >
+    <span>
+      5
+    </span>
+    <span>
+      <div
+        className="progress"
+      >
+        <div
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={9.523809523809524}
+          className="progress-bar"
+          role="progressbar"
+          style={
+            Object {
+              "width": "9.524%",
+            }
+          }
+        />
+      </div>
+    </span>
+  </div>
+  <div
+    className="breakdown-rating"
+  >
+    <span>
+      4
+    </span>
+    <span>
+      <div
+        className="progress"
+      >
+        <div
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={14.285714285714285}
+          className="progress-bar"
+          role="progressbar"
+          style={
+            Object {
+              "width": "14.286%",
+            }
+          }
+        />
+      </div>
+    </span>
+  </div>
+  <div
+    className="breakdown-rating"
+  >
+    <span>
+      3
+    </span>
+    <span>
+      <div
+        className="progress"
+      >
+        <div
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={23.809523809523807}
+          className="progress-bar"
+          role="progressbar"
+          style={
+            Object {
+              "width": "23.81%",
+            }
+          }
+        />
+      </div>
+    </span>
+  </div>
+  <div
+    className="breakdown-rating"
+  >
+    <span>
+      2
+    </span>
+    <span>
+      <div
+        className="progress"
+      >
+        <div
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={4.761904761904762}
+          className="progress-bar"
+          role="progressbar"
+          style={
+            Object {
+              "width": "4.762%",
+            }
+          }
+        />
+      </div>
+    </span>
+  </div>
+  <div
+    className="breakdown-rating"
+  >
+    <span>
+      1
+    </span>
+    <span>
+      <div
+        className="progress"
+      >
+        <div
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={47.61904761904761}
+          className="progress-bar"
+          role="progressbar"
+          style={
+            Object {
+              "width": "47.619%",
+            }
+          }
+        />
+      </div>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Creates Ratings and Reviews Components Creates a Star Rating Component Creates a Star 1`] = `
+<div>
+  <span
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "direction": "ltr",
+        "display": "inline-block",
+      }
+    }
+  >
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "visibility": "hidden",
+          }
+        }
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "visibility": "hidden",
+          }
+        }
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "visibility": "hidden",
+          }
+        }
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={Object {}}
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "25%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+    <span
+      onClick={[Function]}
+      onMouseMove={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+          "display": "inline-block",
+          "position": "relative",
+        }
+      }
+    >
+      <span
+        style={Object {}}
+      >
+        <span
+          className="fa fa-star-o"
+        />
+      </span>
+      <span
+        style={
+          Object {
+            "display": "inline-block",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 0,
+            "width": "0%",
+          }
+        }
+      >
+        <span
+          className="fa fa-star"
+        />
+      </span>
+    </span>
+  </span>
+</div>
+`;

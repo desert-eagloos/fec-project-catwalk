@@ -1,4 +1,8 @@
 **node_modules/*
 **client/dist/*
 .vscode/settings.json
+<<<<<<< HEAD
 server/config.js
+=======
+server/config.js
+>>>>>>> origin/feature/rating-breakdown
