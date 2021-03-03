@@ -12,7 +12,9 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
-    "react-rating": "^2.0.5"
+    "react-rating": "^2.0.5",
+    "tailwindcss": "^2.0.3",
+    "@fullhuman/postcss-purgecss": "^4.0.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.13.8",
@@ -35,6 +37,7 @@
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "nodemon": "^2.0.7",
+    "postcss-cli": "^8.3.1",
     "postcss-loader": "^5.0.0",
     "react-test-renderer": "^17.0.1",
     "style-loader": "^2.0.0",
@@ -45,7 +48,11 @@
     "start": "node server/index.js",
     "start:dev": "npx nodemon server/index.js -w server",
     "build:dev": "webpack -w",
-    "test": "node_modules/jest/bin/jest.js"
+    "test": "node_modules/jest/bin/jest.js",
+    "tailwind:build": "NODE_ENV=production postcss client/src/tailwind.css -o src/tailwind.output.css",
+    "tailwind:dev": "postcss client/src/tailwind.css -o client/src/tailwind.output.css",
+    "prestart": "npm run tailwind:dev",
+    "prebuild": "npm run tailwind:build"
   },
   "jest": {
     "verbose": true,
