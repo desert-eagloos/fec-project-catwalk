@@ -1,57 +1,32 @@
 import React from 'react';
+import { ProgressBar } from 'react-bootstrap';
 
-export default function RatingsBreakdown() {
+import '../../../../css/RandR/Ratings/RatingBreakdown.css';
+
+export default function RatingsBreakdown({ ratings }) {
+  const copyRatings = {
+    5: ratings[5] ?? 0,
+    4: ratings[4] ?? 0,
+    3: ratings[3] ?? 0,
+    2: ratings[2] ?? 0,
+    1: ratings[1] ?? 0,
+  };
+
+  const totalRatings = Object.values(ratings)
+    .reduce((sum, x) => sum + Number(x), 0);
+
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <td> 100% recommend this product</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>5</td>
-            <td>
-              <div className="stars-outer">
-                <div className="stars-inner" />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>
-              <div className="stars-outer">
-                <div className="stars-inner" />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>
-              <div className="stars-outer">
-                <div className="stars-inner" />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>
-              <div className="stars-outer">
-                <div className="stars-inner" />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>
-              <div className="stars-outer">
-                <div className="stars-inner" />
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="breakdown-container">
+      {
+        Object.entries(copyRatings)
+          .sort((a, b) => b[0].localeCompare(a[0]))
+          .map(([key, value]) => (
+            <div className="breakdown-rating">
+              <span>{ key }</span>
+              <span><ProgressBar now={(value / totalRatings) * 100} /></span>
+            </div>
+          ))
+      }
     </div>
   );
 }

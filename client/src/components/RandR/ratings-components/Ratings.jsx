@@ -11,16 +11,18 @@ import '../../../css/RandR/Ratings/Ratings.css';
 
 function Ratings({ id }) {
   const [isLoading, setLoading] = useState(true);
-  const [rating, setRating] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [ratings, setRatings] = useState([]);
 
   useEffect(() => {
     const getRatings = async () => {
       const response = await axios.get(`/reviews/meta/${Number(id)}`);
       setRating(getAverageRating(response.data.ratings));
+      setRatings(response.data.ratings);
       setLoading(false);
     };
     getRatings();
-  });
+  }, []);
 
   if (isLoading) {
     return <div>Loading Ratings...</div>;
@@ -30,7 +32,7 @@ function Ratings({ id }) {
     <div className="randr-ratings-container">
       <div>{rating}</div>
       <Stars rating={rating} />
-      <RatingsBreakdown />
+      <RatingsBreakdown ratings={ratings} />
       <div>Size</div>
       <div>Comfort</div>
     </div>
