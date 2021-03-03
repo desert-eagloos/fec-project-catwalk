@@ -380,12 +380,22 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
       <div
         className="option1"
       >
-        "Skinny"
+        Green
       </div>
       <div
         className="option2"
       >
-        "Loose"
+        Tan
+      </div>
+      <div
+        className="option3"
+      >
+        Mint green
+      </div>
+      <div
+        className="option4"
+      >
+        Salmon
       </div>
     </div>
     <div

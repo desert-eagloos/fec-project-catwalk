@@ -172,9 +172,9 @@ function Overview({ product }) {
       .catch();
   };
 
-  useEffect(() => {
-    getStyles(product.id);
-  }, [product]);
+  // useEffect(() => {
+  //   getStyles(product.id);
+  // }, [product]);
 
   return (
     <div className="overview-component">
