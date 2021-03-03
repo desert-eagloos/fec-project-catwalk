@@ -32,15 +32,15 @@ function App() {
     ],
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get('/products/18201')
-        .catch();
-      setProduct(result.data);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios.get('/products/18201')
+  //       .catch();
+  //     setProduct(result.data);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="app-container">
