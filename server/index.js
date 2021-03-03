@@ -46,6 +46,17 @@ app.get('/products/:productId', (req, res) => {
     });
 });
 
+app.get('/products/:productId/styles', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/products/${req.params.productId}/styles`, {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => res.status(200).send(response.data))
+    .catch((error) => res.send(error));
+});
+
 app.get('/reviews/:id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews?product_id=${req.params.id}`, {
     headers: {
