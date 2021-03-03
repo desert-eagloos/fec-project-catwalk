@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function Overview({ product }) {
-  const [display, setDisplay] = useState({});
-
-  useEffect(() => {
-    setDisplay(product);
-  }, []);
+  useEffect(() => {});
 
   return (
     <div className="overview-component">
@@ -22,8 +18,8 @@ function Overview({ product }) {
         Product Information
         <div className="overview overview-star-rating">Star Rating</div>
         <div className="overview overview-product-category">Product Category</div>
-        <div className="overview overview-product-title">{display.name}</div>
-        <div className="overview overview-price">{`$${display.default_price}`}</div>
+        <div className="overview overview-product-title">{product.name}</div>
+        <div className="overview overview-price">{`$${product.default_price}`}</div>
         <div className="overview overview-social-media">
           <img href="#" src="/Assets/Icons/instagram.svg" alt="Instagram" />
           <img href="#" src="/Assets/Icons/facebook.svg" alt="Facebook" />

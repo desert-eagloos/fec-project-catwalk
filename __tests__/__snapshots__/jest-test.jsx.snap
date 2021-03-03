@@ -327,7 +327,7 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
     <div
       className="overview overview-product-information-a"
     >
-      Production Information
+      Product Information
       <div
         className="overview overview-star-rating"
       >
@@ -336,28 +336,57 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
       <div
         className="overview overview-product-category"
       >
-        Production Category
+        Product Category
       </div>
       <div
         className="overview overview-product-title"
       >
-        Product Title
+        Ernesto Sweatpants
       </div>
       <div
         className="overview overview-price"
       >
-        Price
+        $56.00
       </div>
       <div
         className="overview overview-social-media"
       >
-        Social Media
+        <img
+          alt="Instagram"
+          href="#"
+          src="/Assets/Icons/instagram.svg"
+        />
+        <img
+          alt="Facebook"
+          href="#"
+          src="/Assets/Icons/facebook.svg"
+        />
+        <img
+          alt="Twitter"
+          href="#"
+          src="/Assets/Icons/twitter.svg"
+        />
+        <img
+          alt="Pinterest"
+          href="#"
+          src="/Assets/Icons/pinterest.svg"
+        />
       </div>
     </div>
     <div
       className="overview overview-style-selector"
     >
       Style Selector
+      <div
+        className="option1"
+      >
+        "Skinny"
+      </div>
+      <div
+        className="option2"
+      >
+        "Loose"
+      </div>
     </div>
     <div
       className="overview overview-add-to-cart-container"
@@ -377,7 +406,12 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
         className="overview overview-add-to-cart-button"
         type="button"
       >
-        Add to Cart Button
+        <img
+          alt="Shopping Cart"
+          href="#"
+          src="/Assets/Icons/cart2.svg"
+        />
+        Add To Cart
       </button>
     </div>
     <div
