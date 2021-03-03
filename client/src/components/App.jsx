@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 
 /* --- Import CSS files --- */
 import '../css/app.css';
@@ -46,11 +47,15 @@ function App() {
   // }, []);
 
   return (
-    <div className="app-container">
-      <Overview product={product} />
-      <QARoot />
-      <RandR id={18201} />
-    </div>
+    <Container>
+      <Col />
+      <Col md={10}>
+        <Overview product={product} />
+        <QARoot />
+        <RandR id={18201} />
+      </Col>
+      <Col />
+    </Container>
   );
 }
 

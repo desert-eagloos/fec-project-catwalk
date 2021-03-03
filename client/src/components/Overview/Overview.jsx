@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -172,61 +175,63 @@ function Overview({ product }) {
       .catch();
   };
 
-  // useEffect(() => {
-  //   getStyles(product.id);
-  // }, [product]);
+  useEffect(() => {
+    getStyles(product.id);
+  }, [product]);
 
   return (
-    <div className="overview-component">
-      <div className="overview overview-image-gallery-container">
-        Image Gallery
-        <div className="overview over-image-gallery-default-view">
-          IMG PLACEHOLDER
-          <button className="overview overview-image-gallery-expanded-view" type="button">ICON HERE</button>
-          <div className="overview overview-image-gallery-thumbnails">IMG GALLERY THUMBNAILS</div>
+    <Container>
+      <div className="overview-component">
+        <div className="overview overview-image-gallery-container">
+          Image Gallery
+          <div className="overview over-image-gallery-default-view">
+            IMG PLACEHOLDER
+            <button className="overview overview-image-gallery-expanded-view" type="button">ICON HERE</button>
+            <div className="overview overview-image-gallery-thumbnails">IMG GALLERY THUMBNAILS</div>
+          </div>
+        </div>
+        <div className="overview overview-product-information-a">
+          Product Information
+          <div className="overview overview-star-rating">Star Rating</div>
+          <div className="overview overview-product-category">Product Category</div>
+          <div className="overview overview-product-title">{product.name}</div>
+          <div className="overview overview-price">{`$${product.default_price}`}</div>
+          <div className="overview overview-social-media">
+            <img href="#" src="/Assets/Icons/instagram.svg" alt="Instagram" />
+            <img href="#" src="/Assets/Icons/facebook.svg" alt="Facebook" />
+            <img href="#" src="/Assets/Icons/twitter.svg" alt="Twitter" />
+            <img href="#" src="/Assets/Icons/pinterest.svg" alt="Pinterest" />
+          </div>
+        </div>
+        <div className="overview overview-style-selector">
+          Style Selector
+          <div className="option1">
+            {styles.results[0].name}
+          </div>
+          <div className="option2">
+            {styles.results[1].name}
+          </div>
+          <div className="option3">
+            {styles.results[2].name}
+          </div>
+          <div className="option4">
+            {styles.results[3].name}
+          </div>
+        </div>
+        <div className="overview overview-add-to-cart-container">
+          Add to Cart
+          <div className="overview overview-size-selector">Size Selector</div>
+          <div className="overview overview-quantity-selector">Quantity Selector</div>
+          <button type="button" className="overview overview-add-to-cart-button">
+            <img href="#" src="/Assets/Icons/cart2.svg" alt="Shopping Cart" />
+            Add To Cart
+          </button>
+        </div>
+        <div className="overview overview-production-information-b">
+          <div className="overview overview-product-description">Product Description</div>
         </div>
       </div>
-      <div className="overview overview-product-information-a">
-        Product Information
-        <div className="overview overview-star-rating">Star Rating</div>
-        <div className="overview overview-product-category">Product Category</div>
-        <div className="overview overview-product-title">{product.name}</div>
-        <div className="overview overview-price">{`$${product.default_price}`}</div>
-        <div className="overview overview-social-media">
-          <img href="#" src="/Assets/Icons/instagram.svg" alt="Instagram" />
-          <img href="#" src="/Assets/Icons/facebook.svg" alt="Facebook" />
-          <img href="#" src="/Assets/Icons/twitter.svg" alt="Twitter" />
-          <img href="#" src="/Assets/Icons/pinterest.svg" alt="Pinterest" />
-        </div>
-      </div>
-      <div className="overview overview-style-selector">
-        Style Selector
-        <div className="option1">
-          {styles.results[0].name}
-        </div>
-        <div className="option2">
-          {styles.results[1].name}
-        </div>
-        <div className="option3">
-          {styles.results[2].name}
-        </div>
-        <div className="option4">
-          {styles.results[3].name}
-        </div>
-      </div>
-      <div className="overview overview-add-to-cart-container">
-        Add to Cart
-        <div className="overview overview-size-selector">Size Selector</div>
-        <div className="overview overview-quantity-selector">Quantity Selector</div>
-        <button type="button" className="overview overview-add-to-cart-button">
-          <img href="#" src="/Assets/Icons/cart2.svg" alt="Shopping Cart" />
-          Add To Cart
-        </button>
-      </div>
-      <div className="overview overview-production-information-b">
-        <div className="overview overview-product-description">Product Description</div>
-      </div>
-    </div>
+    </Container>
   );
 }
 
