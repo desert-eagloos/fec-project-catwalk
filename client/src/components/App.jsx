@@ -38,7 +38,8 @@ function App() {
       setProduct(result.data);
     };
 
-    fetchData();
+    fetchData()
+      .catch();
   }, []);
 
   return (
