@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import '../../css/RandR/RandR.css';
 
 
@@ -18,5 +20,13 @@ function RandR({ id }) {
     </div>
   );
 }
+
+RandR.defaultProps = {
+  id: 18201,
+};
+
+RandR.propTypes = {
+  id: PropTypes.number,
+};
 
 export default RandR;

@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 /* --- Import CSS files --- */
 import '../css/app.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import QARoot from './QA/QARoot.jsx';
+import QARoot from './QA/QARoot';
 import Overview from './Overview';
 
 /* --- Import Module Components --- */
@@ -34,7 +34,7 @@ function App() {
     <div className="app-container">
       <Overview />
       <QARoot />
-      <RandR id="18201" />
+      <RandR id={18201} />
     </div>
   );
 }

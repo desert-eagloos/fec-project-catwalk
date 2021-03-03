@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import '../../../../css/RandR/Ratings/RatingBreakdown.css';
 
@@ -20,9 +21,9 @@ export default function RatingsBreakdown({ ratings }) {
       {
         Object.entries(copyRatings)
           .sort((a, b) => b[0].localeCompare(a[0]))
-          .map(([key, value]) => (
+          .map(([rating, value]) => (
             <div className="breakdown-rating">
-              <span>{ key }</span>
+              <span>{ rating }</span>
               <span><ProgressBar now={(value / totalRatings) * 100} /></span>
             </div>
           ))
@@ -30,3 +31,10 @@ export default function RatingsBreakdown({ ratings }) {
     </div>
   );
 }
+RatingsBreakdown.defaultProps = {
+  ratings: [[0, 1]],
+};
+
+RatingsBreakdown.propTypes = {
+  ratings: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number)),
+};
