@@ -25,8 +25,10 @@ function Overview({ product }) {
         <div className="overview overview-product-title">{display.name}</div>
         <div className="overview overview-price">{`$${display.default_price}`}</div>
         <div className="overview overview-social-media">
-          Social Media
           <img src="/Assets/Icons/instagram.svg" alt="Instagram" />
+          <img src="/Assets/Icons/facebook.svg" alt="Facebook" />
+          <img src="/Assets/Icons/twitter.svg" alt="Twitter" />
+          <img src="/Assets/Icons/pinterest.svg" alt="Pinterest" />
         </div>
       </div>
       <div className="overview overview-style-selector">Style Selector</div>
