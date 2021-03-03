@@ -19,24 +19,35 @@ function Overview({ product }) {
         </div>
       </div>
       <div className="overview overview-product-information-a">
-        Production Information
+        Product Information
         <div className="overview overview-star-rating">Star Rating</div>
-        <div className="overview overview-product-category">Production Category</div>
+        <div className="overview overview-product-category">Product Category</div>
         <div className="overview overview-product-title">{display.name}</div>
         <div className="overview overview-price">{`$${display.default_price}`}</div>
         <div className="overview overview-social-media">
-          <img src="/Assets/Icons/instagram.svg" alt="Instagram" />
-          <img src="/Assets/Icons/facebook.svg" alt="Facebook" />
-          <img src="/Assets/Icons/twitter.svg" alt="Twitter" />
-          <img src="/Assets/Icons/pinterest.svg" alt="Pinterest" />
+          <img href="#" src="/Assets/Icons/instagram.svg" alt="Instagram" />
+          <img href="#" src="/Assets/Icons/facebook.svg" alt="Facebook" />
+          <img href="#" src="/Assets/Icons/twitter.svg" alt="Twitter" />
+          <img href="#" src="/Assets/Icons/pinterest.svg" alt="Pinterest" />
         </div>
       </div>
-      <div className="overview overview-style-selector">Style Selector</div>
+      <div className="overview overview-style-selector">
+        Style Selector
+        <div className="option1">
+          {product.features[0].value}
+        </div>
+        <div className="option2">
+          {product.features[1].value}
+        </div>
+      </div>
       <div className="overview overview-add-to-cart-container">
         Add to Cart
         <div className="overview overview-size-selector">Size Selector</div>
         <div className="overview overview-quantity-selector">Quantity Selector</div>
-        <button type="button" className="overview overview-add-to-cart-button">Add to Cart Button</button>
+        <button type="button" className="overview overview-add-to-cart-button">
+          <img href="#" src="/Assets/Icons/cart2.svg" alt="Shopping Cart" />
+          Add To Cart
+        </button>
       </div>
       <div className="overview overview-production-information-b">
         <div className="overview overview-product-description">Product Description</div>
@@ -49,6 +60,10 @@ Overview.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
     default_price: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.shape({
+      feature: PropTypes.string,
+      value: PropTypes.string,
+    })),
   }),
 };
 
@@ -56,6 +71,7 @@ Overview.defaultProps = {
   product: {
     name: 'Ernesto\'s Sweatpants',
     default_price: '56.00',
+    features: [{ feature: 'Cut', value: '"Skinny"' }, { feature: 'Cut', value: '"Loose"' }],
   },
 };
 
