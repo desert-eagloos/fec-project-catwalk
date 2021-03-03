@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-function Overview(props) {
-  // const [product, setProduct] = useState(appProduct);
+function Overview({ product }) {
+  const [display, setDisplay] = useState({});
+
+  useEffect(() => {
+    setDisplay(product);
+  }, []);
 
   return (
     <div className="overview-component">
@@ -17,8 +22,8 @@ function Overview(props) {
         Production Information
         <div className="overview overview-star-rating">Star Rating</div>
         <div className="overview overview-product-category">Production Category</div>
-        <div className="overview overview-product-title">Product Title</div>
-        <div className="overview overview-price">Price</div>
+        <div className="overview overview-product-title">{display.name}</div>
+        <div className="overview overview-price">{`$${display.default_price}`}</div>
         <div className="overview overview-social-media">Social Media</div>
       </div>
       <div className="overview overview-style-selector">Style Selector</div>
@@ -34,5 +39,19 @@ function Overview(props) {
     </div>
   );
 }
+
+Overview.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string,
+    default_price: PropTypes.string,
+  }),
+};
+
+Overview.defaultProps = {
+  product: {
+    name: 'Ernesto\'s Sweatpants',
+    default_price: '56.00',
+  },
+};
 
 export default Overview;
