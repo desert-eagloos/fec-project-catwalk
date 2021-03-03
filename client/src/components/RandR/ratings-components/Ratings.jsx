@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import Stars from './subcomponents/Stars';
 import RatingsBreakdown from './subcomponents/RatingsBreakdown';
@@ -38,5 +38,14 @@ function Ratings({ id }) {
     </div>
   );
 }
+
+Ratings.defaultProps = {
+  id: 18201,
+};
+
+Ratings.propTypes = {
+  id: PropTypes.number,
+};
+
 
 export default Ratings;
