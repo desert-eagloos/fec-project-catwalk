@@ -1,0 +1,11 @@
+.breakdown-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.breakdown-rating {
+  display: grid;
+  grid-template-columns: .2fr 1fr;
+  align-items: center;
+  justify-content: flex-start;
+}
