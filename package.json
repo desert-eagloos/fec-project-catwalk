@@ -4,6 +4,8 @@
   "private": "true",
   "dependencies": {
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
+    "@fullhuman/postcss-purgecss": "^4.0.2",
+    "@popperjs/core": "^2.9.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "express": "^4.17.1",
@@ -13,8 +15,7 @@
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
     "react-rating": "^2.0.5",
-    "tailwindcss": "^2.0.3",
-    "@fullhuman/postcss-purgecss": "^4.0.2"
+    "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.13.8",

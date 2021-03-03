@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProgressBar } from 'react-bootstrap';
+import { Row, Col, ProgressBar } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import '../../../../css/RandR/Ratings/RatingBreakdown.css';
@@ -16,31 +16,34 @@ export default function RatingsBreakdown({ ratings }) {
   const totalRatings = Object.values(ratings)
     .reduce((sum, x) => sum + Number(x), 0);
 
+  const rand = () => Math.floor(Math.random() * 1);
+
   return (
-    <div className="breakdown-container">
-      {
-        Object.entries(copyRatings)
-          .sort((a, b) => b[0].localeCompare(a[0]))
-          .map(([rating, value], i) => (
-            <div key={`rating${i + Math.floor(Math.random() * 1) + 1}`} className="breakdown-rating">
-              <span>{ rating }</span>
-              <span><ProgressBar now={(value / totalRatings) * 100} /></span>
-            </div>
-          ))
-      }
-    </div>
+    Object.entries(copyRatings)
+      .sort((a, b) => b[0].localeCompare(a[0]))
+      .map(([rating, value], i) => (
+        <Row key={`row${i + rand()}`}>
+          <Col sm={2}>
+            {rating}
+          </Col>
+          <Col>
+            <ProgressBar now={(value / totalRatings) * 100} />
+          </Col>
+        </Row>
+      ))
   );
 }
+
 RatingsBreakdown.defaultProps = {
   ratings: [[0, 1]],
 };
 
 RatingsBreakdown.propTypes = {
   ratings: PropTypes.shape({
-    5: PropTypes.number,
-    4: PropTypes.number,
-    3: PropTypes.number,
-    2: PropTypes.number,
-    1: PropTypes.number,
+    5: PropTypes.string,
+    4: PropTypes.string,
+    3: PropTypes.string,
+    2: PropTypes.string,
+    1: PropTypes.string,
   }),
 };

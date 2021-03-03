@@ -8,21 +8,21 @@ import 'font-awesome/css/font-awesome.css';
 
 export default function Stars({ rating }) {
   return (
-    <div>
+    <fragment>
       <Rating
         emptySymbol="fa fa-star-o"
         fullSymbol="fa fa-star"
         initialRating={roundToNearestQuarter(rating)}
         fractions={4}
       />
-    </div>
+    </fragment>
   );
 }
 
 Stars.defaultProps = {
-  rating: 3,
+  rating: '3',
 };
 
 Stars.propTypes = {
-  rating: PropTypes.number,
+  rating: PropTypes.string,
 };
