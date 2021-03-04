@@ -2,3 +2,4 @@
 **client/dist
 .vscode/settings.json
 server/config.js
+**package-lock*
