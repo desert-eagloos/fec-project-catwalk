@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 
 /* --- Import CSS files --- */
 import '../css/app.css';
@@ -36,15 +37,15 @@ function App() {
     ],
   });
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await axios.get('/products/18201')
-  //       .catch();
-  //     setProduct(result.data);
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('/products/18201')
+        .catch();
+      setProduct(result.data);
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   return (
     <Container>
