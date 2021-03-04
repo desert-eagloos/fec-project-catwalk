@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 // import axios from 'axios';
 
-/* --- Import CSS files --- */
-import '../css/app.css';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import QARoot from './QA/QARoot';
 import Overview from './Overview/Overview';
 

@@ -22,11 +22,11 @@ export default function RatingsBreakdown({ ratings }) {
     Object.entries(copyRatings)
       .sort((a, b) => b[0].localeCompare(a[0]))
       .map(([rating, value], i) => (
-        <Row key={`row${i + rand()}`}>
-          <Col sm={2}>
+        <Row key={`row${i + rand()}`} className="m-0 p-0">
+          <Col sm={2} className="m-0 p-0">
             {rating}
           </Col>
-          <Col>
+          <Col className="m-0 p-0">
             <ProgressBar now={(value / totalRatings) * 100} />
           </Col>
         </Row>
