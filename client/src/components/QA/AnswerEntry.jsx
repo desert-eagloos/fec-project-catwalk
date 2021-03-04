@@ -7,7 +7,7 @@ const AnswerEntry = (props) => {
       <div>
         A:{props.answer}
         <div>
-        by [username], Month DD, YYYY
+        by [username], Month DD, YYYY | Helpful? Yes(#) | Report
         </div>
       </div>
     )

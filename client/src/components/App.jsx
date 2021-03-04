@@ -5,8 +5,8 @@ import Overview from './Overview';
 
 const App = () => (
   <div>
-    Hello World!
-    <Overview />
+    {/* Hello World!
+    <Overview /> */}
     <QARoot />
   </div>
 );

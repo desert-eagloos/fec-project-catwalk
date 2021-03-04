@@ -28,10 +28,10 @@ const AnswerList = (props) => {
   useEffect(() => {
       if (open) {
       setAnswers(props.answers);
-      setMoreButton('Show Less');
+      setMoreButton('Collapse answers');
     } else {
       setAnswers(firstTwoAns);
-      setMoreButton('More Answers');
+      setMoreButton('See more answers');
     }
   }, [open]);
 

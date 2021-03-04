@@ -45,6 +45,7 @@ const QuestionList = (props) => {
         )
       })}
       {renderMoreQuestionsButton()}
+      <button>Add a question</button>
     </div>
   )
 }

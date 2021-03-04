@@ -6,7 +6,7 @@ const QuestionEntry = (props) => {
   return (
     <div>
       Q:{props.question.question}
-      <button>Answer Question</button>
+      <span> Helpful? Yes(#) |</span><button>Answer Question</button>
       <AnswerList answers={props.question.answers}/>
     </div>
   )
