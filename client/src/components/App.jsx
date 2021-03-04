@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import axios from 'axios';
-
-/* --- Import CSS files --- */
-import '../css/app.css';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row } from 'react-bootstrap';
+// import axios from 'axios';
 
 import QARoot from './QA/QARoot';
 import Overview from './Overview/Overview';
@@ -49,13 +43,15 @@ function App() {
 
   return (
     <Container>
-      <Col />
-      <Col md={10}>
+      <Row className="mb-4">
         <Overview product={product} />
+      </Row>
+      <Row className="mb-4">
         <QARoot />
+      </Row>
+      <Row className="mb-4">
         <RandR id={18201} />
-      </Col>
-      <Col />
+      </Row>
     </Container>
   );
 }

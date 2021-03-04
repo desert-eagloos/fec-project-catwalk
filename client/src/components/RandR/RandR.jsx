@@ -1,23 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import '../../css/RandR/RandR.css';
-
 
 import Ratings from './ratings-components/Ratings';
 import Reviews from './review-components/Reviews';
 
 function RandR({ id }) {
   return (
-    <div className="module-randr-container">
-      <div className="randr-title">
+    <Container>
+      <Row>
         <h2>Ratings and Reviews</h2>
-      </div>
-      <div className="randr-items">
-        <Ratings id={id} />
-        <Reviews id={id} />
-      </div>
-    </div>
+      </Row>
+      <Row>
+        <Col sm={4}>
+          <Ratings id={id} />
+        </Col>
+        <Col sm={8}>
+          <Reviews id={id} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
