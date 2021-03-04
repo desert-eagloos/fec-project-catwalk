@@ -68,7 +68,11 @@ function Overview({ product }) {
               <img href="#" src="/Assets/Icons/pinterest.svg" alt="Pinterest" />
             </div>
           </div>
-          <StyleSelection options={styleOptions} change={setSelection} selected={selectedStyle} />
+          <StyleSelection
+            styleOpts={styleOptions}
+            changeSelection={setSelection}
+            selectedStyle={selectedStyle}
+          />
           <div className="overview overview-add-to-cart-container">
             Add to Cart
             <div className="overview overview-size-selector">Size Selector</div>

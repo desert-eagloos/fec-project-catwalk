@@ -3,42 +3,41 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import PropTypes from 'prop-types';
 
-function StyleSelection({ styleOptions, changeSelection, selectedStyle }) {
+function StyleSelection({ styleOpts, changeSelection, selectedStyle }) {
+  /* Changes local and parent state */
   useEffect(() => {
-    styleOptions.forEach((entry) => {
+    styleOpts.forEach((entry) => {
       if (entry.default) changeSelection(entry.name);
     });
-  }, [styleOptions]);
+  }, [styleOpts]);
 
   return (
     <Container>
       <p>{`Style > ${selectedStyle}`}</p>
       <Row>
-        {styleOptions.map((entry) => (
+        {styleOpts.map((entry) => (
           <Col key={entry.style_id}>
-            <Image className="style-selection-thumbnails" src={entry.thumbnail} thumbnail roundedCircle />
+            <Image
+              id={entry.name}
+              className="style-selection-thumbnails"
+              src={entry.thumbnail}
+              thumbnail
+              roundedCircle
+              onClick={(event) => {
+                changeSelection(event.target.id);
+              }}
+            />
           </Col>
         ))}
-      </Row>
-      <Row>
-        <Col>
-          <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-            <Dropdown.Item>Action</Dropdown.Item>
-            <Dropdown.Item>Another action</Dropdown.Item>
-            <Dropdown.Item>Something else</Dropdown.Item>
-          </DropdownButton>
-        </Col>
       </Row>
     </Container>
   );
 }
 
 StyleSelection.propTypes = {
-  styleOptions: PropTypes.arrayOf(PropTypes.shape({
+  styleOpts: PropTypes.arrayOf(PropTypes.shape({
     default: PropTypes.bool,
     name: PropTypes.string,
     style_id: PropTypes.number,
@@ -49,7 +48,7 @@ StyleSelection.propTypes = {
 };
 
 StyleSelection.defaultProps = {
-  styleOptions: [
+  styleOpts: [
     {
       default: true,
       name: 'Green',
