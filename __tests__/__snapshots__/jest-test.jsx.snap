@@ -12,264 +12,338 @@ exports[`Creates a React-Bootsrap Component Creates a Button 1`] = `
 
 exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
 <div
-  className="app-container"
+  className="container"
 >
   <div
-    className="overview-component"
+    className="mb-4 row"
   >
     <div
-      className="overview overview-image-gallery-container"
+      className="overview-component"
     >
-      Image Gallery
       <div
-        className="overview over-image-gallery-default-view"
+        className="overview overview-image-gallery-container"
       >
-        IMG PLACEHOLDER
+        Image Gallery
+        <div
+          className="overview over-image-gallery-default-view"
+        >
+          IMG PLACEHOLDER
+          <button
+            className="overview overview-image-gallery-expanded-view"
+            type="button"
+          >
+            ICON HERE
+          </button>
+          <div
+            className="overview overview-image-gallery-thumbnails"
+          >
+            IMG GALLERY THUMBNAILS
+          </div>
+        </div>
+      </div>
+      <div
+        className="overview overview-product-information-a"
+      >
+        Product Information
+        <div
+          className="overview overview-star-rating"
+        >
+          Star Rating
+        </div>
+        <div
+          className="overview overview-product-category"
+        >
+          Product Category
+        </div>
+        <div
+          className="overview overview-product-title"
+        >
+          Ernesto Sweatpants
+        </div>
+        <div
+          className="overview overview-price"
+        >
+          $56.00
+        </div>
+        <div
+          className="overview overview-social-media"
+        >
+          <img
+            alt="Instagram"
+            href="#"
+            src="/Assets/Icons/instagram.svg"
+          />
+          <img
+            alt="Facebook"
+            href="#"
+            src="/Assets/Icons/facebook.svg"
+          />
+          <img
+            alt="Twitter"
+            href="#"
+            src="/Assets/Icons/twitter.svg"
+          />
+          <img
+            alt="Pinterest"
+            href="#"
+            src="/Assets/Icons/pinterest.svg"
+          />
+        </div>
+      </div>
+      <div
+        className="overview overview-style-selector"
+      >
+        Style Selector
+        <div
+          className="option1"
+        >
+          Green
+        </div>
+        <div
+          className="option2"
+        >
+          Tan
+        </div>
+        <div
+          className="option3"
+        >
+          Mint green
+        </div>
+        <div
+          className="option4"
+        >
+          Salmon
+        </div>
+      </div>
+      <div
+        className="overview overview-add-to-cart-container"
+      >
+        Add to Cart
+        <div
+          className="overview overview-size-selector"
+        >
+          Size Selector
+        </div>
+        <div
+          className="overview overview-quantity-selector"
+        >
+          Quantity Selector
+        </div>
         <button
-          className="overview overview-image-gallery-expanded-view"
+          className="overview overview-add-to-cart-button"
           type="button"
         >
-          ICON HERE
+          <img
+            alt="Shopping Cart"
+            href="#"
+            src="/Assets/Icons/cart2.svg"
+          />
+          Add To Cart
         </button>
+      </div>
+      <div
+        className="overview overview-production-information-b"
+      >
         <div
-          className="overview overview-image-gallery-thumbnails"
+          className="overview overview-product-description"
         >
-          IMG GALLERY THUMBNAILS
+          Product Description
         </div>
-      </div>
-    </div>
-    <div
-      className="overview overview-product-information-a"
-    >
-      Product Information
-      <div
-        className="overview overview-star-rating"
-      >
-        Star Rating
-      </div>
-      <div
-        className="overview overview-product-category"
-      >
-        Product Category
-      </div>
-      <div
-        className="overview overview-product-title"
-      >
-        Ernesto Sweatpants
-      </div>
-      <div
-        className="overview overview-price"
-      >
-        $56.00
-      </div>
-      <div
-        className="overview overview-social-media"
-      >
-        <img
-          alt="Instagram"
-          href="#"
-          src="/Assets/Icons/instagram.svg"
-        />
-        <img
-          alt="Facebook"
-          href="#"
-          src="/Assets/Icons/facebook.svg"
-        />
-        <img
-          alt="Twitter"
-          href="#"
-          src="/Assets/Icons/twitter.svg"
-        />
-        <img
-          alt="Pinterest"
-          href="#"
-          src="/Assets/Icons/pinterest.svg"
-        />
-      </div>
-    </div>
-    <div
-      className="overview overview-style-selector"
-    >
-      Style Selector
-      <div
-        className="option1"
-      >
-        Green
-      </div>
-      <div
-        className="option2"
-      >
-        Tan
-      </div>
-      <div
-        className="option3"
-      >
-        Mint green
-      </div>
-      <div
-        className="option4"
-      >
-        Salmon
-      </div>
-    </div>
-    <div
-      className="overview overview-add-to-cart-container"
-    >
-      Add to Cart
-      <div
-        className="overview overview-size-selector"
-      >
-        Size Selector
-      </div>
-      <div
-        className="overview overview-quantity-selector"
-      >
-        Quantity Selector
-      </div>
-      <button
-        className="overview overview-add-to-cart-button"
-        type="button"
-      >
-        <img
-          alt="Shopping Cart"
-          href="#"
-          src="/Assets/Icons/cart2.svg"
-        />
-        Add To Cart
-      </button>
-    </div>
-    <div
-      className="overview overview-production-information-b"
-    >
-      <div
-        className="overview overview-product-description"
-      >
-        Product Description
-      </div>
-    </div>
-  </div>
-  <div>
-    <u>
-      QA Section
-    </u>
-    <div>
-      <div>
-        Q:
-        Can I throw it in the ocean?
-        <div>
-          <div>
-            A:
-            I did and it works just fine.
-          </div>
-          <div>
-            A:
-            Not very aerodynamic.
-          </div>
-          <div>
-            A:
-            I threw it farther than anything I have ever thrown
-          </div>
-        </div>
-      </div>
-      <div>
-        Q:
-        Does this product work in space?
-        <div>
-          <div>
-            A:
-            I took it to Mars last week. Works great.
-          </div>
-          <div>
-            A:
-            Aliens wont use it but great for humans.
-          </div>
-        </div>
-      </div>
-      <div>
-        Q:
-        Will I need show this to my friend Tom?
-        <div>
-          <div>
-            A:
-            Under no circumstances show this to Tom.
-          </div>
-        </div>
-      </div>
-      <div>
-        Q:
-        Should I be prepared for the zombie apocalypse?
-        <div>
-          <div>
-            A:
-            Always
-          </div>
-          <div>
-            A:
-            Anything can happen in 2021.
-          </div>
-          <div>
-            A:
-            Rule number 1... cardio.
-          </div>
-        </div>
-      </div>
-      <div>
-        Q:
-        What gives you the right?
-        <div />
       </div>
     </div>
   </div>
   <div
-    className="module-randr-container"
+    className="mb-4 row"
+  >
+    <div>
+      <u>
+        QA Section
+      </u>
+      <div>
+        <input />
+      </div>
+      <div>
+        <div>
+          Q:
+          Can I throw it in the ocean?
+          <span>
+             Helpful? Yes(#) |
+          </span>
+          <button>
+            Answer Question
+          </button>
+          <div>
+            <div>
+              A:
+              I did and it works just fine.
+              <div>
+                by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+              </div>
+            </div>
+            <div>
+              A:
+              Not very aerodynamic.
+              <div>
+                by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+              </div>
+            </div>
+            <button
+              onClick={[Function]}
+            >
+              More Answers
+            </button>
+          </div>
+        </div>
+        <div>
+          Q:
+          Does this product work in space?
+          <span>
+             Helpful? Yes(#) |
+          </span>
+          <button>
+            Answer Question
+          </button>
+          <div>
+            <div>
+              A:
+              I took it to Mars last week. Works great.
+              <div>
+                by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+              </div>
+            </div>
+            <div>
+              A:
+              Aliens wont use it but great for humans.
+              <div>
+                by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          Q:
+          Will I need show this to my friend Tom?
+          <span>
+             Helpful? Yes(#) |
+          </span>
+          <button>
+            Answer Question
+          </button>
+          <div>
+            <div>
+              A:
+              Under no circumstances show this to Tom.
+              <div>
+                by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+              </div>
+            </div>
+            <div />
+          </div>
+        </div>
+        <div>
+          Q:
+          Should I be prepared for the zombie apocalypse?
+          <span>
+             Helpful? Yes(#) |
+          </span>
+          <button>
+            Answer Question
+          </button>
+          <div>
+            <div>
+              A:
+              Always
+              <div>
+                by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+              </div>
+            </div>
+            <div>
+              A:
+              Anything can happen in 2021.
+              <div>
+                by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+              </div>
+            </div>
+            <button
+              onClick={[Function]}
+            >
+              More Answers
+            </button>
+          </div>
+        </div>
+        <button
+          onClick={[Function]}
+        >
+          More Answered Questions
+        </button>
+        <button>
+          Add a question
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="mb-4 row"
   >
     <div
-      className="randr-title"
+      className="container"
     >
-      <h2>
-        Ratings and Reviews
-      </h2>
-    </div>
-    <div
-      className="randr-items"
-    >
-      <div>
-        Loading Ratings...
+      <div
+        className="row"
+      >
+        <h2>
+          Ratings and Reviews
+        </h2>
       </div>
       <div
-        className="randr-reviews-container"
+        className="row"
       >
-        <div>
-          Total reviews and sorting
-        </div>
-        <div>
+        <div
+          className="col-sm-4"
+        >
           <div>
-            star rating
-          </div>
-          <div>
-            user and date posted
+            Loading Ratings...
           </div>
         </div>
-        <div>
-          review title
-        </div>
-        <div>
-          review body
-        </div>
-        <div>
-          helpful and report
-        </div>
-        <div>
-          <button
-            type="button"
+        <div
+          className="col-sm-8"
+        >
+          <div
+            className="randr-reviews-container"
           >
-            More Reviews
-          </button>
-          <button
-            type="button"
-          >
-            Add a Review
-          </button>
+            <div>
+              Total reviews and sorting
+            </div>
+            <div>
+              <div>
+                star rating
+              </div>
+              <div>
+                user and date posted
+              </div>
+            </div>
+            <div>
+              review title
+            </div>
+            <div>
+              review body
+            </div>
+            <div>
+              helpful and report
+            </div>
+            <div>
+              <button
+                type="button"
+              >
+                More Reviews
+              </button>
+              <button
+                type="button"
+              >
+                Add a Review
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
