@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import expect from 'expect';
-import { describe, test } from 'jest';
 
 import Stars from '../../client/src/components/RandR/ratings-components/subcomponents/Stars';
 import RatingsBreakdown from '../../client/src/components/RandR/ratings-components/subcomponents/RatingsBreakdown';
+import FitRating from '../../client/src/components/RandR/ratings-components/subcomponents/FitRating';
 
 describe('Creates Ratings and Reviews Components', () => {
   describe('Creates a Star Rating Component', () => {
@@ -30,14 +29,14 @@ describe('Creates Ratings and Reviews Components', () => {
   });
   describe('Creates a Size Fit Rating Component', () => {
     test('Size Fit Rating', () => {
-      const ratings = {
-        5: 2,
-        4: 3,
-        3: 5,
-        2: 1,
-        1: 10,
-      };
-      const component = renderer.create(<RatingsBreakdown key="bcTest1" ratings={ratings} />);
+      const component = renderer.create(<FitRating ratings="3" />);
+      const json = component.toJSON();
+      expect(json).toMatchSnapshot();
+    });
+  });
+  describe('Creates a Comfort Fit Rating Component', () => {
+    test('Comfort Fit Rating', () => {
+      const component = renderer.create(<FitRating ratings="2" />);
       const json = component.toJSON();
       expect(json).toMatchSnapshot();
     });

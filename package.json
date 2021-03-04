@@ -4,17 +4,16 @@
   "private": "true",
   "dependencies": {
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
-    "@fullhuman/postcss-purgecss": "^4.0.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.0",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
-    "react-rating": "^2.0.5",
-    "tailwindcss": "^2.0.3"
+    "react-rating": "^2.0.5"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.13.9",
@@ -37,8 +36,6 @@
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "nodemon": "^2.0.7",
-    "postcss-cli": "^8.3.1",
-    "postcss-loader": "^5.0.0",
     "react-test-renderer": "^17.0.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.24.2",

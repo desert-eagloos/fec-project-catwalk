@@ -8,6 +8,7 @@
   "breakdown breakdown breakdown"
   "size size size"
   "comfort comfort comfort";
+  font-size: medium;
 }
 
 .randr-ratings-container > div {
@@ -17,6 +18,7 @@
 
 .randr-ratings-container > div:nth-child(1) {
   grid-area: avg;
+  font-size: x-large;
 }
 
 .randr-ratings-container > div:nth-child(2) {
