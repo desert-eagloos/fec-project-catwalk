@@ -19,6 +19,7 @@ function Ratings({ id }) {
   const [fit, setFit] = useState(2.5);
   const [comfort, setComfort] = useState(2.5);
 
+<<<<<<< HEAD
   useEffect(() => {
     const getRatings = async () => {
       const response = await axios.get(`/reviews/meta/${id}`)
@@ -31,6 +32,19 @@ function Ratings({ id }) {
     };
     getRatings();
   }, []);
+=======
+  // useEffect(() => {
+  //   const getRatings = async () => {
+  //     const response = await axios.get(`/reviews/meta/${Number(id)}`);
+  //     setRating(getAverageRating(response.data.ratings));
+  //     setRatings(response.data.ratings);
+  //     setFit(response.data.characteristics.Fit.value);
+  //     setComfort(response.data.characteristics.Comfort.value);
+  //     setLoading(false);
+  //   };
+  //   getRatings();
+  // }, []);
+>>>>>>> develop
 
   if (isLoading) {
     return <div>Loading Ratings...</div>;

@@ -13,8 +13,6 @@ const QuestionList = (props) => {
 
   const [moreButton, setMoreButton] = useState('More Answered Questions');
 
-  console.log('first 4 ', firstFour);
-
   const toggleQuestions = () => {
     setOpen(!open);
   }

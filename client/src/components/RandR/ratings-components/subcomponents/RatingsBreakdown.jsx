@@ -35,7 +35,7 @@ export default function RatingsBreakdown({ ratings }) {
 }
 
 RatingsBreakdown.defaultProps = {
-  ratings: [[0, 1]],
+  ratings: [['0', '1']],
 };
 
 RatingsBreakdown.propTypes = {
@@ -45,5 +45,10 @@ RatingsBreakdown.propTypes = {
     3: PropTypes.number,
     2: PropTypes.number,
     1: PropTypes.number,
+<<<<<<< HEAD
   })
 }
+=======
+  }),
+};
+>>>>>>> develop
