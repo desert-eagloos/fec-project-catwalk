@@ -45,10 +45,5 @@ RatingsBreakdown.propTypes = {
     3: PropTypes.number,
     2: PropTypes.number,
     1: PropTypes.number,
-<<<<<<< HEAD
-  })
-}
-=======
   }),
 };
->>>>>>> develop

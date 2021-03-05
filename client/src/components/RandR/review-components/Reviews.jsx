@@ -1,4 +1,6 @@
 import React from 'react';
+import { Row, Col, Button } from 'react-bootstrap';
+
 import '../../../css/RandR/Reviews/Reviews.css';
 
 const Reviews = () => (
