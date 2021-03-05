@@ -14,7 +14,10 @@ function StyleSelection({ styleOpts, changeSelection, selectedStyle }) {
 
   return (
     <Container>
-      <p>{`Style > ${selectedStyle}`}</p>
+      <p>
+        Style
+        {selectedStyle}
+      </p>
       <Row>
         {styleOpts.map((entry) => (
           <Col key={entry.style_id}>
