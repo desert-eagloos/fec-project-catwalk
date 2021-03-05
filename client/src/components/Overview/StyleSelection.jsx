@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
-import Col from 'react-bootstrap/Col';
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 function StyleSelection({ styleOpts, changeSelection, selectedStyle }) {
@@ -15,8 +19,9 @@ function StyleSelection({ styleOpts, changeSelection, selectedStyle }) {
   return (
     <Container>
       <p>
-        Style
-        {selectedStyle}
+        {'Style '}
+        <FontAwesomeIcon icon={faChevronRight} />
+        {` ${selectedStyle}`}
       </p>
       <Row>
         {styleOpts.map((entry) => (
