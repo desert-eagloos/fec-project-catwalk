@@ -20,9 +20,9 @@ export default function Stars({ rating }) {
 }
 
 Stars.defaultProps = {
-  rating: '3',
+  rating: 3,
 };
 
 Stars.propTypes = {
-  rating: PropTypes.string,
+  rating: PropTypes.number,
 };

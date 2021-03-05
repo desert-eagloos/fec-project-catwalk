@@ -19,17 +19,18 @@ function Ratings({ id }) {
   const [fit, setFit] = useState(2.5);
   const [comfort, setComfort] = useState(2.5);
 
-  // useEffect(() => {
-  //   const getRatings = async () => {
-  //     const response = await axios.get(`/reviews/meta/${Number(id)}`);
-  //     setRating(getAverageRating(response.data.ratings));
-  //     setRatings(response.data.ratings);
-  //     setFit(response.data.characteristics.Fit.value);
-  //     setComfort(response.data.characteristics.Comfort.value);
-  //     setLoading(false);
-  //   };
-  //   getRatings();
-  // }, []);
+  useEffect(() => {
+    const getRatings = async () => {
+      const response = await axios.get(`/reviews/meta/${id}`)
+        .catch(error => console.log(error));
+      setRating(getAverageRating(response.data.ratings));
+      setRatings(response.data.ratings);
+      setFit(response.data.characteristics.Fit.value);
+      setComfort(response.data.characteristics.Comfort.value);
+      setLoading(false);
+    };
+    getRatings();
+  }, []);
 
   if (isLoading) {
     return <div>Loading Ratings...</div>;

@@ -350,35 +350,68 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
           className="col-sm-8"
         >
           <div
-            className="randr-reviews-container"
+            className="row"
           >
-            <div>
-              Total reviews and sorting
+            Total reviews and sorting
+          </div>
+          <div
+            className="row"
+          >
+            <div
+              className="col"
+            >
+              star rating
             </div>
-            <div>
-              <div>
-                star rating
-              </div>
-              <div>
-                user and date posted
-              </div>
+            <div
+              className="col"
+            >
+              user and date posted
             </div>
-            <div>
-              review title
+          </div>
+          <div
+            className="row"
+          >
+            review title
+          </div>
+          <div
+            className="row"
+          >
+            review body
+          </div>
+          <div
+            className="row"
+          >
+            <div
+              className="col"
+            >
+              helpful
             </div>
-            <div>
-              review body
+            <div
+              className="col"
+            >
+              report
             </div>
-            <div>
-              helpful and report
-            </div>
-            <div>
+          </div>
+          <div
+            className="row"
+          >
+            <div
+              className="col"
+            >
               <button
+                className="btn btn-primary"
+                disabled={false}
                 type="button"
               >
                 More Reviews
               </button>
+            </div>
+            <div
+              className="col"
+            >
               <button
+                className="btn btn-primary"
+                disabled={false}
                 type="button"
               >
                 Add a Review
