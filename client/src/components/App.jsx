@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
-// import axios from 'axios';
+import axios from 'axios';
 
 import QARoot from './QA/QARoot';
 import Overview from './Overview/Overview';
