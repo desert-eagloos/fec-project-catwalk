@@ -36,9 +36,9 @@ function Overview({ product }) {
       .catch();
   };
 
-  // useEffect(() => {
-  //   getStylesByProductId(product.id);
-  // }, [product]);
+  useEffect(() => {
+    getStylesByProductId(product.id);
+  }, [product]);
 
   return (
     <Container className="overview-component">
@@ -60,10 +60,10 @@ function Overview({ product }) {
             <div className="overview overview-product-title">{product.name}</div>
             <div className="overview overview-price">{`$${product.default_price}`}</div>
             <div className="overview overview-social-media">
-              <img href="#" src="/Assets/Icons/instagram.svg" alt="Instagram" />
-              <img href="#" src="/Assets/Icons/facebook.svg" alt="Facebook" />
-              <img href="#" src="/Assets/Icons/twitter.svg" alt="Twitter" />
-              <img href="#" src="/Assets/Icons/pinterest.svg" alt="Pinterest" />
+              <i className="bi bi-facebook" />
+              <i className="bi bi-instagram" />
+              <i className="bi bi-twitter" />
+              <i className="fab fa-pinterest" />
             </div>
           </div>
           <StyleSelection
