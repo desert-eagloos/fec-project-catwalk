@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFacebook,
+  faInstagram,
+  faPinterest,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import StyleSelection from './StyleSelection';
 import '../../css/overview.css';
@@ -36,9 +44,9 @@ function Overview({ product }) {
       .catch();
   };
 
-  useEffect(() => {
-    getStylesByProductId(product.id);
-  }, [product]);
+  // useEffect(() => {
+  //   getStylesByProductId(product.id);
+  // }, [product]);
 
   return (
     <Container className="overview-component">
@@ -60,10 +68,10 @@ function Overview({ product }) {
             <div className="overview overview-product-title">{product.name}</div>
             <div className="overview overview-price">{`$${product.default_price}`}</div>
             <div className="overview overview-social-media">
-              <i className="bi bi-facebook" />
-              <i className="bi bi-instagram" />
-              <i className="bi bi-twitter" />
-              <i className="fab fa-pinterest" />
+              <FontAwesomeIcon icon={faFacebook} size="2x" />
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+              <FontAwesomeIcon icon={faPinterest} size="2x" />
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
             </div>
           </div>
           <StyleSelection
@@ -76,7 +84,7 @@ function Overview({ product }) {
             <div className="overview overview-size-selector">Size Selector</div>
             <div className="overview overview-quantity-selector">Quantity Selector</div>
             <button type="button" className="overview overview-add-to-cart-button">
-              <img href="#" src="/Assets/Icons/cart2.svg" alt="Shopping Cart" />
+              <FontAwesomeIcon icon={faShoppingCart} />
               Add To Cart
             </button>
           </div>

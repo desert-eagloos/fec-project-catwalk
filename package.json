@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": "true",
   "dependencies": {
-    "@fortawesome/fontawesome-free-regular": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@fullhuman/postcss-purgecss": "^4.0.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
