@@ -23,9 +23,9 @@ export default function FitRating({ fitValue }) {
 }
 
 FitRating.defaultProps = {
-  fitValue: 3,
+  fitValue: '3',
 };
 
 FitRating.propTypes = {
-  fitValue: PropTypes.number,
+  fitValue: PropTypes.string,
 };

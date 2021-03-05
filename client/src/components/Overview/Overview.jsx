@@ -3,18 +3,13 @@ import { Container, Col, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faFacebook,
-  faInstagram,
-  faPinterest,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import StyleSelection from './StyleSelection';
+import ProductInfoA from './ProductInfoA';
 import '../../css/overview.css';
 
-const sampleData = require('./sampleStyleData');
+const sampleStyleData = require('./SampleData/sampleStyleData');
 
 function Overview({ product }) {
   const filterStyleOptionProps = (requestResponse) => {
@@ -30,7 +25,9 @@ function Overview({ product }) {
     return filteredResults;
   };
 
-  const [styleOptions, setStyleOptions] = useState(filterStyleOptionProps(sampleData.styleGetReq));
+  const [styleOptions, setStyleOptions] = useState(
+    filterStyleOptionProps(sampleStyleData.styleGetReq),
+  );
   const [selectedStyle, setSelection] = useState();
 
   const getStylesByProductId = (productId) => {
@@ -44,9 +41,9 @@ function Overview({ product }) {
       .catch();
   };
 
-  // useEffect(() => {
-  //   getStylesByProductId(product.id);
-  // }, [product]);
+  useEffect(() => {
+    getStylesByProductId(product.id);
+  }, [product]);
 
   return (
     <Container className="overview-component">
@@ -62,18 +59,7 @@ function Overview({ product }) {
           </div>
         </Col>
         <Col>
-          <div className="overview overview-product-information-a">
-            <div className="overview overview-star-rating">Star Rating</div>
-            <div className="overview overview-product-category">Product Category</div>
-            <div className="overview overview-product-title">{product.name}</div>
-            <div className="overview overview-price">{`$${product.default_price}`}</div>
-            <div className="overview overview-social-media">
-              <FontAwesomeIcon icon={faFacebook} size="2x" />
-              <FontAwesomeIcon icon={faInstagram} size="2x" />
-              <FontAwesomeIcon icon={faPinterest} size="2x" />
-              <FontAwesomeIcon icon={faTwitter} size="2x" />
-            </div>
-          </div>
+          <ProductInfoA />
           <StyleSelection
             styleOpts={styleOptions}
             changeSelection={setSelection}
@@ -92,7 +78,10 @@ function Overview({ product }) {
       </Row>
       <Row>
         <div className="overview overview-production-information-b">
-          <div className="overview overview-product-description">Product Description</div>
+          <div className="overview overview-product-description">
+            <h4>{product.slogan}</h4>
+            {product.description}
+          </div>
         </div>
       </Row>
     </Container>
@@ -102,21 +91,28 @@ function Overview({ product }) {
 Overview.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number,
+    campus: PropTypes.string,
+    slogan: PropTypes.string,
+    description: PropTypes.string,
+    category: PropTypes.string,
     name: PropTypes.string,
     default_price: PropTypes.string,
-    features: PropTypes.arrayOf(PropTypes.shape({
-      feature: PropTypes.string,
-      value: PropTypes.string,
-    })),
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
   }),
 };
 
 Overview.defaultProps = {
   product: {
     id: 18201,
+    campus: 'hr-bld',
+    slogan: 'Odit dolorem nemo id tempora qui.',
+    description: 'A sapiente hic. Facilis et sit voluptatem. Ex sunt reiciendis qui ut perferendis qui soluta quod.',
+    category: 'Sweatpants',
     name: 'Ernesto\'s Sweatpants',
     default_price: '56.00',
-    features: [{ feature: 'Cut', value: '"Skinny"' }, { feature: 'Cut', value: '"Loose"' }],
+    created_at: '2021-02-23T05:08:00.520Z',
+    updated_at: '2021-02-23T05:08:00.520Z',
   },
 };
 

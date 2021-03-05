@@ -16,11 +16,11 @@ describe('Creates Ratings and Reviews Components', () => {
   describe('Creates a Rating Breakdown Component', () => {
     test(' Rating Breakdown', () => {
       const ratings = {
-        5: 2,
-        4: 3,
-        3: 5,
-        2: 1,
-        1: 10,
+        5: '2',
+        4: '3',
+        3: '5',
+        2: '1',
+        1: '10',
       };
       const component = renderer.create(<RatingsBreakdown key="bcTest1" ratings={ratings} />);
       const json = component.toJSON();
