@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Creates a React-Bootstrap Component Creates a Button 1`] = `
-<div>
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    type="button"
-  />
-</div>
-`;
-
 exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
 <div
   className="container"
