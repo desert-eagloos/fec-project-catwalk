@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 
 function StyleSelection({ styleOpts, changeSelection, selectedStyle }) {
-  /* Changes local and parent state */
   useEffect(() => {
     styleOpts.forEach((entry) => {
       if (entry.default) changeSelection(entry.name);

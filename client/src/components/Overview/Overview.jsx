@@ -36,9 +36,9 @@ function Overview({ product }) {
       .catch();
   };
 
-  useEffect(() => {
-    getStylesByProductId(product.id);
-  }, [product]);
+  // useEffect(() => {
+  //   getStylesByProductId(product.id);
+  // }, [product]);
 
   return (
     <Container className="overview-component">
