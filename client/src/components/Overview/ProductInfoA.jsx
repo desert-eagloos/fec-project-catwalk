@@ -13,7 +13,7 @@ function ProductInfoA({ product }) {
     <div className="overview overview-product-information-a">
       <div className="overview overview-star-rating">Star Rating</div>
       <div className="overview overview-product-category">Product Category</div>
-      <div className="overview overview-product-title">{product.name}</div>
+      <div className="overview overview-product-title"><h2>{product.name}</h2></div>
       <div className="overview overview-price">{`$${product.default_price}`}</div>
       <div className="overview overview-social-media">
         <FontAwesomeIcon icon={faFacebook} size="2x" />

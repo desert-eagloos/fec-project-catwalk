@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import StyleSelection from './StyleSelection';
-import ProductInfoA from './ProductInfo';
+import ProductInfoA from './ProductInfoA';
 import '../../css/overview.css';
 
-const sampleData = require('./sampleStyleData');
+const sampleStyleData = require('./SampleData/sampleStyleData');
 
 function Overview({ product }) {
   const filterStyleOptionProps = (requestResponse) => {
@@ -25,7 +25,9 @@ function Overview({ product }) {
     return filteredResults;
   };
 
-  const [styleOptions, setStyleOptions] = useState(filterStyleOptionProps(sampleData.styleGetReq));
+  const [styleOptions, setStyleOptions] = useState(
+    filterStyleOptionProps(sampleStyleData.styleGetReq),
+  );
   const [selectedStyle, setSelection] = useState();
 
   const getStylesByProductId = (productId) => {
