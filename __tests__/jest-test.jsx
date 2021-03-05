@@ -12,7 +12,7 @@ describe('Welcome (Snapshot)', () => {
   });
 });
 
-describe('Creates a React-Bootsrap Component', () => {
+describe('Creates a React-Bootstrap Component', () => {
   test('Creates a Button', () => {
     const component = renderer.create(<BootstrapTest />);
     const json = component.toJSON();

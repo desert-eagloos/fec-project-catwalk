@@ -14,6 +14,12 @@ body {
   margin-right: auto;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 * {
   font-family: 'Libre Baskerville', serif;
   color: #4A2737;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Creates a React-Bootsrap Component Creates a Button 1`] = `
+exports[`Creates a React-Bootstrap Component Creates a Button 1`] = `
 <div>
   <button
     className="btn btn-primary"
@@ -18,136 +18,177 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
     className="mb-4 row"
   >
     <div
-      className="overview-component"
+      className="overview-component container"
     >
       <div
-        className="overview overview-image-gallery-container"
+        className="row"
       >
-        Image Gallery
         <div
-          className="overview over-image-gallery-default-view"
+          className="col"
         >
-          IMG PLACEHOLDER
-          <button
-            className="overview overview-image-gallery-expanded-view"
-            type="button"
-          >
-            ICON HERE
-          </button>
           <div
-            className="overview overview-image-gallery-thumbnails"
+            className="overview overview-image-gallery-container"
           >
-            IMG GALLERY THUMBNAILS
+            Image Gallery
+            <div
+              className="overview over-image-gallery-default-view"
+            >
+              IMG PLACEHOLDER
+              <button
+                className="overview overview-image-gallery-expanded-view"
+                type="button"
+              >
+                ICON HERE
+              </button>
+              <div
+                className="overview overview-image-gallery-thumbnails"
+              >
+                IMG GALLERY THUMBNAILS
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="overview overview-product-information-a"
+          >
+            <div
+              className="overview overview-star-rating"
+            >
+              Star Rating
+            </div>
+            <div
+              className="overview overview-product-category"
+            >
+              Product Category
+            </div>
+            <div
+              className="overview overview-product-title"
+            >
+              Ernesto Sweatpants
+            </div>
+            <div
+              className="overview overview-price"
+            >
+              $56.00
+            </div>
+            <div
+              className="overview overview-social-media"
+            >
+              <img
+                alt="Instagram"
+                href="#"
+                src="/Assets/Icons/instagram.svg"
+              />
+              <img
+                alt="Facebook"
+                href="#"
+                src="/Assets/Icons/facebook.svg"
+              />
+              <img
+                alt="Twitter"
+                href="#"
+                src="/Assets/Icons/twitter.svg"
+              />
+              <img
+                alt="Pinterest"
+                href="#"
+                src="/Assets/Icons/pinterest.svg"
+              />
+            </div>
+          </div>
+          <div
+            className="container"
+          >
+            <p>
+              Style &gt; Green
+            </p>
+            <div
+              className="row"
+            >
+              <div
+                className="col"
+              >
+                <img
+                  className="style-selection-thumbnails rounded-circle img-thumbnail"
+                  id="Green"
+                  onClick={[Function]}
+                  src="https://images.unsplash.com/photo-1482876555840-f31c5ebbff1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+                />
+              </div>
+              <div
+                className="col"
+              >
+                <img
+                  className="style-selection-thumbnails rounded-circle img-thumbnail"
+                  id="Tan"
+                  onClick={[Function]}
+                  src="https://images.unsplash.com/photo-1558014356-f7c41bc744f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+                />
+              </div>
+              <div
+                className="col"
+              >
+                <img
+                  className="style-selection-thumbnails rounded-circle img-thumbnail"
+                  id="Mint green"
+                  onClick={[Function]}
+                  src="https://images.unsplash.com/photo-1513531926349-466f15ec8cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+                />
+              </div>
+              <div
+                className="col"
+              >
+                <img
+                  className="style-selection-thumbnails rounded-circle img-thumbnail"
+                  id="Salmon"
+                  onClick={[Function]}
+                  src="https://images.unsplash.com/photo-1482876555840-f31c5ebbff1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="overview overview-add-to-cart-container"
+          >
+            Add to Cart
+            <div
+              className="overview overview-size-selector"
+            >
+              Size Selector
+            </div>
+            <div
+              className="overview overview-quantity-selector"
+            >
+              Quantity Selector
+            </div>
+            <button
+              className="overview overview-add-to-cart-button"
+              type="button"
+            >
+              <img
+                alt="Shopping Cart"
+                href="#"
+                src="/Assets/Icons/cart2.svg"
+              />
+              Add To Cart
+            </button>
           </div>
         </div>
       </div>
       <div
-        className="overview overview-product-information-a"
-      >
-        Product Information
-        <div
-          className="overview overview-star-rating"
-        >
-          Star Rating
-        </div>
-        <div
-          className="overview overview-product-category"
-        >
-          Product Category
-        </div>
-        <div
-          className="overview overview-product-title"
-        >
-          Ernesto Sweatpants
-        </div>
-        <div
-          className="overview overview-price"
-        >
-          $56.00
-        </div>
-        <div
-          className="overview overview-social-media"
-        >
-          <img
-            alt="Instagram"
-            href="#"
-            src="/Assets/Icons/instagram.svg"
-          />
-          <img
-            alt="Facebook"
-            href="#"
-            src="/Assets/Icons/facebook.svg"
-          />
-          <img
-            alt="Twitter"
-            href="#"
-            src="/Assets/Icons/twitter.svg"
-          />
-          <img
-            alt="Pinterest"
-            href="#"
-            src="/Assets/Icons/pinterest.svg"
-          />
-        </div>
-      </div>
-      <div
-        className="overview overview-style-selector"
-      >
-        Style Selector
-        <div
-          className="option1"
-        >
-          Green
-        </div>
-        <div
-          className="option2"
-        >
-          Tan
-        </div>
-        <div
-          className="option3"
-        >
-          Mint green
-        </div>
-        <div
-          className="option4"
-        >
-          Salmon
-        </div>
-      </div>
-      <div
-        className="overview overview-add-to-cart-container"
-      >
-        Add to Cart
-        <div
-          className="overview overview-size-selector"
-        >
-          Size Selector
-        </div>
-        <div
-          className="overview overview-quantity-selector"
-        >
-          Quantity Selector
-        </div>
-        <button
-          className="overview overview-add-to-cart-button"
-          type="button"
-        >
-          <img
-            alt="Shopping Cart"
-            href="#"
-            src="/Assets/Icons/cart2.svg"
-          />
-          Add To Cart
-        </button>
-      </div>
-      <div
-        className="overview overview-production-information-b"
+        className="row"
       >
         <div
-          className="overview overview-product-description"
+          className="overview overview-production-information-b"
         >
-          Product Description
+          <div
+            className="overview overview-product-description"
+          >
+            Product Description
+          </div>
         </div>
       </div>
     </div>
