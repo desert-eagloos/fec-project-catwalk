@@ -78,7 +78,10 @@ function Overview({ product }) {
       </Row>
       <Row>
         <div className="overview overview-production-information-b">
-          <div className="overview overview-product-description">Product Description</div>
+          <div className="overview overview-product-description">
+            <h4>{product.slogan}</h4>
+            {product.description}
+          </div>
         </div>
       </Row>
     </Container>
@@ -88,21 +91,28 @@ function Overview({ product }) {
 Overview.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number,
+    campus: PropTypes.string,
+    slogan: PropTypes.string,
+    description: PropTypes.string,
+    category: PropTypes.string,
     name: PropTypes.string,
     default_price: PropTypes.string,
-    features: PropTypes.arrayOf(PropTypes.shape({
-      feature: PropTypes.string,
-      value: PropTypes.string,
-    })),
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
   }),
 };
 
 Overview.defaultProps = {
   product: {
     id: 18201,
+    campus: 'hr-bld',
+    slogan: 'Odit dolorem nemo id tempora qui.',
+    description: 'A sapiente hic. Facilis et sit voluptatem. Ex sunt reiciendis qui ut perferendis qui soluta quod.',
+    category: 'Sweatpants',
     name: 'Ernesto\'s Sweatpants',
     default_price: '56.00',
-    features: [{ feature: 'Cut', value: '"Skinny"' }, { feature: 'Cut', value: '"Loose"' }],
+    created_at: '2021-02-23T05:08:00.520Z',
+    updated_at: '2021-02-23T05:08:00.520Z',
   },
 };
 
