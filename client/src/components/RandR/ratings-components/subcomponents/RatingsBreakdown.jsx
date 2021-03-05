@@ -40,10 +40,10 @@ RatingsBreakdown.defaultProps = {
 
 RatingsBreakdown.propTypes = {
   ratings: PropTypes.shape({
-    5: PropTypes.string,
-    4: PropTypes.string,
-    3: PropTypes.string,
-    2: PropTypes.string,
-    1: PropTypes.string,
-  }),
-};
+    5: PropTypes.number,
+    4: PropTypes.number,
+    3: PropTypes.number,
+    2: PropTypes.number,
+    1: PropTypes.number,
+  })
+}
