@@ -2,7 +2,6 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    'jest/globals': true,
   },
   extends: [
     'plugin:react/recommended',
@@ -24,4 +23,9 @@ module.exports = {
   ],
   rules: {
   },
+  overrides: [
+    {
+      files: ['**/__tests__/*-test.js', '**/__mocks__/*.js'],
+    },
+  ],
 };

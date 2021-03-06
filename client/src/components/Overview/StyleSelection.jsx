@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Container,
   Row,
@@ -9,13 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
-function StyleSelection({ styleOpts, changeSelection, selectedStyle }) {
-  useEffect(() => {
-    styleOpts.forEach((entry) => {
-      if (entry.default) changeSelection(entry.name);
-    });
-  }, [styleOpts]);
-
+function StyleSelection({ styleOpts, changeSelectedStyle, selectedStyle }) {
   return (
     <Container>
       <p>
@@ -33,7 +27,7 @@ function StyleSelection({ styleOpts, changeSelection, selectedStyle }) {
               thumbnail
               roundedCircle
               onClick={(event) => {
-                changeSelection(event.target.id);
+                changeSelectedStyle(event.target.id);
               }}
             />
           </Col>
@@ -50,7 +44,7 @@ StyleSelection.propTypes = {
     style_id: PropTypes.number,
     thumbnail: PropTypes.string,
   })),
-  changeSelection: PropTypes.func,
+  changeSelectedStyle: PropTypes.func,
   selectedStyle: PropTypes.string,
 };
 
@@ -63,7 +57,7 @@ StyleSelection.defaultProps = {
       thumbnail: 'https://images.unsplash.com/photo-1482876555840-f31c5ebbff1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
     },
   ],
-  changeSelection: () => {},
+  changeSelectedStyle: () => {},
   selectedStyle: 'Green',
 };
 

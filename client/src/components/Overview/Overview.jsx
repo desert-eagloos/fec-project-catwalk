@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import StyleSelection from './StyleSelection';
 import ProductInfoA from './ProductInfoA';
+import AddToCart from './AddToCart';
 import '../../css/overview.css';
 
+const _ = require('underscore');
 const sampleStyleData = require('./SampleData/sampleStyleData');
 
 function Overview({ product }) {
   const filterStyleOptionProps = (requestResponse) => {
-    const filteredResults = requestResponse.results.map((style) => {
+    const filteredResults = _.filter(requestResponse.results, (style) => {
       const obj = {
         default: style['default?'],
         name: style.name,
@@ -25,17 +25,42 @@ function Overview({ product }) {
     return filteredResults;
   };
 
+  const filterSizesBySelectedStyle = (requestResponse, comparison) => {
+    const filteredResults = _.filter(requestResponse.results, (style) => style.name === comparison);
+    const sizeOptionsProp = _.map(filteredResults[0].skus, (value, key) => ({
+      id: key,
+      quantity: value.quantity,
+      size: value.size,
+    }));
+    return sizeOptionsProp;
+  };
+
+  const findDefaultStyle = (listOfStyles) => {
+    const defaultStyle = _.filter(listOfStyles, (entry) => entry['default?'] === true);
+    return defaultStyle[0].name;
+  };
+
   const [styleOptions, setStyleOptions] = useState(
     filterStyleOptionProps(sampleStyleData.styleGetReq),
   );
-  const [selectedStyle, setSelection] = useState();
+
+  const [selectedStyle, setSelectedStyle] = useState(
+    findDefaultStyle(styleOptions),
+  );
+
+  const [sizeOptions] = useState(
+    filterSizesBySelectedStyle(sampleStyleData.styleGetReq, selectedStyle),
+  );
 
   const getStylesByProductId = (productId) => {
     axios.get(`/products/${productId}/styles`)
       .then((response) => {
+        // NEED TO REFACTOR THIS ONCE WE HAVE DETERMINE STARTING STATE OF SITE
         if (Array.isArray(response.results)) {
           const filterStyleOpts = filterStyleOptionProps(response);
           setStyleOptions(filterStyleOpts);
+          setSelectedStyle(findDefaultStyle(response));
+          filterSizesBySelectedStyle(response, selectedStyle);
         }
       })
       .catch();
@@ -59,21 +84,13 @@ function Overview({ product }) {
           </div>
         </Col>
         <Col>
-          <ProductInfoA />
+          <ProductInfoA product={product} />
           <StyleSelection
             styleOpts={styleOptions}
-            changeSelection={setSelection}
+            changeSelectedStyle={setSelectedStyle}
             selectedStyle={selectedStyle}
           />
-          <div className="overview overview-add-to-cart-container">
-            Add to Cart
-            <div className="overview overview-size-selector">Size Selector</div>
-            <div className="overview overview-quantity-selector">Quantity Selector</div>
-            <button type="button" className="overview overview-add-to-cart-button">
-              <FontAwesomeIcon icon={faShoppingCart} />
-              Add To Cart
-            </button>
-          </div>
+          <AddToCart sizeOptions={sizeOptions} />
         </Col>
       </Row>
       <Row>
@@ -109,7 +126,7 @@ Overview.defaultProps = {
     slogan: 'Odit dolorem nemo id tempora qui.',
     description: 'A sapiente hic. Facilis et sit voluptatem. Ex sunt reiciendis qui ut perferendis qui soluta quod.',
     category: 'Sweatpants',
-    name: 'Ernesto\'s Sweatpants',
+    name: 'Ernesto Sweatpants',
     default_price: '56.00',
     created_at: '2021-02-23T05:08:00.520Z',
     updated_at: '2021-02-23T05:08:00.520Z',
