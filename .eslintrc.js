@@ -1,6 +1,9 @@
 module.exports = {
   env: {
     browser: true,
+    es2021: true,
+    node: true,
+    'jest/globals': true,
     es6: true,
   },
   extends: [
@@ -28,4 +31,15 @@ module.exports = {
       files: ['**/__tests__/*-test.js', '**/__mocks__/*.js'],
     },
   ],
+
+  settings: {
+
+    'import/extensions': ['.js', '.jsx'],
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx'],
+      },
+    },
+  },
+
 };
