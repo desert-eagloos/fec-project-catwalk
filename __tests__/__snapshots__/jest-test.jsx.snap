@@ -58,7 +58,7 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
               className="overview overview-product-title"
             >
               <h2>
-                Ernesto's Sweatpants
+                Ernesto Sweatpants
               </h2>
             </div>
             <div
@@ -215,7 +215,36 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
             <div
               className="overview overview-size-selector"
             >
-              Size Selector
+              <div
+                className="dropdown"
+              >
+                <button
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  className="dropdown-toggle btn btn-primary"
+                  disabled={false}
+                  id="dropdown-basic-button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Select Size
+                </button>
+              </div>
+              <div
+                className="dropdown"
+              >
+                <button
+                  aria-expanded={false}
+                  aria-haspopup={true}
+                  className="dropdown-toggle btn btn-primary"
+                  disabled={false}
+                  id="dropdown-basic-button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Quantity
+                </button>
+              </div>
             </div>
             <div
               className="overview overview-quantity-selector"
@@ -243,7 +272,7 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
                   style={Object {}}
                 />
               </svg>
-              Add To Cart
+               Add To Cart
             </button>
           </div>
         </div>
@@ -304,7 +333,7 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
             <button
               onClick={[Function]}
             >
-              More Answers
+              See more answers
             </button>
           </div>
         </div>
@@ -381,7 +410,7 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
             <button
               onClick={[Function]}
             >
-              More Answers
+              See more answers
             </button>
           </div>
         </div>

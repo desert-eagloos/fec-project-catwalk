@@ -30,6 +30,11 @@ function AddToCart({ sizeOptions }) {
             <Dropdown.Item href="#">{option.size}</Dropdown.Item>
           ))}
         </DropdownButton>
+        <DropdownButton id="dropdown-basic-button" title="Quantity">
+          {_.map(inStockSizes, (option) => (
+            <Dropdown.Item href="#">{option.quantity}</Dropdown.Item>
+          ))}
+        </DropdownButton>
       </div>
       <div className="overview overview-quantity-selector">Quantity Selector</div>
       <button type="button" className="overview overview-add-to-cart-button">
