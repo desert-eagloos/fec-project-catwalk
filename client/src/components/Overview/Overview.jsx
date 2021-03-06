@@ -12,21 +12,30 @@ const _ = require('underscore');
 const sampleStyleData = require('./SampleData/sampleStyleData');
 
 function Overview({ product }) {
-  const filterStyleOptionProps = (requestResponse) => {
-    const filteredResults = _.filter(requestResponse.results, (style) => {
-      const obj = {
-        default: style['default?'],
-        name: style.name,
-        style_id: style.style_id,
-        thumbnail: style.photos[0].thumbnail_url,
-      };
-      return obj;
-    });
-    return filteredResults;
+  const reformatStyleGetResponse = (response) => {
+    const newFormat = {
+      product_id: response.product_id,
+      results: _.map(response.results, (entry) => (
+        {
+          style_id: entry.style_id,
+          name: entry.name,
+          original_price: entry.original_price,
+          sale_price: entry.sale_price,
+          'default?': entry['default?'],
+          photos: entry.photos,
+          skus: _.map(entry.skus, (value, key) => ({
+            sku: key,
+            quantity: value.quantity,
+            size: value.size,
+          })),
+        }
+      )),
+    };
+    return newFormat;
   };
 
-  const filterSizesBySelectedStyle = (requestResponse, comparison) => {
-    const filteredResults = _.filter(requestResponse.results, (style) => style.name === comparison);
+  const filterSizesBySelectedStyle = (styles, comparison) => {
+    const filteredResults = _.filter(styles.results, (style) => style.name === comparison);
     const sizeOptionsProp = _.map(filteredResults[0].skus, (value, key) => ({
       id: key,
       quantity: value.quantity,
@@ -35,13 +44,13 @@ function Overview({ product }) {
     return sizeOptionsProp;
   };
 
-  const findDefaultStyle = (listOfStyles) => {
-    const defaultStyle = _.filter(listOfStyles, (entry) => entry['default?'] === true);
-    return defaultStyle[0].name;
+  const findDefaultStyle = (styles) => {
+    const defaultStyle = _.findWhere(styles.results, (entry) => entry['default?'] === true);
+    return defaultStyle.name;
   };
 
   const [styleOptions, setStyleOptions] = useState(
-    filterStyleOptionProps(sampleStyleData.styleGetReq),
+    reformatStyleGetResponse(sampleStyleData.styleGetReq),
   );
 
   const [selectedStyle, setSelectedStyle] = useState(
@@ -49,7 +58,7 @@ function Overview({ product }) {
   );
 
   const [sizeOptions] = useState(
-    filterSizesBySelectedStyle(sampleStyleData.styleGetReq, selectedStyle),
+    filterSizesBySelectedStyle(styleOptions, selectedStyle),
   );
 
   const getStylesByProductId = (productId) => {
@@ -57,8 +66,9 @@ function Overview({ product }) {
       .then((response) => {
         // NEED TO REFACTOR THIS ONCE WE HAVE DETERMINE STARTING STATE OF SITE
         if (Array.isArray(response.results)) {
-          const filterStyleOpts = filterStyleOptionProps(response);
-          setStyleOptions(filterStyleOpts);
+          setStyleOptions(
+            reformatStyleGetResponse(response),
+          );
           setSelectedStyle(findDefaultStyle(response));
           filterSizesBySelectedStyle(response, selectedStyle);
         }
@@ -86,7 +96,7 @@ function Overview({ product }) {
         <Col>
           <ProductInfoA product={product} />
           <StyleSelection
-            styleOpts={styleOptions}
+            styleOptions={styleOptions}
             changeSelectedStyle={setSelectedStyle}
             selectedStyle={selectedStyle}
           />
