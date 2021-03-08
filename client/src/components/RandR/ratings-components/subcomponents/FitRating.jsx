@@ -27,5 +27,5 @@ FitRating.defaultProps = {
 };
 
 FitRating.propTypes = {
-  fitValue: PropTypes.string,
+  fitValue: PropTypes.number,
 };

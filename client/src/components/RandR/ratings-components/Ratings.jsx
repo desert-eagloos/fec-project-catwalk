@@ -16,7 +16,7 @@ import Rating from 'react-rating';
 
 function Ratings({ productId }) {
   const [isLoading, setLoading] = useState(true);
-  const [ratings, setRatings] = useState([]);
+  const [ratings, setRatings] = useState({});
   const [fit, setFit] = useState(2.5);
   const [comfort, setComfort] = useState(2.5);
 

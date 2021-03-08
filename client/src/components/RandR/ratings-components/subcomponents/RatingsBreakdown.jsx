@@ -27,15 +27,21 @@ export default function RatingsBreakdown({ ratings }) {
 }
 
 RatingsBreakdown.defaultProps = {
-  ratings: [['0', '1']],
+  ratings: {
+    5: 1,
+    4: 3,
+    3: 2,
+    2: 1,
+    1: 0
+  },
 };
 
 RatingsBreakdown.propTypes = {
   ratings: PropTypes.shape({
-    5: PropTypes.string,
-    4: PropTypes.string,
-    3: PropTypes.string,
-    2: PropTypes.string,
-    1: PropTypes.string,
+    5: PropTypes.number,
+    4: PropTypes.number,
+    3: PropTypes.number,
+    2: PropTypes.number,
+    1: PropTypes.number,
   }),
 };

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Button, Dropdown } from 'react-bootstrap';
 import Stars from '../../common/Stars';
 
 import axios from 'axios';
 
 import '../../../css/RandR/Reviews/Reviews.css';
 import { RatingContext } from '../../common/AppContext';
-import { Dropdown } from 'bootstrap';
 
 const Reviews = ({ productId }) => {
   const [reviews, setReviews] = useState([]);
@@ -63,21 +62,9 @@ const Reviews = ({ productId }) => {
   return (
     <Container>
       <Row>{reviews.length} reviews, sorted by
-        <Dropdown>
-          <Dropdown.Toggle>
 
-          </Dropdown.Toggle>
-        </Dropdown>
       </Row>
-      {
-        reviews.map((review) => {
-          <Row>
-            <Row>
 
-            </Row>
-          </Row>
-        })
-      }
     </Container>
   )
 };

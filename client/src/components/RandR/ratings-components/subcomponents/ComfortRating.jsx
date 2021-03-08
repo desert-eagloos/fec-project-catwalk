@@ -26,5 +26,5 @@ ComfortRating.defaultProps = {
 };
 
 ComfortRating.propTypes = {
-  comfortValue: PropTypes.string,
+  comfortValue: PropTypes.number,
 };
