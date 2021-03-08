@@ -36,8 +36,8 @@ function Overview({ product }) {
 
   const filterSizesBySelectedStyle = (styles, comparison) => {
     const filteredResults = _.filter(styles.results, (style) => style.name === comparison);
-    const sizeOptionsProp = _.map(filteredResults[0].skus, (value, key) => ({
-      id: key,
+    const sizeOptionsProp = _.map(filteredResults[0].skus, (value) => ({
+      id: value.sku,
       quantity: value.quantity,
       size: value.size,
     }));
@@ -100,7 +100,7 @@ function Overview({ product }) {
             changeSelectedStyle={setSelectedStyle}
             selectedStyle={selectedStyle}
           />
-          <AddToCart sizeOptions={sizeOptions} />
+          <AddToCart cartOptions={sizeOptions} />
         </Col>
       </Row>
       <Row>
