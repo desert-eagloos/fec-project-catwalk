@@ -57,12 +57,18 @@ app.get('/products/:productId/styles', (req, res) => {
     .catch((error) => res.send(error));
 });
 
-app.get('/reviews/:id', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews?product_id=${req.params.id}`, {
+app.get('/reviews', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews`, {
     headers: {
       Authorization: config.TOKEN,
       'Content-Type': 'application/json',
     },
+    params: {
+      product_id: req.query.productId,
+      page: req.query.page,
+      count: req.query.count,
+      sort: req.query.sort
+    }
   })
     .then((response) => {
       res.status(200);
@@ -74,8 +80,11 @@ app.get('/reviews/:id', (req, res) => {
     });
 });
 
-app.get('/reviews/meta/:id', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/meta?product_id=${req.params.id}`, {
+app.get('/reviews/meta', (req, res) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/meta', {
+    params: {
+      product_id: req.query.productId,
+    },
     headers: {
       Authorization: config.TOKEN,
       'Content-Type': 'application/json',

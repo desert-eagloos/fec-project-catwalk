@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useMemo, } from 'react';
 import { Container, Row } from 'react-bootstrap';
+import { RatingContext } from './common/AppContext';
+
 import axios from 'axios';
 
 import QARoot from './QA/QARoot';
@@ -12,6 +14,7 @@ import RandR from './RandR/RandR';
 const sampleData = require('./Overview/SampleData/sampleProductData');
 
 function App() {
+<<<<<<< Updated upstream
   const [product, setProduct] = useState(sampleData.productsGetRequest);
 
   useEffect(() => {
@@ -23,18 +26,60 @@ function App() {
 
     fetchData();
   }, []);
+=======
+  const [rating, setRating] = useState(null);
+  const ratingValue = useMemo( () => ({rating, setRating }), [rating, setRating] );
+
+  const [product, setProduct] = useState({
+    id: 18201,
+    campus: 'hr-bld',
+    name: 'Ernesto Sweatpants',
+    slogan: 'Odit dolorem nemo id tempora qui.',
+    description: 'A sapiente hic. Facilis et sit voluptatem. Ex sunt reiciendis qui ut perferendis qui soluta quod.',
+    category: 'Sweatpants',
+    default_price: '56.00',
+    created_at: '2021-02-23T05:08:00.520Z',
+    updated_at: '2021-02-23T05:08:00.520Z',
+    features: [
+      {
+        feature: 'Cut',
+        value: '"Skinny"',
+      },
+      {
+        feature: 'Cut',
+        value: '"Loose"',
+      },
+    ],
+  });
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios.get('/products/18201')
+  //       .catch();
+  //     setProduct(result.data);
+  //   };
+
+  //   fetchData();
+  // }, []);
+>>>>>>> Stashed changes
 
   return (
-    <Container>
-      <Row className="mb-4">
-        <Overview product={product} />
+    <Container className="main">
+      <Row className="mb-4 mt-4">
+        <header><h1 className="page-branding logo page-banner">PROJECT CATWALK</h1></header>
       </Row>
-      <Row className="mb-4">
-        <QARoot />
-      </Row>
-      <Row className="mb-4">
-        <RandR id={18201} />
-      </Row>
+      <RatingContext.Provider value={ratingValue}>
+        <Row className="mb-4">
+          <Overview product={product} />
+        </Row>
+        <Row className="mb-4">
+          <QARoot />
+        </Row>
+        <Row className="mb-4">
+          <RandR productId={18201}  />
+        </Row>
+      </RatingContext.Provider>
     </Container>
   );
 }
