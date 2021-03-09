@@ -2,8 +2,19 @@
 
 exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
 <div
-  className="container"
+  className="main container"
 >
+  <div
+    className="mb-4 mt-4 row"
+  >
+    <header>
+      <h1
+        className="page-branding logo page-banner"
+      >
+        PROJECT CATWALK
+      </h1>
+    </header>
+  </div>
   <div
     className="mb-4 row"
   >
@@ -413,84 +424,16 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
         className="row"
       >
         <div
-          className="col-sm-4"
+          className="col-4 ratings col"
         >
           <div>
             Loading Ratings...
           </div>
         </div>
         <div
-          className="col-sm-8"
+          className="col-8 reviews col"
         >
-          <div
-            className="row"
-          >
-            Total reviews and sorting
-          </div>
-          <div
-            className="row"
-          >
-            <div
-              className="col"
-            >
-              star rating
-            </div>
-            <div
-              className="col"
-            >
-              user and date posted
-            </div>
-          </div>
-          <div
-            className="row"
-          >
-            review title
-          </div>
-          <div
-            className="row"
-          >
-            review body
-          </div>
-          <div
-            className="row"
-          >
-            <div
-              className="col"
-            >
-              helpful
-            </div>
-            <div
-              className="col"
-            >
-              report
-            </div>
-          </div>
-          <div
-            className="row"
-          >
-            <div
-              className="col"
-            >
-              <button
-                className="btn btn-primary"
-                disabled={false}
-                type="button"
-              >
-                More Reviews
-              </button>
-            </div>
-            <div
-              className="col"
-            >
-              <button
-                className="btn btn-primary"
-                disabled={false}
-                type="button"
-              >
-                Add a Review
-              </button>
-            </div>
-          </div>
+          Reviews are loading...
         </div>
       </div>
     </div>

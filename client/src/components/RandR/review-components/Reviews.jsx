@@ -15,7 +15,6 @@ const Reviews = ({ productId }) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [showMoreReviews, setShowMoreReviews] = useState(true);
   const [showMoreReviewsButton, setShowMoreReviewsButton] = useState(true);
-  const { rating, setRating } = useContext(RatingContext);
 
   const getReviewsFromAPI = async (page, count, sort) => {
     const response = await axios.get('/reviews', {

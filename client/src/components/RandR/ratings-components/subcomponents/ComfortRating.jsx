@@ -22,7 +22,7 @@ export default function ComfortRating({ comfortValue }) {
 }
 
 ComfortRating.defaultProps = {
-  comfortValue: '3',
+  comfortValue: 3,
 };
 
 ComfortRating.propTypes = {
