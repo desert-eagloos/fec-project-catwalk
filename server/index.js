@@ -31,6 +31,7 @@ app.get('/products/', (req, res) => {
 });
 
 app.get('/products/:productId', (req, res) => {
+  console.log('Testing Form(remove me later index.js line 34)', req.params.productId);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/products/${req.params.productId}`, {
     headers: {
       Authorization: config.TOKEN,
@@ -55,6 +56,25 @@ app.get('/products/:productId/styles', (req, res) => {
   })
     .then((response) => res.status(200).send(response.data))
     .catch((error) => res.send(error));
+});
+
+app.post('/add-to-cart', (req, res) => {
+  const params = req.body.sku_id;
+  console.log(params);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/cart', { sku_id: params }, {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      console.log(response.data);
+      res.status(201);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 app.get('/reviews/:id', (req, res) => {

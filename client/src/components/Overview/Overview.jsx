@@ -8,57 +8,21 @@ import ProductInfoA from './ProductInfoA';
 import AddToCart from './AddToCart';
 import '../../css/overview.css';
 
-const _ = require('underscore');
+const helpers = require('./OverviewHelpers');
 const sampleStyleData = require('./SampleData/sampleStyleData');
 
 function Overview({ product }) {
-  const reformatStyleGetResponse = (response) => {
-    const newFormat = {
-      product_id: response.product_id,
-      results: _.map(response.results, (entry) => (
-        {
-          style_id: entry.style_id,
-          name: entry.name,
-          original_price: entry.original_price,
-          sale_price: entry.sale_price,
-          'default?': entry['default?'],
-          photos: entry.photos,
-          skus: _.map(entry.skus, (value, key) => ({
-            sku: key,
-            quantity: value.quantity,
-            size: value.size,
-          })),
-        }
-      )),
-    };
-    return newFormat;
-  };
-
-  const filterSizesBySelectedStyle = (styles, comparison) => {
-    const filteredResults = _.filter(styles.results, (style) => style.name === comparison);
-    const sizeOptionsProp = _.map(filteredResults[0].skus, (value) => ({
-      id: value.sku,
-      quantity: value.quantity,
-      size: value.size,
-    }));
-    return sizeOptionsProp;
-  };
-
-  const findDefaultStyle = (styles) => {
-    const defaultStyle = _.findWhere(styles.results, (entry) => entry['default?'] === true);
-    return defaultStyle.name;
-  };
-
   const [styleOptions, setStyleOptions] = useState(
-    reformatStyleGetResponse(sampleStyleData.styleGetReq),
+    helpers.reformatStyleGetResponse(sampleStyleData.styleGetReq),
   );
-
   const [selectedStyle, setSelectedStyle] = useState(
-    findDefaultStyle(styleOptions),
+    helpers.findDefaultStyle(styleOptions),
   );
-
-  const [sizeOptions] = useState(
-    filterSizesBySelectedStyle(styleOptions, selectedStyle),
+  const [priceByStyle, setPriceByStyle] = useState(
+    helpers.findDefaultPrice(styleOptions),
+  );
+  const [cartOptions, setCartOptions] = useState(
+    helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle),
   );
 
   const getStylesByProductId = (productId) => {
@@ -66,11 +30,9 @@ function Overview({ product }) {
       .then((response) => {
         // NEED TO REFACTOR THIS ONCE WE HAVE DETERMINE STARTING STATE OF SITE
         if (Array.isArray(response.results)) {
-          setStyleOptions(
-            reformatStyleGetResponse(response),
-          );
-          setSelectedStyle(findDefaultStyle(response));
-          filterSizesBySelectedStyle(response, selectedStyle);
+          setStyleOptions(helpers.reformatStyleGetResponse(response));
+          setSelectedStyle(helpers.findDefaultStyle(response));
+          setCartOptions(helpers.filterCartOptionsBySelectedStyle(response, selectedStyle));
         }
       })
       .catch();
@@ -79,6 +41,14 @@ function Overview({ product }) {
   useEffect(() => {
     getStylesByProductId(product.id);
   }, [product]);
+
+  //  CHANGES THE CART OPTIONS WHEN A STYLE IS SELECTED
+  useEffect(() => {
+    setCartOptions(
+      helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle),
+    );
+    setPriceByStyle(helpers.filterPriceBySelectedStyle(styleOptions, selectedStyle));
+  }, [selectedStyle]);
 
   return (
     <Container className="overview-component">
@@ -94,13 +64,16 @@ function Overview({ product }) {
           </div>
         </Col>
         <Col>
-          <ProductInfoA product={product} />
+          <ProductInfoA
+            product={product}
+            priceByStyle={priceByStyle}
+          />
           <StyleSelection
             styleOptions={styleOptions}
             changeSelectedStyle={setSelectedStyle}
             selectedStyle={selectedStyle}
           />
-          <AddToCart cartOptions={sizeOptions} />
+          <AddToCart cartOptions={cartOptions} />
         </Col>
       </Row>
       <Row>
