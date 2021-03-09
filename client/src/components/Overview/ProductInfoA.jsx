@@ -8,13 +8,13 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
-function ProductInfoA({ product }) {
+function ProductInfoA({ product, priceByStyle }) {
   return (
     <div className="overview overview-product-information-a">
       <div className="overview overview-star-rating">Star Rating</div>
       <div className="overview overview-product-category">{product.category}</div>
       <div className="overview overview-product-title"><h2>{product.name}</h2></div>
-      <div className="overview overview-price">{`$${product.default_price}`}</div>
+      <div className="overview overview-price">{`$${priceByStyle}`}</div>
       <div className="overview overview-social-media">
         <FontAwesomeIcon icon={faFacebook} size="2x" />
         <FontAwesomeIcon icon={faInstagram} size="2x" />
@@ -37,6 +37,7 @@ ProductInfoA.propTypes = {
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
   }),
+  priceByStyle: PropTypes.string,
 };
 
 ProductInfoA.defaultProps = {
@@ -46,11 +47,12 @@ ProductInfoA.defaultProps = {
     slogan: 'Odit dolorem nemo id tempora qui.',
     description: 'A sapiente hic. Facilis et sit voluptatem. Ex sunt reiciendis qui ut perferendis qui soluta quod.',
     category: 'Sweatpants',
-    name: 'Ernesto\'s Sweatpants',
+    name: 'Ernesto Sweatpants',
     default_price: '56.00',
     created_at: '2021-02-23T05:08:00.520Z',
     updated_at: '2021-02-23T05:08:00.520Z',
   },
+  priceByStyle: '56.00',
 };
 
 export default ProductInfoA;

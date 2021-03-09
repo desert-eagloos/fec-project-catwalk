@@ -2,40 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import StyleSelection from './StyleSelection';
 import ProductInfoA from './ProductInfoA';
+import AddToCart from './AddToCart';
 import '../../css/overview.css';
 
+const helpers = require('./OverviewHelpers');
 const sampleStyleData = require('./SampleData/sampleStyleData');
 
 function Overview({ product }) {
-  const filterStyleOptionProps = (requestResponse) => {
-    const filteredResults = requestResponse.results.map((style) => {
-      const obj = {
-        default: style['default?'],
-        name: style.name,
-        style_id: style.style_id,
-        thumbnail: style.photos[0].thumbnail_url,
-      };
-      return obj;
-    });
-    return filteredResults;
-  };
-
   const [styleOptions, setStyleOptions] = useState(
-    filterStyleOptionProps(sampleStyleData.styleGetReq),
+    helpers.reformatStyleGetResponse(sampleStyleData.styleGetReq),
   );
-  const [selectedStyle, setSelection] = useState();
+  const [selectedStyle, setSelectedStyle] = useState(
+    helpers.findDefaultStyle(styleOptions),
+  );
+  const [priceByStyle, setPriceByStyle] = useState(
+    helpers.findDefaultPrice(styleOptions),
+  );
+  const [cartOptions, setCartOptions] = useState(
+    helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle),
+  );
 
   const getStylesByProductId = (productId) => {
     axios.get(`/products/${productId}/styles`)
       .then((response) => {
+        // NEED TO REFACTOR THIS ONCE WE HAVE DETERMINE STARTING STATE OF SITE
         if (Array.isArray(response.results)) {
-          const filterStyleOpts = filterStyleOptionProps(response);
-          setStyleOptions(filterStyleOpts);
+          setStyleOptions(helpers.reformatStyleGetResponse(response));
+          setSelectedStyle(helpers.findDefaultStyle(response));
+          setCartOptions(helpers.filterCartOptionsBySelectedStyle(response, selectedStyle));
         }
       })
       .catch();
@@ -44,6 +41,14 @@ function Overview({ product }) {
   useEffect(() => {
     getStylesByProductId(product.id);
   }, [product]);
+
+  //  CHANGES THE CART OPTIONS WHEN A STYLE IS SELECTED
+  useEffect(() => {
+    setCartOptions(
+      helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle),
+    );
+    setPriceByStyle(helpers.filterPriceBySelectedStyle(styleOptions, selectedStyle));
+  }, [selectedStyle]);
 
   return (
     <Container className="overview-component">
@@ -59,21 +64,16 @@ function Overview({ product }) {
           </div>
         </Col>
         <Col>
-          <ProductInfoA />
+          <ProductInfoA
+            product={product}
+            priceByStyle={priceByStyle}
+          />
           <StyleSelection
-            styleOpts={styleOptions}
-            changeSelection={setSelection}
+            styleOptions={styleOptions}
+            changeSelectedStyle={setSelectedStyle}
             selectedStyle={selectedStyle}
           />
-          <div className="overview overview-add-to-cart-container">
-            Add to Cart
-            <div className="overview overview-size-selector">Size Selector</div>
-            <div className="overview overview-quantity-selector">Quantity Selector</div>
-            <button type="button" className="overview overview-add-to-cart-button">
-              <FontAwesomeIcon icon={faShoppingCart} />
-              Add To Cart
-            </button>
-          </div>
+          <AddToCart cartOptions={cartOptions} />
         </Col>
       </Row>
       <Row>
@@ -109,7 +109,7 @@ Overview.defaultProps = {
     slogan: 'Odit dolorem nemo id tempora qui.',
     description: 'A sapiente hic. Facilis et sit voluptatem. Ex sunt reiciendis qui ut perferendis qui soluta quod.',
     category: 'Sweatpants',
-    name: 'Ernesto\'s Sweatpants',
+    name: 'Ernesto Sweatpants',
     default_price: '56.00',
     created_at: '2021-02-23T05:08:00.520Z',
     updated_at: '2021-02-23T05:08:00.520Z',
