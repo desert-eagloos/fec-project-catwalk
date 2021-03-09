@@ -26,15 +26,15 @@ function App() {
 
   return (
     <Container>
-      <Row className="mb-4">
+      {/* <Row className="mb-4">
         <Overview product={product} />
-      </Row>
+      </Row> */}
       <Row className="mb-4">
-        <QARoot />
+        <QARoot id={product.id}/>
       </Row>
-      <Row className="mb-4">
+      {/* <Row className="mb-4">
         <RandR id={18201} />
-      </Row>
+      </Row> */}
     </Container>
   );
 }

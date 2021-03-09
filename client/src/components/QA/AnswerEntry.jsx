@@ -2,12 +2,26 @@ import React, { useState } from 'react';
 
 const AnswerEntry = (props) => {
 
+  //console.log(props);
+
+  const displayName = () => {
+    if (props.answer.answerer_name === "seller") {
+      return (
+        <b>"Seller"</b>
+      )
+    } else {
+      return (
+        <span>props.answer.answerer_name</span>
+      )
+    }
+  }
+
   if (props.answer) {
     return (
       <div>
-        A:{props.answer}
+        {props.answer.body}
         <div>
-        by [username], Month DD, YYYY | Helpful? Yes(#) | Report
+        by {props.answer.answerer_name}, {props.answer.date} | Helpful? Yes({props.answer.helpfulness}) | <button>Report</button>
         </div>
       </div>
     )

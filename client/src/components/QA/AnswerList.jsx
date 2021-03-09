@@ -3,9 +3,37 @@ import AnswerEntry from './AnswerEntry';
 
 const AnswerList = (props) => {
 
+  //console.log('props', props);
+
   const allAnswers = props.answers;
 
-  const firstTwoAns = [props.answers[0], props.answers[1]];
+  const sortedAnswers = [];
+
+  // test answers: allAnswers[1092597], allAnswers[1092598]
+
+  const sortAns = () => {
+    let helpfulNums = [];
+    for (var answerID in props.answers) {
+      let helpfulness = props.answers[answerID].helpfulness;
+      helpfulNums.push(helpfulness);
+    }
+    let sortedNums = helpfulNums.sort((a, b) => b-a);
+    const innerFunc = (index) => {
+      if (index < sortedNums.length) {
+        for (var ansID in props.answers) {
+          if (sortedNums[index] === props.answers[ansID].helpfulness) {
+            sortedAnswers.push(props.answers[ansID])
+          }
+        }
+        innerFunc (index + 1);
+      }
+    }
+    innerFunc(0);
+  }
+
+  sortAns ();
+
+  const firstTwoAns = [sortedAnswers[0], sortedAnswers[1]];
 
   const [answers, setAnswers] = useState(firstTwoAns);
 
@@ -18,7 +46,7 @@ const AnswerList = (props) => {
   }
 
   const renderMoreAnswersButton = () => {
-    if (allAnswers.length > 2) {
+    if (sortedAnswers.length > 2) {
       return (
         (<button onClick={() => toggleAnswers()}>{moreButton}</button>)
       )
@@ -27,7 +55,7 @@ const AnswerList = (props) => {
 
   useEffect(() => {
       if (open) {
-      setAnswers(props.answers);
+      setAnswers(sortedAnswers);
       setMoreButton('Collapse answers');
     } else {
       setAnswers(firstTwoAns);
@@ -37,6 +65,7 @@ const AnswerList = (props) => {
 
   return (
     <div>
+      A:
       {
         answers.map((answer, index) => {
 
