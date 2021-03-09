@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 // import { Container, Col, Row } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -24,29 +26,60 @@ function AddToCart({ cartOptions }) {
   const [selectedSKU, setSelectedSKU] = useState(null);
   const [sizeDropdownMenuText, setSizeDropdownMenuText] = useState('Select Size');
   const [navigateToSizeSelection, setNavigateToSizeSelection] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [quantityDropdownMenuText, setQuantityDropdownMenuText] = useState('-');
   const [quantityDropdownMenuStatus, setQuantityDropdownMenuStatus] = useState(true);
   const [quantityOptionsOfSelectedSize, setQuantityOptionsOfSelectedSize] = useState(0);
   const [inStockSizes, setInStockSizes] = useState(
-    filterOutOfStockSizes(cartOptions),
+    filterOutOfStockSizes([]),
   );
+  const [outOfStock, setOutOfStock] = useState(true);
 
   useEffect(() => {
     setInStockSizes(filterOutOfStockSizes(cartOptions));
+    setOutOfStock(() => (inStockSizes.length === 0));
   }, [cartOptions]);
 
   useEffect(() => {
     setNavigateToSizeSelection(false);
   }, [selectedSize]);
 
-  return (
-    <div className="overview overview-add-to-cart-container">
-      Add to Cart
-      <div className="overview overview-size-selector">
+  const renderAddToCartButton = (list) => (
+    (list.length > 0) ? (
+      <Button
+        type="button"
+        className="overview overview-add-to-cart-button"
+        variant="secondary"
+        onClick={() => {
+          if (selectedSize === null) {
+            setNavigateToSizeSelection(true);
+            setShowAlert(true);
+          } else {
+            console.log('Send Request', selectedSKU, selectedQuantity);
+          }
+        }}
+      >
+        <FontAwesomeIcon icon={faShoppingCart} />
+        {' Add To Cart'}
+      </Button>
+    ) : null
+  );
+
+  const renderSizeSelectorMenu = (list) => (
+    (list.length > 0) ? (
+      <>
+        <Alert
+          className="mb-0"
+          variant="secondary"
+          show={showAlert}
+        >
+          Please Select A Size
+        </Alert>
         <DropdownButton
           id="dropdown-basic-button"
           title={sizeDropdownMenuText}
           show={navigateToSizeSelection}
+          variant="secondary"
           onClick={() => {
             setNavigateToSizeSelection(!navigateToSizeSelection);
           }}
@@ -55,15 +88,18 @@ function AddToCart({ cartOptions }) {
             <Dropdown.Item
               key={option.id}
               as="button"
-              id={option.size}
+              id={option.id}
               onClick={(event) => {
-                setSelectedSize(event.target.id);
-                setSizeDropdownMenuText(`Size: ${event.target.id}`);
-                setSelectedSKU();
+                setShowAlert(false);
+                setSelectedSize(event.target.innerText);
+                setSizeDropdownMenuText(`Size: ${event.target.innerText}`);
+                setSelectedSKU(event.target.id);
                 setQuantityDropdownMenuText('Qty: 1');
                 setSelectedQuantity(1);
                 setQuantityDropdownMenuStatus(false);
-                const filterCartOptions = (filterStockOfSelectedSize(cartOptions, event.target.id));
+                const filterCartOptions = (
+                  filterStockOfSelectedSize(cartOptions, event.target.innerText)
+                );
                 setQuantityOptionsOfSelectedSize(maxQuantityOptions(filterCartOptions[0].quantity));
               }}
             >
@@ -71,20 +107,34 @@ function AddToCart({ cartOptions }) {
             </Dropdown.Item>
           ))}
         </DropdownButton>
+      </>
+    ) : (
+      <DropdownButton
+        id="dropdown-basic-button"
+        title="OUT OF STOCK"
+        disabled={outOfStock}
+      />
+    )
+  );
+
+  return (
+    <div className="overview overview-add-to-cart-container">
+      <div className="overview overview-size-selector">
+        {renderSizeSelectorMenu(inStockSizes)}
       </div>
       <div className="overview overview-quantity-selector">
         <DropdownButton
           id="dropdown-basic-button"
           title={quantityDropdownMenuText}
+          variant="secondary"
           disabled={quantityDropdownMenuStatus}
         >
           {_.map(_.range(1, quantityOptionsOfSelectedSize + 1), (quantity) => (
             <Dropdown.Item
               href="#"
-              id={quantity}
               key={quantity}
               onClick={(event) => {
-                setSelectedQuantity(event.target.id);
+                setSelectedQuantity(Number(event.target.innerText));
                 setQuantityDropdownMenuText(`Qty: ${quantity}`);
                 setNavigateToSizeSelection(false);
               }}
@@ -94,20 +144,7 @@ function AddToCart({ cartOptions }) {
           ))}
         </DropdownButton>
       </div>
-      <button
-        type="button"
-        className="overview overview-add-to-cart-button"
-        onClick={() => {
-          if (selectedSize === null) {
-            setNavigateToSizeSelection(true);
-          } else {
-            console.log('Send Request', selectedSKU, selectedQuantity);
-          }
-        }}
-      >
-        <FontAwesomeIcon icon={faShoppingCart} />
-        {' Add To Cart'}
-      </button>
+      {renderAddToCartButton(inStockSizes)}
     </div>
   );
 }
