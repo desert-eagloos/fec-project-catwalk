@@ -22,7 +22,7 @@ function Ratings({ id }) {
   useEffect(() => {
     const getRatings = async () => {
       const response = await axios.get(`/reviews/meta/${id}`)
-        .catch(error => console.log(error));
+        .catch();
       setRating(getAverageRating(response.data.ratings));
       setRatings(response.data.ratings);
       setFit(response.data.characteristics.Fit.value);
