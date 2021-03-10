@@ -29,21 +29,14 @@ Array [
       className="m-0 p-0 d-flex justify-content-start col"
     >
       <span>
-        Too Small
-      </span>
-    </div>
-    <div
-      className="m-0 p-0 d-flex justify-content-center col"
-    >
-      <span>
-        Perfect
+        Poor
       </span>
     </div>
     <div
       className="m-0 p-0 d-flex justify-content-end col"
     >
       <span>
-        Too Large
+        Perfect
       </span>
     </div>
   </div>,
@@ -200,6 +193,8 @@ Array [
 ]
 `;
 
+exports[`Creates Ratings and Reviews Components Creates a Review Component Reviews 1`] = `"Reviews are loading..."`;
+
 exports[`Creates Ratings and Reviews Components Creates a Size Fit Rating Component Size Fit Rating 1`] = `
 Array [
   <div
@@ -274,170 +269,19 @@ exports[`Creates Ratings and Reviews Components Creates a Star Rating Component 
     }
   >
     <span
-      style={
-        Object {
-          "visibility": "hidden",
-        }
-      }
-    >
-      <span
-        className="fa fa-star-o"
-      />
-    </span>
-    <span
-      style={
-        Object {
-          "display": "inline-block",
-          "left": 0,
-          "overflow": "hidden",
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-        }
-      }
-    >
-      <span
-        className="fa fa-star"
-      />
-    </span>
-  </span>
-  <span
-    onClick={[Function]}
-    onMouseMove={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    style={
-      Object {
-        "cursor": "pointer",
-        "display": "inline-block",
-        "position": "relative",
-      }
-    }
-  >
-    <span
-      style={
-        Object {
-          "visibility": "hidden",
-        }
-      }
-    >
-      <span
-        className="fa fa-star-o"
-      />
-    </span>
-    <span
-      style={
-        Object {
-          "display": "inline-block",
-          "left": 0,
-          "overflow": "hidden",
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-        }
-      }
-    >
-      <span
-        className="fa fa-star"
-      />
-    </span>
-  </span>
-  <span
-    onClick={[Function]}
-    onMouseMove={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    style={
-      Object {
-        "cursor": "pointer",
-        "display": "inline-block",
-        "position": "relative",
-      }
-    }
-  >
-    <span
-      style={
-        Object {
-          "visibility": "hidden",
-        }
-      }
-    >
-      <span
-        className="fa fa-star-o"
-      />
-    </span>
-    <span
-      style={
-        Object {
-          "display": "inline-block",
-          "left": 0,
-          "overflow": "hidden",
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-        }
-      }
-    >
-      <span
-        className="fa fa-star"
-      />
-    </span>
-  </span>
-  <span
-    onClick={[Function]}
-    onMouseMove={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    style={
-      Object {
-        "cursor": "pointer",
-        "display": "inline-block",
-        "position": "relative",
-      }
-    }
-  >
-    <span
       style={Object {}}
     >
       <span
-        className="fa fa-star-o"
-      />
-    </span>
-    <span
-      style={
-        Object {
-          "display": "inline-block",
-          "left": 0,
-          "overflow": "hidden",
-          "position": "absolute",
-          "top": 0,
-          "width": "25%",
+        style={
+          Object {
+            "backgroundColor": "#ccc",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
         }
-      }
-    >
-      <span
-        className="fa fa-star"
-      />
-    </span>
-  </span>
-  <span
-    onClick={[Function]}
-    onMouseMove={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    style={
-      Object {
-        "cursor": "pointer",
-        "display": "inline-block",
-        "position": "relative",
-      }
-    }
-  >
-    <span
-      style={Object {}}
-    >
-      <span
-        className="fa fa-star-o"
       />
     </span>
     <span
@@ -453,7 +297,236 @@ exports[`Creates Ratings and Reviews Components Creates a Star Rating Component 
       }
     >
       <span
-        className="fa fa-star"
+        style={
+          Object {
+            "backgroundColor": "black",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+  </span>
+  <span
+    onClick={[Function]}
+    onMouseMove={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+        "display": "inline-block",
+        "position": "relative",
+      }
+    }
+  >
+    <span
+      style={Object {}}
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "#ccc",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+    <span
+      style={
+        Object {
+          "display": "inline-block",
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": 0,
+          "width": "0%",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "black",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+  </span>
+  <span
+    onClick={[Function]}
+    onMouseMove={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+        "display": "inline-block",
+        "position": "relative",
+      }
+    }
+  >
+    <span
+      style={Object {}}
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "#ccc",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+    <span
+      style={
+        Object {
+          "display": "inline-block",
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": 0,
+          "width": "0%",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "black",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+  </span>
+  <span
+    onClick={[Function]}
+    onMouseMove={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+        "display": "inline-block",
+        "position": "relative",
+      }
+    }
+  >
+    <span
+      style={Object {}}
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "#ccc",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+    <span
+      style={
+        Object {
+          "display": "inline-block",
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": 0,
+          "width": "0%",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "black",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+  </span>
+  <span
+    onClick={[Function]}
+    onMouseMove={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+        "display": "inline-block",
+        "position": "relative",
+      }
+    }
+  >
+    <span
+      style={Object {}}
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "#ccc",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </span>
+    <span
+      style={
+        Object {
+          "display": "inline-block",
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": 0,
+          "width": "0%",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "backgroundColor": "black",
+            "border": "5px double white",
+            "borderRadius": "50%",
+            "display": "inline-block",
+            "height": 30,
+            "width": 30,
+          }
+        }
       />
     </span>
   </span>

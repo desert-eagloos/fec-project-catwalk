@@ -1,35 +1,37 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
+import Rating from 'react-rating';
 
-import Stars from './subcomponents/Stars';
 import RatingsBreakdown from './subcomponents/RatingsBreakdown';
 import FitRating from './subcomponents/FitRating';
 import ComfortRating from './subcomponents/ComfortRating';
+import { RatingContext } from '../../common/AppContext';
 
-import { getAverageRating } from '../../../utils/RandR/ratings';
+import { getAverageRating, convertRatingsToNumberType, roundToNearestQuarter } from '../../../utils/ratings';
 
 import '../../../css/RandR/Ratings/Ratings.css';
 
-function Ratings({ id }) {
+function Ratings({ productId }) {
   const [isLoading, setLoading] = useState(true);
-  const [rating, setRating] = useState(0);
-  const [ratings, setRatings] = useState([]);
+  const [ratings, setRatings] = useState({});
   const [fit, setFit] = useState(2.5);
   const [comfort, setComfort] = useState(2.5);
 
+  const { rating, setRating } = useContext(RatingContext);
+
   useEffect(() => {
     const getRatings = async () => {
-      const response = await axios.get(`/reviews/meta/${id}`)
-        .catch();
-      setRating(getAverageRating(response.data.ratings));
-      setRatings(response.data.ratings);
-      setFit(response.data.characteristics.Fit.value);
-      setComfort(response.data.characteristics.Comfort.value);
+      const response = await axios.get(`/reviews/meta?productId=${productId}`);
+      setRating(Number(getAverageRating(response.data.ratings)));
+      setRatings(convertRatingsToNumberType(response.data.ratings));
+      setFit(Number(response.data.characteristics.Fit.value));
+      setComfort(Number(response.data.characteristics.Comfort.value));
       setLoading(false);
     };
     getRatings();
+    setLoading(false);
   }, []);
 
   if (isLoading) {
@@ -41,7 +43,12 @@ function Ratings({ id }) {
       <Row className="mb-2">
         <Col sm={2}><h2 className="fs-1 fw-bold">{rating}</h2></Col>
         <Col className="align-items-start">
-          <Stars rating={rating} />
+          <Rating
+            emptySymbol="fa fa-star-o"
+            fullSymbol="fa fa-star"
+            initialRating={roundToNearestQuarter(rating)}
+            fractions={4}
+          />
         </Col>
       </Row>
       <Row className="mb-2">
@@ -64,11 +71,11 @@ function Ratings({ id }) {
 }
 
 Ratings.defaultProps = {
-  id: 18201,
+  productId: 18201,
 };
 
 Ratings.propTypes = {
-  id: PropTypes.number,
+  productId: PropTypes.number,
 };
 
 export default Ratings;
