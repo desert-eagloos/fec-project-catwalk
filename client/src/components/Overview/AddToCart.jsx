@@ -7,16 +7,12 @@ import Alert from 'react-bootstrap/Alert';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+// import axios from 'axios';
 
 const _ = require('underscore');
 const helpers = require('./OverviewHelpers');
 
 function AddToCart({ cartOptions }) {
-  const filterOutOfStockSizes = (list) => (
-    _.filter(list, (element) => element.quantity > 0)
-  );
-
   const filterStockOfSelectedSize = (list, size) => (
     _.filter(list, (element) => element.size === size)
   );
@@ -33,12 +29,14 @@ function AddToCart({ cartOptions }) {
   const [quantityDropdownMenuStatus, setQuantityDropdownMenuDisabled] = useState(true);
   const [quantityOptionsOfSelectedSize, setQuantityOptionsOfSelectedSize] = useState(0);
   const [inStockSizes, setInStockSizes] = useState(
-    filterOutOfStockSizes([]),
+    helpers.filterOutOfStockSizes([]),
   );
   const [outOfStock, setOutOfStock] = useState(true);
 
   useEffect(() => {
-    setInStockSizes(filterOutOfStockSizes(cartOptions));
+    setInStockSizes(
+      helpers.filterOutOfStockSizes(cartOptions),
+    );
     setOutOfStock(() => (inStockSizes.length === 0));
     if (selectedSize) {
       if (!outOfStock && helpers.returnSKUForSizeInNewStyle(inStockSizes, selectedSize)) {
@@ -118,12 +116,13 @@ function AddToCart({ cartOptions }) {
         type="button"
         className="overview overview-add-to-cart-button"
         variant="secondary"
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
           if (selectedSize === null) {
             setNavigateToSizeSelection(true);
             setShowAlert(true);
           } else {
-            console.log('Add to Cart Functionality', selectedSKU, selectedQuantity);
+            helpers.sendAddToCartRequests(selectedQuantity, Number(selectedSKU));
           }
         }}
       >
