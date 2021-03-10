@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
+import Rating from 'react-rating';
 
 import RatingsBreakdown from './subcomponents/RatingsBreakdown';
 import FitRating from './subcomponents/FitRating';
@@ -11,7 +12,6 @@ import { RatingContext } from '../../common/AppContext';
 import { getAverageRating, convertRatingsToNumberType, roundToNearestQuarter } from '../../../utils/ratings';
 
 import '../../../css/RandR/Ratings/Ratings.css';
-import Rating from 'react-rating';
 
 function Ratings({ productId }) {
   const [isLoading, setLoading] = useState(true);
@@ -23,8 +23,7 @@ function Ratings({ productId }) {
 
   useEffect(() => {
     const getRatings = async () => {
-      const response = await axios.get(`/reviews/meta?productId=${productId}`)
-        .catch(error => console.log(error));
+      const response = await axios.get(`/reviews/meta?productId=${productId}`);
       setRating(Number(getAverageRating(response.data.ratings)));
       setRatings(convertRatingsToNumberType(response.data.ratings));
       setFit(Number(response.data.characteristics.Fit.value));

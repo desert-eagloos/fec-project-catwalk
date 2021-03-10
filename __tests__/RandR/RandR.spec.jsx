@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import Rating from 'react-rating';
 import RatingsBreakdown from '../../client/src/components/RandR/ratings-components/subcomponents/RatingsBreakdown';
 import FitRating from '../../client/src/components/RandR/ratings-components/subcomponents/FitRating';
 import ComfortRating from '../../client/src/components/RandR/ratings-components/subcomponents/ComfortRating';
-import Rating from 'react-rating';
 import Reviews from '../../client/src/components/RandR/review-components/Reviews';
 
 describe('Creates Ratings and Reviews Components', () => {
