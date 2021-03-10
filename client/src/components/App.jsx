@@ -25,10 +25,9 @@ function App() {
   const [product, setProduct] = useState(sampleData.productsGetRequest);
   const [searchBarInput, setSearchBarInput] = useState('');
 
-  useEffect(() => {
+  useEffect(async () => {
     const fetchData = async () => {
       const result = await axios.get('/products/18201')
-        .catch();
       setProduct(result.data);
     };
 
@@ -77,7 +76,7 @@ function App() {
             <QARoot />
           </Row>
           <Row className="mb-4">
-            <RandR productId={18201} />
+            <RandR productId={product} />
           </Row>
         </Container>
       </RatingContext.Provider>

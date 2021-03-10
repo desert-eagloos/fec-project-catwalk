@@ -7,7 +7,7 @@ import '../../css/RandR/RandR.css';
 import Ratings from './ratings-components/Ratings';
 import Reviews from './review-components/Reviews';
 
-function RandR({ productId }) {
+function RandR({ id }) {
   return (
     <Container>
       <Row>
@@ -15,10 +15,10 @@ function RandR({ productId }) {
       </Row>
       <Row>
         <Col className="col-4 ratings">
-          <Ratings productId={productId} />
+          <Ratings productId={id} />
         </Col>
         <Col className="col-8 reviews">
-          <Reviews productId={productId} />
+          <Reviews productId={id} />
         </Col>
       </Row>
     </Container>
@@ -26,11 +26,11 @@ function RandR({ productId }) {
 }
 
 RandR.defaultProps = {
-  productId: 18201,
+  id: 18201,
 };
 
 RandR.propTypes = {
-  productId: PropTypes.number,
+  id: PropTypes.number,
 };
 
 export default RandR;
