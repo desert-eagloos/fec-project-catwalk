@@ -31,3 +31,13 @@ export function roundToNearestQuarter(float) {
   }
   return result;
 }
+
+export function convertRatingsToNumberType(ratings) {
+  return {
+    5: Number(ratings[5]) || 0,
+    4: Number(ratings[4]) || 0,
+    3: Number(ratings[3]) || 0,
+    2: Number(ratings[2]) || 0,
+    1: Number(ratings[1]) || 0
+  }
+}

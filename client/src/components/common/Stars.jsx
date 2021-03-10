@@ -2,7 +2,7 @@ import React from 'react';
 import Rating from 'react-rating';
 import PropTypes from 'prop-types';
 
-import { roundToNearestQuarter } from '../../../../utils/RandR/ratings';
+import { roundToNearestQuarter } from '../../utils/ratings';
 
 import 'font-awesome/css/font-awesome.css';
 
@@ -20,9 +20,9 @@ export default function Stars({ rating }) {
 }
 
 Stars.defaultProps = {
-  rating: '3',
+  rating: 3,
 };
 
 Stars.propTypes = {
-  rating: PropTypes.string,
+  rating: PropTypes.number,
 };

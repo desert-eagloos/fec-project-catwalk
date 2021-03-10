@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+
 import {
   Container,
   Row,
@@ -7,6 +8,7 @@ import {
 } from 'react-bootstrap';
 import axios from 'axios';
 
+import { RatingContext } from './common/AppContext';
 import QARoot from './QA/QARoot';
 import Overview from './Overview/Overview';
 
@@ -17,6 +19,9 @@ import RandR from './RandR/RandR';
 const sampleData = require('./Overview/SampleData/sampleProductData');
 
 function App() {
+  const [rating, setRating] = useState(null);
+  const ratingValue = useMemo(() => ({ rating, setRating }), [rating, setRating]);
+
   const [product, setProduct] = useState(sampleData.productsGetRequest);
   const [searchBarInput, setSearchBarInput] = useState('');
 
@@ -34,7 +39,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Container className="main">
+      <Row className="mb-4 mt-4">
+        <header><h1 className="page-branding logo page-banner">PROJECT CATWALK</h1></header>
+      </Row>
       <Form>
         <Form.Group controlId="searchNewProductById">
           <Form.Label>Search New Product By ID</Form.Label>
@@ -64,18 +72,20 @@ function App() {
         </Button>
       </Form>
 
-      <Container>
-        <Row className="mb-4">
-          <Overview product={product} />
-        </Row>
-        <Row className="mb-4">
-          <QARoot />
-        </Row>
-        <Row className="mb-4">
-          <RandR id={18201} />
-        </Row>
-      </Container>
-    </>
+      <RatingContext.Provider value={ratingValue}>
+        <Container>
+          <Row className="mb-4">
+            <Overview product={product} />
+          </Row>
+          <Row className="mb-4">
+            <QARoot />
+          </Row>
+          <Row className="mb-4">
+            <RandR productId={product} />
+          </Row>
+        </Container>
+      </RatingContext.Provider>
+    </Container>
   );
 }
 

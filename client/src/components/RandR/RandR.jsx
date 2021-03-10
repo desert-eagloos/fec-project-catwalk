@@ -14,11 +14,11 @@ function RandR({ id }) {
         <h2>Ratings and Reviews</h2>
       </Row>
       <Row>
-        <Col sm={4}>
-          <Ratings id={id} />
+        <Col className="col-4 ratings">
+          <Ratings productId={id} />
         </Col>
-        <Col sm={8}>
-          <Reviews id={id} />
+        <Col className="col-8 reviews">
+          <Reviews productId={id} />
         </Col>
       </Row>
     </Container>
