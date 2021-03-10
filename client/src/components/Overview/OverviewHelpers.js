@@ -21,7 +21,7 @@ module.exports = {
         }
       )),
     };
-    console.log(newFormat);
+    // console.log(newFormat);
     return newFormat;
   },
   filterCartOptionsBySelectedStyle: (styles, styleName) => {
@@ -57,6 +57,6 @@ module.exports = {
     const arrayOfPromises = _.map(_.range(quantity), () => axios.post(url, params));
     Promise.all(arrayOfPromises)
       .then((response) => console.log('Success', response))
-      .catch((error) => console.log('Error', error));
+      .catch();
   },
 };
