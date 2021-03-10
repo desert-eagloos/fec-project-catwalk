@@ -91,6 +91,7 @@ app.get('/reviews/meta/:id', (req, res) => {
     });
 });
 
+//GET QUESTIONS
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
     headers: {
@@ -104,7 +105,7 @@ app.get('/qa/questions/:id', (req, res) => {
     })
     .catch((error) => {
       res.status(404);
-      console.log(error);
+      console.log('ERROR GETTING QUESTIONS', error);
     });
 });
 
@@ -128,7 +129,7 @@ app.post('/qa/questions/:id', (req, res) => {
     })
     .catch((error) => {
       res.status(404);
-      console.log(error);
+      console.log('ERROR POSTING A QUESTION', error);
     });
 });
 
@@ -152,7 +153,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     })
     .catch((error) => {
       res.status(404);
-      console.log(error);
+      console.log('ERROR POSTING AN ANSWER', error);
     });
 });
 
@@ -170,7 +171,7 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     })
     .catch((error) => {
       res.status(404);
-      console.log(error);
+      console.log('ERROR MARKING A QUESTION AS HELPFUL', error);
     });
 });
 
@@ -188,7 +189,7 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
     })
     .catch((error) => {
       res.status(404);
-      console.log(error);
+      console.log('ERROR REPORTING A QUESTION', error);
     });
 });
 
@@ -206,7 +207,7 @@ app.put('/qa/questions/:answer_id/helpful', (req, res) => {
     })
     .catch((error) => {
       res.status(404);
-      console.log(error);
+      console.log('ERROR MARKING ANSWER AS HELPFUL', error);
     });
 });
 
@@ -224,7 +225,7 @@ app.put('/qa/questions/:answer_id/report', (req, res) => {
     })
     .catch((error) => {
       res.status(404);
-      console.log(error);
+      console.log('ERROR REPORTING ANSWER', error);
     });
 });
 

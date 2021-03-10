@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import QuestionEntry from './QuestionEntry';
 import axios from 'axios';
 
@@ -18,8 +19,6 @@ const QuestionList = (props) => {
 
   const [moreButton, setMoreButton] = useState('More Answered Questions');
 
-<<<<<<< Updated upstream
-=======
   const [addQuestionToggle, setAddQuestionToggle] = useState(false);
 
   const [addQFormVal, setAddQFormVal] = useState('');
@@ -28,7 +27,6 @@ const QuestionList = (props) => {
 
   const [addQFormEmail, setAddQFormEmail] = useState('');
 
->>>>>>> Stashed changes
   const toggleQuestions = () => {
     setOpen(!open);
   }
@@ -54,7 +52,7 @@ const QuestionList = (props) => {
     } else {
 
       axios.post(`/qa/questions/:${props.data.product_id}`,{
-        params: {
+        data: {
           body: addQFormVal,
           name: addQFormName,
           email: addQFormEmail
@@ -68,7 +66,7 @@ const QuestionList = (props) => {
   const renderMoreQuestionsButton = () => {
     if (allData.length > 4) {
       return (
-        (<button onClick={() => toggleQuestions()}>{moreButton}</button>)
+        (<Button variant="primary" onClick={() => toggleQuestions()}>{moreButton}</Button>)
       )
     }
   }
@@ -85,7 +83,7 @@ const QuestionList = (props) => {
           Your email (mandatory)
           <input type='email' value={addQFormEmail} onChange={updateQFormEmail} placeholder='Why did you like the product or not?' required></input>
           <div>For authentication reasons, you will not be emailed</div>
-          <button onClick={submitQuestion}>Submit Question</button>
+          <Button variant="primary" onClick={submitQuestion}>Submit Question</Button>
         </div>
       )
     }
@@ -109,7 +107,7 @@ const QuestionList = (props) => {
         )
       })}
       {renderMoreQuestionsButton()}
-      <button onClick={() => setAddQuestionToggle(!addQuestionToggle)}>Ask A Question</button>
+      <Button variant="primary" onClick={() => setAddQuestionToggle(!addQuestionToggle)}>Ask A Question</Button>
       {renderAskQuestionForm()}
     </div>
   )

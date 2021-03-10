@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import AnswerEntry from './AnswerEntry';
 
 const AnswerList = (props) => {
@@ -48,7 +49,7 @@ const AnswerList = (props) => {
   const renderMoreAnswersButton = () => {
     if (sortedAnswers.length > 2) {
       return (
-        (<button onClick={() => toggleAnswers()}>{moreButton}</button>)
+        (<Button variant="link" onClick={() => toggleAnswers()}>{moreButton}</Button>)
       )
     }
   }

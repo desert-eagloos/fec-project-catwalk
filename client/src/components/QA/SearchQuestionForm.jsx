@@ -21,8 +21,8 @@ const SearchQuestionForm = (props) => {
         "product_id": props.data.product_id,
         "results": filteredQuestions
       })
-      //I think I might need to use useEffect on data in QAroot.
     }
+
   }, [searchBarVal])
 
   return (

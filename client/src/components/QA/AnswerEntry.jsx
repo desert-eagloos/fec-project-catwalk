@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 const AnswerEntry = (props) => {
 
@@ -16,12 +17,14 @@ const AnswerEntry = (props) => {
     }
   }
 
+
+
   if (props.answer) {
     return (
       <div>
         {props.answer.body}
         <div>
-        by {props.answer.answerer_name}, {props.answer.date} | Helpful? Yes({props.answer.helpfulness}) | <button>Report</button>
+        by {props.answer.answerer_name}, {props.answer.date} | Helpful? <Button variant="link">Yes({props.answer.helpfulness})</Button> | <Button variant="link">Report</Button>
         </div>
       </div>
     )
