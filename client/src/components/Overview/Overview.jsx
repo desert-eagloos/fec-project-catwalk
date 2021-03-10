@@ -9,47 +9,39 @@ import AddToCart from './AddToCart';
 import '../../css/overview.css';
 
 const helpers = require('./OverviewHelpers');
-const sampleStyleData = require('./SampleData/sampleStyleData');
+// const sampleStyleData = require('./SampleData/sampleStyleData');
 
 function Overview({ product }) {
-  const [styleOptions, setStyleOptions] = useState(
-    helpers.reformatStyleGetResponse(sampleStyleData.styleGetReq),
-  );
-  const [selectedStyle, setSelectedStyle] = useState(
-    helpers.findDefaultStyle(styleOptions),
-  );
-  const [priceByStyle, setPriceByStyle] = useState(
-    helpers.findDefaultPrice(styleOptions),
-  );
-  const [cartOptions, setCartOptions] = useState(
-    helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle),
-  );
+  const [styleOptions, setStyleOptions] = useState(null);
+  const [selectedStyle, setSelectedStyle] = useState(null);
+  const [priceByStyle, setPriceByStyle] = useState(null);
+  const [cartOptions, setCartOptions] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const getStylesByProductId = (productId) => {
-    axios.get(`/products/${productId}/styles`)
-      .then((response) => {
-        // NEED TO REFACTOR THIS ONCE WE HAVE DETERMINE STARTING STATE OF SITE
-        if (Array.isArray(response.results)) {
-          setStyleOptions(helpers.reformatStyleGetResponse(response));
-          setSelectedStyle(helpers.findDefaultStyle(response));
-          setCartOptions(helpers.filterCartOptionsBySelectedStyle(response, selectedStyle));
-        }
+  const getStylesByProductId = async (productId) => axios.get(`/products/${productId}/styles`);
+
+  // UPDATE PRODUCTS ASYNCHRONOUSLY
+  useEffect(() => {
+    const asyncFunc = async () => {
+      const newStylesGetRes = await getStylesByProductId(product.id);
+      const reformattedResponse = await helpers.reformatStyleGetResponse(newStylesGetRes.data);
+      const defaultStyle = await helpers.findDefaultStyle(reformattedResponse);
+      const defaultPrice = await helpers.findDefaultPrice(reformattedResponse);
+      return Promise.all([reformattedResponse, defaultStyle, defaultPrice]);
+    };
+    asyncFunc()
+      .then((values) => {
+        setStyleOptions(values[0]);
+        setSelectedStyle(values[1]);
+        setPriceByStyle(values[2]);
+        const filteredResults = helpers.filterCartOptionsBySelectedStyle(values[0], values[1]);
+        setCartOptions(filteredResults);
+        setIsLoading(false);
       })
       .catch();
-  };
-
-  useEffect(() => {
-    getStylesByProductId(product.id);
   }, [product]);
 
-  //  CHANGES THE CART OPTIONS WHEN A STYLE IS SELECTED
-  useEffect(() => {
-    setCartOptions(
-      helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle),
-    );
-    setPriceByStyle(helpers.filterPriceBySelectedStyle(styleOptions, selectedStyle));
-  }, [selectedStyle]);
-
+  if (isLoading) return (<></>);
   return (
     <Container className="overview-component">
       <Row>

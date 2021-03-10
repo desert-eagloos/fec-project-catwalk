@@ -25,13 +25,17 @@ function App() {
   const [product, setProduct] = useState(sampleData.productsGetRequest);
   const [searchBarInput, setSearchBarInput] = useState('');
 
-  useEffect(async () => {
-    const fetchData = async () => {
-      const result = await axios.get('/products/18201')
-      setProduct(result.data);
-    };
+  const fetchData = async (productIdNumber) => {
+    const result = await axios.get(`/products/${productIdNumber}`);
+    if (result.data.name !== 'Error') return (result.data);
+    return 'Error';
+  };
 
-    fetchData();
+  useEffect(() => {
+    (async () => {
+      const defaultSearch = await fetchData(18201);
+      setProduct(defaultSearch);
+    })();
   }, []);
 
   return (
@@ -46,6 +50,7 @@ function App() {
             type="number"
             placeholder="Enter Product ID"
             onChange={(event) => {
+              event.preventDefault();
               setSearchBarInput(event.target.value);
             }}
           />
@@ -53,14 +58,14 @@ function App() {
         <Button
           variant="secondary"
           type="submit"
-          onClick={(event) => {
+          onClick={async (event) => {
             event.preventDefault();
-            const fetchData = async () => {
-              const result = await axios.get(`/products/${Number(searchBarInput)}`);
-              setProduct(result.data);
-            };
-
-            fetchData();
+            const newSearchResults = await fetchData(Number(searchBarInput));
+            if (newSearchResults === 'Error') {
+              console.log('error');
+            } else {
+              setProduct(newSearchResults);
+            }
           }}
         >
           Submit

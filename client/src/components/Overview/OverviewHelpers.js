@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const axios = require('axios').default;
 
 module.exports = {
   reformatStyleGetResponse: (response) => {
@@ -20,6 +21,7 @@ module.exports = {
         }
       )),
     };
+    // console.log(newFormat);
     return newFormat;
   },
   filterCartOptionsBySelectedStyle: (styles, styleName) => {
@@ -46,4 +48,15 @@ module.exports = {
   returnSKUForSizeInNewStyle: (stockList, sizePreviouslySelected) => (
     _.find(stockList, (entry) => entry.size === sizePreviouslySelected).id
   ),
+  filterOutOfStockSizes: (list) => (
+    _.filter(list, (element) => element.quantity > 0)
+  ),
+  sendAddToCartRequests: (quantity, itemSKU) => {
+    const url = '/add-to-cart';
+    const params = { sku_id: itemSKU };
+    const arrayOfPromises = _.map(_.range(quantity), () => axios.post(url, params));
+    Promise.all(arrayOfPromises)
+      .then((response) => console.log('Success', response))
+      .catch();
+  },
 };
