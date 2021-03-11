@@ -120,6 +120,146 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
+//GET QUESTIONS
+app.get('/qa/questions/:id', (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      res.status(200);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.status(404);
+      console.log('ERROR GETTING QUESTIONS', error);
+    });
+});
+
+//POST QUESTION
+app.post('/qa/questions/:id', (req, res) => {
+  const obj = {
+    body: req.body.data.body,
+    name: req.body.data.name,
+    email: req.body.data.email,
+    product_id: parseInt(req.body.data.id)
+  }
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, obj,
+  {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+  }})
+    .then((response) => {
+      res.status(201);
+      console.log('Question Posted');
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.status(404);
+      console.log('ERROR POSTING A QUESTION', error);
+    });
+});
+
+//POST ANSWER
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  const obj = {
+    body: req.body.data.body,
+    name: req.body.data.name,
+    email: req.body.data.email,
+    photos: [req.body.data.photos],
+  }
+  console.log("obj", obj);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/answers`, obj,
+    {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    }}
+
+  )
+    .then((response) => {
+      res.status(201);
+      res.send(response.data);
+      console.log('Answer Posted');
+    })
+    .catch((error) => {
+      res.status(404);
+      console.log('ERROR POSTING AN ANSWER', error);
+    });
+});
+
+//MARK QUESTION AS HELPFUL
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/helpful`, {}, {
+    headers: {
+      Authorization: config.TOKEN
+    }
+  })
+    .then((response) => {
+      res.status(200);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.status(404);
+      console.log('ERROR MARKING A QUESTION AS HELPFUL', error);
+    });
+});
+
+//REPORT A QUESTION
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/report`, {}, {
+    headers: {
+      Authorization: config.TOKEN
+    }
+  })
+    .then((response) => {
+      res.status(200);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.status(404);
+      console.log('ERROR REPORTING A QUESTION', error);
+    });
+});
+
+//MARK AN ANSWER AS HELPFUL
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/answers/${req.params.answer_id}/helpful`, {}, {
+    headers: {
+      Authorization: config.TOKEN
+    }
+  })
+    .then((response) => {
+      res.status(200);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.status(404);
+      console.log('ERROR MARKING ANSWER AS HELPFUL', error);
+    });
+});
+
+//REPORT AN ANSWER
+app.put('/qa/questions/:answer_id/report', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/answers/${req.params.answer_id}/report`, {}, {
+    headers: {
+      Authorization: config.TOKEN
+    }
+  })
+    .then((response) => {
+      res.status(200);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.status(404);
+      console.log('ERROR REPORTING ANSWER', error);
+    });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}!`);
 });

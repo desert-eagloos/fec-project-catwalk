@@ -54,129 +54,30 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
       className="mb-4 row"
     >
       <div>
-        <u>
-          QA Section
-        </u>
-        <div>
-          <input />
-        </div>
-        <div>
-          <div>
-            Q:
-            Can I throw it in the ocean?
-            <span>
-               Helpful? Yes(#) |
-            </span>
-            <button>
-              Answer Question
-            </button>
-            <div>
-              <div>
-                A:
-                I did and it works just fine.
-                <div>
-                  by [username], Month DD, YYYY | Helpful? Yes(#) | Report
-                </div>
-              </div>
-              <div>
-                A:
-                Not very aerodynamic.
-                <div>
-                  by [username], Month DD, YYYY | Helpful? Yes(#) | Report
-                </div>
-              </div>
-              <button
-                onClick={[Function]}
-              >
-                More Answers
-              </button>
-            </div>
-          </div>
-          <div>
-            Q:
-            Does this product work in space?
-            <span>
-               Helpful? Yes(#) |
-            </span>
-            <button>
-              Answer Question
-            </button>
-            <div>
-              <div>
-                A:
-                I took it to Mars last week. Works great.
-                <div>
-                  by [username], Month DD, YYYY | Helpful? Yes(#) | Report
-                </div>
-              </div>
-              <div>
-                A:
-                Aliens wont use it but great for humans.
-                <div>
-                  by [username], Month DD, YYYY | Helpful? Yes(#) | Report
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            Q:
-            Will I need show this to my friend Tom?
-            <span>
-               Helpful? Yes(#) |
-            </span>
-            <button>
-              Answer Question
-            </button>
-            <div>
-              <div>
-                A:
-                Under no circumstances show this to Tom.
-                <div>
-                  by [username], Month DD, YYYY | Helpful? Yes(#) | Report
-                </div>
-              </div>
-              <div />
-            </div>
-          </div>
-          <div>
-            Q:
-            Should I be prepared for the zombie apocalypse?
-            <span>
-               Helpful? Yes(#) |
-            </span>
-            <button>
-              Answer Question
-            </button>
-            <div>
-              <div>
-                A:
-                Always
-                <div>
-                  by [username], Month DD, YYYY | Helpful? Yes(#) | Report
-                </div>
-              </div>
-              <div>
-                A:
-                Anything can happen in 2021.
-                <div>
-                  by [username], Month DD, YYYY | Helpful? Yes(#) | Report
-                </div>
-              </div>
-              <button
-                onClick={[Function]}
-              >
-                More Answers
-              </button>
-            </div>
-          </div>
-          <button
-            onClick={[Function]}
+        <div
+          className="container-fluid"
+        >
+          <div
+            className="row"
           >
-            More Answered Questions
-          </button>
-          <button>
-            Add a question
-          </button>
+            <div
+              className="col"
+            >
+              <h3>
+                Questions and Answers
+              </h3>
+              <form
+                className=""
+              >
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Have a question? Search for answers…"
+                  type="tesxt"
+                />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
