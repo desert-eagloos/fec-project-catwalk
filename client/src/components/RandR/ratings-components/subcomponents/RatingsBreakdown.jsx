@@ -5,21 +5,13 @@ import PropTypes from 'prop-types';
 import '../../../../css/RandR/Ratings/RatingBreakdown.css';
 
 export default function RatingsBreakdown({ ratings }) {
-  const copyRatings = {
-    5: ratings[5] ?? 0,
-    4: ratings[4] ?? 0,
-    3: ratings[3] ?? 0,
-    2: ratings[2] ?? 0,
-    1: ratings[1] ?? 0,
-  };
-
   const totalRatings = Object.values(ratings)
     .reduce((sum, x) => sum + Number(x), 0);
 
   const rand = () => Math.floor(Math.random() * 1);
 
   return (
-    Object.entries(copyRatings)
+    Object.entries(ratings)
       .sort((a, b) => b[0].localeCompare(a[0]))
       .map(([rating, value], i) => (
         <Row key={`row${i + rand()}`} className="m-0 p-0">
@@ -35,15 +27,21 @@ export default function RatingsBreakdown({ ratings }) {
 }
 
 RatingsBreakdown.defaultProps = {
-  ratings: [['0', '1']],
+  ratings: {
+    5: 1,
+    4: 3,
+    3: 2,
+    2: 1,
+    1: 0
+  },
 };
 
 RatingsBreakdown.propTypes = {
   ratings: PropTypes.shape({
-    5: PropTypes.string,
-    4: PropTypes.string,
-    3: PropTypes.string,
-    2: PropTypes.string,
-    1: PropTypes.string,
+    5: PropTypes.number,
+    4: PropTypes.number,
+    3: PropTypes.number,
+    2: PropTypes.number,
+    1: PropTypes.number,
   }),
 };

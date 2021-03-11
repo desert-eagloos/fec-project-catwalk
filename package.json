@@ -17,7 +17,8 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
-    "react-rating": "^2.0.5"
+    "react-rating": "^2.0.5",
+    "underscore": "^1.12.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.13.9",
@@ -50,19 +51,7 @@
     "start:dev": "npx nodemon server/index.js -w server",
     "build:dev": "webpack -w",
     "test": "node_modules/jest/bin/jest.js",
-    "tailwind:build": "NODE_ENV=production postcss client/src/tailwind.css -o src/tailwind.output.css",
-    "tailwind:dev": "postcss client/src/tailwind.css -o client/src/tailwind.output.css",
-    "prestart": "npm run tailwind:dev",
-    "prebuild": "npm run tailwind:build"
-  },
-  "jest": {
-    "verbose": true,
-    "testPathIgnorePatterns": [
-      "/node_modules"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors"
   }
 }

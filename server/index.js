@@ -31,6 +31,7 @@ app.get('/products/', (req, res) => {
 });
 
 app.get('/products/:productId', (req, res) => {
+  console.log('Testing Form(remove me later index.js line 34)', req.params.productId);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/products/${req.params.productId}`, {
     headers: {
       Authorization: config.TOKEN,
@@ -57,11 +58,36 @@ app.get('/products/:productId/styles', (req, res) => {
     .catch((error) => res.send(error));
 });
 
-app.get('/reviews/:id', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews?product_id=${req.params.id}`, {
+app.post('/add-to-cart', (req, res) => {
+  const params = req.body.sku_id;
+  console.log(params);
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/cart', { sku_id: params }, {
     headers: {
       Authorization: config.TOKEN,
       'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      console.log(response.data);
+      res.status(201);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+app.get('/reviews', (req, res) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews', {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+    params: {
+      product_id: req.query.productId,
+      page: req.query.page,
+      count: req.query.count,
+      sort: req.query.sort,
     },
   })
     .then((response) => {
@@ -74,8 +100,11 @@ app.get('/reviews/:id', (req, res) => {
     });
 });
 
-app.get('/reviews/meta/:id', (req, res) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/meta?product_id=${req.params.id}`, {
+app.get('/reviews/meta', (req, res) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/meta', {
+    params: {
+      product_id: req.query.productId,
+    },
     headers: {
       Authorization: config.TOKEN,
       'Content-Type': 'application/json',
