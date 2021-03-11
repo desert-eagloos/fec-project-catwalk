@@ -78,7 +78,7 @@ function App() {
             <Overview product={product} />
           </Row>
           <Row className="mb-4">
-            <QARoot id={product.id} />
+            <QARoot id={18201} />
           </Row>
           <Row className="mb-4">
             <RandR productId={product} />
