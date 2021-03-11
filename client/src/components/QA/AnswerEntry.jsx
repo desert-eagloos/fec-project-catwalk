@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Button } from 'react-bootstrap';
 
 const AnswerEntry = (props) => {
 
-  //console.log(props);
+  const [reported, setReported] = useState(false);
+
+  const [reportedButton, setReportedButton] = useState('Report');
+
+  const [helpful, setHelpful] = useState(false);
+
+
+  const [helpfulButton, setHelpfulButton] = useState(`Yes(0)`);
+
+
+  //My code run infinate loops with this line
+  //setHelpfulButton(`Yes(${props.answer.helpfulness})`)
+
 
   const displayName = () => {
     if (props.answer.answerer_name === "seller") {
@@ -17,6 +30,42 @@ const AnswerEntry = (props) => {
     }
   }
 
+  const reportAnswer = () => {
+    console.log('reporting')
+    axios.put(`/qa/questions/${props.answer.id}/report`)
+
+  }
+
+  const renderReportButton = () => {
+    if (reported) {
+      return (
+        <Button variant="link">{reportedButton}</Button>
+      )
+    } else {
+      return (
+        <Button onClick={() => setReported(true)} variant="link">{reportedButton}</Button>
+      )
+    }
+  }
+
+  useEffect(() => {
+    if (reported) {
+      setReportedButton('Reported')
+      reportAnswer()
+    }
+  }, [reported])
+
+  const markAnswerHelpful = () => {
+    console.log('marking as helpful');
+    axios.put(`/qa/answers/${props.answer.id}/helpful`);
+  }
+
+  useEffect(() => {
+    if (helpful) {
+      setHelpfulButton(`Yes(${props.answer.helpfulness + 1})`);
+      markAnswerHelpful();
+    }
+  }, [helpful])
 
 
   if (props.answer) {
@@ -24,7 +73,7 @@ const AnswerEntry = (props) => {
       <div>
         {props.answer.body}
         <div>
-        by {props.answer.answerer_name}, {props.answer.date} | Helpful? <Button variant="link">Yes({props.answer.helpfulness})</Button> | <Button variant="link">Report</Button>
+        by {props.answer.answerer_name}, {props.answer.date} | Helpful? <Button variant="link" onClick={() => setHelpful(true)} >{helpfulButton}</Button> | {renderReportButton()}
         </div>
       </div>
     )

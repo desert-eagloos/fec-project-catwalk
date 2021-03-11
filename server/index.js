@@ -111,18 +111,19 @@ app.get('/qa/questions/:id', (req, res) => {
 
 //POST QUESTION
 app.post('/qa/questions/:id', (req, res) => {
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
+  console.log('REQ.BODY!!!!!!!!', req.body);
+  const obj = {
+    body: req.body.data.body,
+    name: req.body.data.name,
+    email: req.body.data.email,
+    product_id: parseInt(req.body.data.id)
+  }
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, obj,
+  {
     headers: {
       Authorization: config.TOKEN,
       'Content-Type': 'application/json',
-    },
-    body: {
-      body: req.body.body,
-      name: req.body.name,
-      email: req.body.email,
-      product_id: req.params.id,
-    }
-  })
+  }})
     .then((response) => {
       res.status(200);
       res.send(response.data);
@@ -130,23 +131,26 @@ app.post('/qa/questions/:id', (req, res) => {
     .catch((error) => {
       res.status(404);
       console.log('ERROR POSTING A QUESTION', error);
+      console.log('OBJ$$$$', obj);
     });
 });
 
 //POST ANSWER
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.question_id}/answers`, {
-    headers: {
-      Authorization: config.TOKEN,
-      'Content-Type': 'application/json',
-    },
     body: {
       body: req.body.body,
       name: req.body.name,
       email: req.body.email,
       photos: req.body.photos,
-    }
-  })
+    }},
+    {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    }}
+
+  )
     .then((response) => {
       res.status(200);
       res.send(response.data);
@@ -159,10 +163,9 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
 
 //MARK QUESTION AS HELPFUL
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.question_id}/helpful`, {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/helpful`, {}, {
     headers: {
-      Authorization: config.TOKEN,
-      'Content-Type': 'application/json',
+      Authorization: config.TOKEN
     }
   })
     .then((response) => {
@@ -177,10 +180,9 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
 
 //REPORT A QUESTION
 app.put('/qa/questions/:question_id/report', (req, res) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.question_id}/report`, {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/report`, {}, {
     headers: {
-      Authorization: config.TOKEN,
-      'Content-Type': 'application/json',
+      Authorization: config.TOKEN
     }
   })
     .then((response) => {
@@ -194,11 +196,10 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
 });
 
 //MARK AN ANSWER AS HELPFUL
-app.put('/qa/questions/:answer_id/helpful', (req, res) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.answer_id}/helpful`, {
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/answers/${req.params.answer_id}/helpful`, {}, {
     headers: {
-      Authorization: config.TOKEN,
-      'Content-Type': 'application/json',
+      Authorization: config.TOKEN
     }
   })
     .then((response) => {
@@ -213,10 +214,9 @@ app.put('/qa/questions/:answer_id/helpful', (req, res) => {
 
 //REPORT AN ANSWER
 app.put('/qa/questions/:answer_id/report', (req, res) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?answer_id=${req.params.answer_id}/report`, {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/answers/${req.params.answer_id}/report`, {}, {
     headers: {
-      Authorization: config.TOKEN,
-      'Content-Type': 'application/json',
+      Authorization: config.TOKEN
     }
   })
     .then((response) => {

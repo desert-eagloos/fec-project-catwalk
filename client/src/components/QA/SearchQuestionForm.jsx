@@ -11,12 +11,11 @@ const SearchQuestionForm = (props) => {
   }
 
   useEffect (() => {
-    //console.log('HERE');
     if (searchBarVal.length > 2) {
-      console.log('INSIDE');
       let filteredQuestions = props.data.results.filter((question) => {
         return question.question_body.toLowerCase().indexOf(searchBarVal.toLowerCase()) !== -1;
       })
+      console.log('filteredQuestions', filteredQuestions);
       props.setData({
         "product_id": props.data.product_id,
         "results": filteredQuestions

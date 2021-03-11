@@ -9,16 +9,22 @@ const QARoot = (props) => {
 
   const [data, setData] = useState();
 
-  const getQuestions = () => {
+  // const getQuestions = () => {
+  //   axios.get(`/qa/questions/${props.id}`)
+  //     .then((res) => {
+  //       setData(res.data)
+  //     })
+  // }
+
+  // getQuestions ();
+
+  useEffect (() => {
     axios.get(`/qa/questions/${props.id}`)
       .then((res) => {
         setData(res.data)
       })
-  }
+  }, [])
 
-  getQuestions ();
-
-  // I think I need to do useEffect for rerendering the data going into the QuestionList when the data is changed in SearchQuestionForm
   const renderQuestionList = () => {
     if (data) {
       return (
@@ -27,12 +33,10 @@ const QARoot = (props) => {
         setData={setData}
         />
       )
+    } else {
+      {'No Questions'}
     }
   }
-
-  useEffect (() => {
-
-  }, [data])
 
   return (
     <div>

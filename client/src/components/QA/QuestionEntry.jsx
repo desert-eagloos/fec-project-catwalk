@@ -19,9 +19,10 @@ const QuestionEntry = (props) => {
 
   const [helpfulnessClicked, setHelpfulnessClicked] = useState(false);
 
-  const [helpfulnessButton, setHelpfulnessButton] = useState(`Yes(${props.question.question_helpfulness})`)
+  const [helpfulnessButton, setHelpfulnessButton] = useState(`Yes(${props.question.question_helpfulness})`);
 
   const updateAnswerFormVal = (e) => {
+    console.log(e.target.value)
     setAddAnswerFormVal(e.target.value);
   }
 
@@ -34,8 +35,7 @@ const QuestionEntry = (props) => {
   }
 
   const savePictures = (e) => {
-    let oldData = addAnswerFormPictures;
-    setAddAnswerFormPictures([...oldData, e.target.files]);
+    setAddAnswerFormPictures(e.target.value);
   }
 
   const submitAnswer = () => {
@@ -43,7 +43,7 @@ const QuestionEntry = (props) => {
       throw ('You must enter the following:')
     } else {
       axios.post(`/qa/questions/:${props.question.question_id}/answers`,{
-        params: {
+        data: {
           body: addAnswerFormVal,
           name: addAnswerFormName,
           email: addAnswerFormEmail,
@@ -52,12 +52,13 @@ const QuestionEntry = (props) => {
       }).then(setAddAnswerFormVal(''))
         .then(setAddAnswerFormName(''))
         .then(setAddAnswerFormEmail(''))
-        .then(setAddAnswerFormPhotos(''))
+        .then(setAddAnswerFormPictures(''))
     }
   }
 
   //THUMBNAILS GO HERE
   const renderThumbnails = () => {
+
     if (addAnswerFormPictures) {
       console.log(addAnswerFormPictures);
       return (
@@ -70,39 +71,66 @@ const QuestionEntry = (props) => {
 
   const renderAnswerQForm = () => {
     if (addAnswerToggle) {
+      // return (
+      //   <div>
+      //     Your Answer (mandatory)
+      //     <input value={addAnswerFormVal} onChange={updateAnswerFormVal} placeholder='answer question...'></input>
+      //     What is your nickname (mandatory)
+      //     <input value={addAnswerFormName} onChange={updateAnswerFormName} placeholder='Example: jack543!' required></input>
+      //     <div>For privacy reasons, do not use your full name or email address</div>
+      //     Your email (mandatory)
+      //     <input type='email' value={addAnswerFormEmail} onChange={updateAnswerFormEmail} placeholder='Example: jack@email.com' required></input>
+      //     <div>For authentication reasons, you will not be emailed</div>
+
+      //     {/* PUT IMAGE INPUT HERE */}
+      //     Photo URL (optional)
+
+      //     {renderThumbnails()}
+
+      //     <Button variant="primary" onClick={submitAnswer}>Submit Answer</Button>
+      //   </div>
+      // )
+
       return (
-        <div>
-          Your Answer (mandatory)
-          <input value={addAnswerFormVal} onChange={updateAnswerFormVal} placeholder='answer question...'></input>
-          What is your nickname (mandatory)
-          <input value={addAnswerFormName} onChange={updateAnswerFormName} placeholder='Example: jack543!' required></input>
-          <div>For privacy reasons, do not use your full name or email address</div>
-          Your email (mandatory)
-          <input type='email' value={addAnswerFormEmail} onChange={updateAnswerFormEmail} placeholder='Example: jack@email.com' required></input>
-          <div>For authentication reasons, you will not be emailed</div>
+        <Form>
 
-          {/* PUT IMAGE INPUT HERE */}
-          <Form>
-            <Form.Group>
-              Add up to 5 photos.
-              <Form.File onChange={savePictures} />
-              <Form.File onChange={savePictures} />
-              <Form.File onChange={savePictures} />
-              <Form.File onChange={savePictures} />
-              <Form.File onChange={savePictures} />
-            </Form.Group>
+          <Form.Group controlId="formBasicText">
+            <Form.Label>Your Answer (mandatory)</Form.Label>
+            <Form.Control onChange={updateAnswerFormVal} as="textarea" rows={3} placeholder='answer question...' required/>
+            <Form.Text className="text-muted">
+            </Form.Text>
+          </Form.Group>
 
-          </Form>
-          {renderThumbnails()}
+          <Form.Group controlId="formBasicName">
+            <Form.Label>What is your nickname (mandatory)</Form.Label>
+            <Form.Control onChange={updateAnswerFormName} type="text" placeholder='Example: jack543!' required/>
+            <Form.Text className="text-muted">
+            For privacy reasons, do not use your full name or email address
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Your email (mandatory)</Form.Label>
+            <Form.Control onChange={updateAnswerFormEmail} type="email" placeholder='Example: jack@email.com' required/>
+            <Form.Text className="text-muted">
+            For authentication reasons, you will not be emailed
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPhoto">
+            <Form.Label>Your photo (optional)</Form.Label>
+            <Form.Control onChange={savePictures} type="url" placeholder='images.com/image' />
+          </Form.Group>
 
           <Button variant="primary" onClick={submitAnswer}>Submit Answer</Button>
-        </div>
+
+        </Form>
       )
     }
   }
 
   const markQuestionHelpful = () => {
-    axios.put(`/qa/questions/:${props.question.question_id}/helpful`);
+    axios.put(`/qa/questions/${props.question.question_id}/helpful`);
   }
 
   useEffect(() => {
@@ -111,20 +139,6 @@ const QuestionEntry = (props) => {
       markQuestionHelpful();
     }
   }, [helpfulnessClicked]);
-
-///////////////////////////////////////////////////////////////////////////////////////
-
-  // const renderYesButton = () => {
-  //   if (helpfulnessClicked) {
-  //     return (
-  //       <Button variant="link" >Yes({props.question.question_helpfulness + 1})</Button>
-  //     )
-  //   } else {
-  //     return (
-  //       <Button variant="link" onClick={setHelpfulnessClicked('true')} >{helpfulnessButton}</Button>
-  //     )
-  //   }
-  // }
 
   return (
     <div>

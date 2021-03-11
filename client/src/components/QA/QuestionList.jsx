@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import QuestionEntry from './QuestionEntry';
 import axios from 'axios';
 
@@ -10,6 +10,11 @@ const QuestionList = (props) => {
   const [allData, setAllData] = useState(props.data);
 
   const [questionData, setQuestionData] = useState(props.data.results);
+
+  useEffect(() => {
+    setQuestionData(props.data.results);
+    setQuestions(questionData);
+  }, [props.data.results])
 
   const firstFour = [questionData[0], questionData[1], questionData[2], questionData[3]];
 
@@ -47,15 +52,16 @@ const QuestionList = (props) => {
   }
 
   const submitQuestion = () => {
-    if ( addAnswerFormVal === '' || addAnswerFormName === '' || addAnswerFormEmail === '' ) {
+    if ( addQFormVal === '' || addQFormName === '' || addQFormEmail === '' ) {
       throw ('You must enter the following:')
     } else {
 
-      axios.post(`/qa/questions/:${props.data.product_id}`,{
+      axios.post(`/qa/questions/${props.data.product_id}`,{
         data: {
           body: addQFormVal,
           name: addQFormName,
-          email: addQFormEmail
+          email: addQFormEmail,
+          id: props.data.product_id
         }
       }).then(setAddQFormVal(''))
         .then(setAddQFormName(''))
@@ -73,18 +79,49 @@ const QuestionList = (props) => {
 
   const renderAskQuestionForm = () => {
     if (addQuestionToggle) {
+      // return (
+      //   <div>
+      //     Your Question (mandatory)
+      //     <input value={addQFormVal} onChange={updateQFormVal} placeholder='ask question...' required></input>
+      //     What is your nickname (mandatory)
+      //     <input value={addQFormName} onChange={updateQFormName} placeholder='Example: jackson11!' required></input>
+      //     <div>For privacy reasons, do not use your full name or email address</div>
+      //     Your email (mandatory)
+      //     <input type='email' value={addQFormEmail} onChange={updateQFormEmail} placeholder='Why did you like the product or not?' required></input>
+      //     <div>For authentication reasons, you will not be emailed</div>
+      //     <Button variant="primary" onClick={submitQuestion}>Submit Question</Button>
+      //   </div>
+      // )
+
       return (
-        <div>
-          Your Question (mandatory)
-          <input value={addQFormVal} onChange={updateQFormVal} placeholder='ask question...' required></input>
-          What is your nickname (mandatory)
-          <input value={addQFormName} onChange={updateQFormName} placeholder='Example: jackson11!' required></input>
-          <div>For privacy reasons, do not use your full name or email address</div>
-          Your email (mandatory)
-          <input type='email' value={addQFormEmail} onChange={updateQFormEmail} placeholder='Why did you like the product or not?' required></input>
-          <div>For authentication reasons, you will not be emailed</div>
+        <Form>
+
+          <Form.Group controlId="formBasicText">
+            <Form.Label>Your Question (mandatory)</Form.Label>
+            <Form.Control onChange={updateQFormVal} as="textarea" rows={3} placeholder='ask question...' required/>
+            <Form.Text className="text-muted">
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicName">
+            <Form.Label>What is your nickname (mandatory)</Form.Label>
+            <Form.Control onChange={updateQFormName} type="text" placeholder='Example: jack543!' required/>
+            <Form.Text className="text-muted">
+            For privacy reasons, do not use your full name or email address
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Your email (mandatory)</Form.Label>
+            <Form.Control onChange={updateQFormEmail} type="email" placeholder='Example: jack@email.com' required/>
+            <Form.Text className="text-muted">
+            For authentication reasons, you will not be emailed
+            </Form.Text>
+          </Form.Group>
+
           <Button variant="primary" onClick={submitQuestion}>Submit Question</Button>
-        </div>
+
+        </Form>
       )
     }
   }

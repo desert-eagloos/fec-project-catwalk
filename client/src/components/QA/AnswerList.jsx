@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import AnswerEntry from './AnswerEntry';
 
 const AnswerList = (props) => {
@@ -64,19 +64,32 @@ const AnswerList = (props) => {
     }
   }, [open]);
 
+  // return (
+  //   <div>
+
+  //     A:
+  //     {
+  //       answers.map((answer, index) => {
+
+  //         return (
+  //           <AnswerEntry answer={answer} key={index}/>
+  //         )
+  //       })
+  //     }
+  //     {renderMoreAnswersButton()}
+  //   </div>
+  // )
+
   return (
-    <div>
-      A:
+    <Card>
       {
         answers.map((answer, index) => {
-
           return (
             <AnswerEntry answer={answer} key={index}/>
           )
         })
       }
-      {renderMoreAnswersButton()}
-    </div>
+    </Card>
   )
 }
 
