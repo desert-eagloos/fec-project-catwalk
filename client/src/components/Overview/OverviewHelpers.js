@@ -24,6 +24,24 @@ module.exports = {
     // console.log(newFormat);
     return newFormat;
   },
+  findDefaultStyle: (styles) => {
+    const defaultStyle = _.find(styles.results, (entry) => entry['default?'] === true);
+    return defaultStyle.name;
+  },
+  findDefaultPrice: (styles) => {
+    const defaultStyle = _.find(styles.results, (entry) => entry['default?'] === true);
+    return {
+      salePrice: defaultStyle.sale_price,
+      originalPrice: defaultStyle.original_price,
+    };
+  },
+  filterPriceBySelectedStyle: (styles, styleName) => {
+    const filteredResults = _.find(styles.results, (style) => style.name === styleName);
+    return {
+      salePrice: filteredResults.sale_price,
+      originalPrice: filteredResults.original_price,
+    };
+  },
   filterCartOptionsBySelectedStyle: (styles, styleName) => {
     const filteredResults = _.find(styles.results, (style) => style.name === styleName);
     const sizeOptionsProp = _.map(filteredResults.skus, (value) => ({
@@ -33,17 +51,16 @@ module.exports = {
     }));
     return sizeOptionsProp;
   },
-  findDefaultStyle: (styles) => {
-    const defaultStyle = _.find(styles.results, (entry) => entry['default?'] === true);
-    return defaultStyle.name;
-  },
-  findDefaultPrice: (styles) => {
-    const defaultStyle = _.find(styles.results, (entry) => entry['default?'] === true);
-    return defaultStyle.sale_price ? defaultStyle.sale_price : defaultStyle.original_price;
-  },
-  filterPriceBySelectedStyle: (styles, styleName) => {
+  filterStockOfSelectedSize: (list, size) => (
+    _.filter(list, (element) => element.size === size)
+  ),
+  filterPhotosBySelectedStyle: (styles, styleName) => {
     const filteredResults = _.find(styles.results, (style) => style.name === styleName);
-    return filteredResults.sale_price ? filteredResults.sale_price : filteredResults.original_price;
+    const photoOptions = _.map(filteredResults.photos, (value) => ({
+      thumbnail: value.thumbnail_url,
+      fullSize: value.url,
+    }));
+    return photoOptions;
   },
   returnSKUForSizeInNewStyle: (stockList, sizePreviouslySelected) => (
     _.find(stockList, (entry) => entry.size === sizePreviouslySelected).id
@@ -51,11 +68,15 @@ module.exports = {
   filterOutOfStockSizes: (list) => (
     _.filter(list, (element) => element.quantity > 0)
   ),
+  maxQuantityOptions: (number) => (
+    (number > 15) ? 15 : number
+  ),
   sendAddToCartRequests: (quantity, itemSKU) => {
     const url = '/add-to-cart';
     const params = { sku_id: itemSKU };
     const arrayOfPromises = _.map(_.range(quantity), () => axios.post(url, params));
     Promise.all(arrayOfPromises)
+      // eslint-disable-next-line no-console
       .then((response) => console.log('Success', response))
       .catch();
   },

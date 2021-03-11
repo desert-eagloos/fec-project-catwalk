@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import {
+  Container,
+  Col,
+  Row,
+  Carousel,
+} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -8,6 +13,7 @@ import ProductInfoA from './ProductInfoA';
 import AddToCart from './AddToCart';
 import '../../css/overview.css';
 
+const _ = require('underscore');
 const helpers = require('./OverviewHelpers');
 // const sampleStyleData = require('./SampleData/sampleStyleData');
 
@@ -16,6 +22,7 @@ function Overview({ product }) {
   const [selectedStyle, setSelectedStyle] = useState(null);
   const [priceByStyle, setPriceByStyle] = useState(null);
   const [cartOptions, setCartOptions] = useState(null);
+  const [photosByStyle, setPhotosByStyle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const getStylesByProductId = async (productId) => axios.get(`/products/${productId}/styles`);
@@ -34,40 +41,60 @@ function Overview({ product }) {
         setStyleOptions(values[0]);
         setSelectedStyle(values[1]);
         setPriceByStyle(values[2]);
-        const filteredResults = helpers.filterCartOptionsBySelectedStyle(values[0], values[1]);
-        setCartOptions(filteredResults);
+        setCartOptions(helpers.filterCartOptionsBySelectedStyle(values[0], values[1]));
+        setPhotosByStyle(helpers.filterPhotosBySelectedStyle(values[0], values[1]));
         setIsLoading(false);
       })
       .catch();
   }, [product]);
 
+  useEffect(() => {
+    if (!isLoading) {
+      setCartOptions(helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle));
+      setPhotosByStyle(helpers.filterPhotosBySelectedStyle(styleOptions, selectedStyle));
+    }
+  }, [selectedStyle]);
+
   if (isLoading) return (<></>);
   return (
-    <Container className="overview-component">
-      <Row>
-        <Col>
-          <div className="overview overview-image-gallery-container">
-            Image Gallery
-            <div className="overview over-image-gallery-default-view">
-              IMG PLACEHOLDER
-              <button className="overview overview-image-gallery-expanded-view" type="button">ICON HERE</button>
-              <div className="overview overview-image-gallery-thumbnails">IMG GALLERY THUMBNAILS</div>
-            </div>
-          </div>
-        </Col>
-        <Col>
-          <ProductInfoA
-            product={product}
-            priceByStyle={priceByStyle}
-          />
-          <StyleSelection
-            styleOptions={styleOptions}
-            changeSelectedStyle={setSelectedStyle}
-            selectedStyle={selectedStyle}
-          />
-          <AddToCart cartOptions={cartOptions} />
-        </Col>
-      </Row>
+    <>
+      <Container className="overview-component">
+        <Row>
+          <Col>
+            <Carousel>
+              {_.map(photosByStyle, (entry, key) => {
+                let image = 'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg';
+                if (entry.fullSize !== null) image = entry.fullSize;
+
+                return (
+                  <Carousel.Item
+                    key={key}
+                  >
+                    <img
+                      className="carousel-img d-block w-100"
+                      src={image}
+                      alt="Missing"
+                    />
+                  </Carousel.Item>
+                );
+              })}
+            </Carousel>
+          </Col>
+          <Col>
+            <ProductInfoA
+              product={product}
+              priceByStyle={priceByStyle}
+            />
+            <StyleSelection
+              styleOptions={styleOptions}
+              changeSelectedStyle={setSelectedStyle}
+              changePhotosByStyle={setPhotosByStyle}
+              selectedStyle={selectedStyle}
+            />
+            <AddToCart cartOptions={cartOptions} />
+          </Col>
+        </Row>
+      </Container>
       <Row>
         <div className="overview overview-production-information-b">
           <div className="overview overview-product-description">
@@ -76,7 +103,7 @@ function Overview({ product }) {
           </div>
         </div>
       </Row>
-    </Container>
+    </>
   );
 }
 

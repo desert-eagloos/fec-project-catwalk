@@ -2,3 +2,23 @@
   display: flex;
   justify-content: center;
 }
+
+.carousel-img {
+  min-width:450px;
+  min-height:650px;
+  width:450px;
+  height:650px;
+  object-fit:scale-down;
+  background-color: black;
+}
+
+
+.style-selection-thumbnails {
+  width: 85px;
+  height: 85px;
+}
+
+.sale-price-decoration {
+  text-decoration: line-through;
+  color: red;
+}

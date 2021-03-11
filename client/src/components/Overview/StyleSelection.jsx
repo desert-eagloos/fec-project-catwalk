@@ -11,7 +11,11 @@ import PropTypes from 'prop-types';
 
 const _ = require('underscore');
 
-function StyleSelection({ styleOptions, changeSelectedStyle, selectedStyle }) {
+function StyleSelection({
+  styleOptions,
+  changeSelectedStyle,
+  selectedStyle,
+}) {
   return (
     <Container>
       <p>
@@ -19,14 +23,13 @@ function StyleSelection({ styleOptions, changeSelectedStyle, selectedStyle }) {
         <FontAwesomeIcon icon={faChevronRight} />
         {` ${selectedStyle}`}
       </p>
-      <Row>
+      <Row lg={4}>
         {_.map(styleOptions.results, (entry) => (
           <Col key={entry.style_id}>
             <Image
               id={entry.name}
               className="style-selection-thumbnails"
               src={entry.photos[0].thumbnail_url}
-              thumbnail
               roundedCircle
               onClick={(event) => {
                 changeSelectedStyle(event.target.id);
