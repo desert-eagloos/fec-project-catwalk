@@ -13,12 +13,6 @@ const _ = require('underscore');
 const helpers = require('./OverviewHelpers');
 
 function AddToCart({ cartOptions }) {
-  const filterStockOfSelectedSize = (list, size) => (
-    _.filter(list, (element) => element.size === size)
-  );
-
-  const maxQuantityOptions = (number) => ((number > 15) ? 15 : number);
-
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(null);
   const [selectedSKU, setSelectedSKU] = useState(null);
@@ -91,9 +85,11 @@ function AddToCart({ cartOptions }) {
                 setSelectedQuantity(1);
                 setQuantityDropdownMenuDisabled(false);
                 const filterCartOptions = (
-                  filterStockOfSelectedSize(cartOptions, event.target.innerText)
+                  helpers.filterStockOfSelectedSize(cartOptions, event.target.innerText)
                 );
-                setQuantityOptionsOfSelectedSize(maxQuantityOptions(filterCartOptions[0].quantity));
+                setQuantityOptionsOfSelectedSize(
+                  helpers.maxQuantityOptions(filterCartOptions[0].quantity),
+                );
               }}
             >
               {option.size}
