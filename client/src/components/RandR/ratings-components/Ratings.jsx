@@ -48,6 +48,7 @@ function Ratings({ productId }) {
             fullSymbol="fa fa-star"
             initialRating={roundToNearestQuarter(rating)}
             fractions={4}
+            readonly
           />
         </Col>
       </Row>

@@ -19,9 +19,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  // plugins: [
-  //   'react', 'jest',
-  // ],
+  plugins: [
+    'react', // 'jest',
+  ],
   rules: {
   },
   overrides: [

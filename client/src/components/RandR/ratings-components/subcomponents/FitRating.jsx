@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 export default function FitRating({ fitValue }) {
-  const value = ((fitValue / 5) * 100) ?? 50;
+  const value = ((fitValue / 5) * 100) || 50;
 
   return (
     <>
