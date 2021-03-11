@@ -111,7 +111,6 @@ app.get('/qa/questions/:id', (req, res) => {
 
 //POST QUESTION
 app.post('/qa/questions/:id', (req, res) => {
-  console.log('REQ.BODY!!!!!!!!', req.body);
   const obj = {
     body: req.body.data.body,
     name: req.body.data.name,
@@ -125,25 +124,26 @@ app.post('/qa/questions/:id', (req, res) => {
       'Content-Type': 'application/json',
   }})
     .then((response) => {
-      res.status(200);
+      res.status(201);
+      console.log('Question Posted');
       res.send(response.data);
     })
     .catch((error) => {
       res.status(404);
       console.log('ERROR POSTING A QUESTION', error);
-      console.log('OBJ$$$$', obj);
     });
 });
 
 //POST ANSWER
 app.post('/qa/questions/:question_id/answers', (req, res) => {
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.question_id}/answers`, {
-    body: {
-      body: req.body.body,
-      name: req.body.name,
-      email: req.body.email,
-      photos: req.body.photos,
-    }},
+  const obj = {
+    body: req.body.data.body,
+    name: req.body.data.name,
+    email: req.body.data.email,
+    photos: [req.body.data.photos],
+  }
+  console.log("obj", obj);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/answers`, obj,
     {
     headers: {
       Authorization: config.TOKEN,
@@ -152,8 +152,9 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
 
   )
     .then((response) => {
-      res.status(200);
+      res.status(201);
       res.send(response.data);
+      console.log('Answer Posted');
     })
     .catch((error) => {
       res.status(404);

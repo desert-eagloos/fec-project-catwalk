@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Accordion } from 'react-bootstrap';
 import AnswerEntry from './AnswerEntry';
 
 const AnswerList = (props) => {
@@ -36,9 +36,11 @@ const AnswerList = (props) => {
 
   const firstTwoAns = [sortedAnswers[0], sortedAnswers[1]];
 
-  const [answers, setAnswers] = useState(firstTwoAns);
+  //const [answers, setAnswers] = useState(firstTwoAns);
 
   const [open, setOpen] = useState(false);
+
+  const [eventKeyToggle, setEventKeyToggle] = useState('0')
 
   const [moreButton, setMoreButton] = useState('More Answers');
 
@@ -48,18 +50,25 @@ const AnswerList = (props) => {
 
   const renderMoreAnswersButton = () => {
     if (sortedAnswers.length > 2) {
-      return (
-        (<Button variant="link" onClick={() => toggleAnswers()}>{moreButton}</Button>)
+      // return (
+      //   (<Button variant="link" onClick={() => toggleAnswers()}>{moreButton}</Button>)
+      // )
+      return(
+        <Accordion.Toggle as={Button} size='sm' onClick={() => setOpen(!open)} variant="link" eventKey={eventKeyToggle}>
+          {moreButton}
+        </Accordion.Toggle>
       )
     }
   }
 
   useEffect(() => {
-      if (open) {
-      setAnswers(sortedAnswers);
+    if (open) {
+      //setAnswers(sortedAnswers);
+      setEventKeyToggle('0')
       setMoreButton('Collapse answers');
     } else {
-      setAnswers(firstTwoAns);
+      //setAnswers(firstTwoAns);
+      setEventKeyToggle('1')
       setMoreButton('See more answers');
     }
   }, [open]);
@@ -81,15 +90,27 @@ const AnswerList = (props) => {
   // )
 
   return (
-    <Card>
+    <div>
       {
-        answers.map((answer, index) => {
+        firstTwoAns.map((answer, index) => {
           return (
-            <AnswerEntry answer={answer} key={index}/>
+            <Accordion.Collapse eventKey='0' key={index}>
+              <AnswerEntry answer={answer} key={index}/>
+            </Accordion.Collapse>
           )
         })
       }
-    </Card>
+      {
+        sortedAnswers.map((answer, index) => {
+          return (
+            <Accordion.Collapse eventKey='1' key={index}>
+              <AnswerEntry answer={answer} key={index}/>
+            </Accordion.Collapse>
+          )
+        })
+      }
+      <Card.Footer>{renderMoreAnswersButton()}</Card.Footer>
+    </div>
   )
 }
 

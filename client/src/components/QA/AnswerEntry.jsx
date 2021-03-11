@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import { Button, Card, Badge } from 'react-bootstrap';
 
 const AnswerEntry = (props) => {
 
@@ -39,11 +39,11 @@ const AnswerEntry = (props) => {
   const renderReportButton = () => {
     if (reported) {
       return (
-        <Button variant="link">{reportedButton}</Button>
+        <Button size="sm" variant="link">{reportedButton}</Button>
       )
     } else {
       return (
-        <Button onClick={() => setReported(true)} variant="link">{reportedButton}</Button>
+        <Button size="sm" onClick={() => setReported(true)} variant="link">{reportedButton}</Button>
       )
     }
   }
@@ -70,12 +70,14 @@ const AnswerEntry = (props) => {
 
   if (props.answer) {
     return (
-      <div>
-        {props.answer.body}
+      <Card.Body>
+        <Badge pill variant="secondary">
+          A:
+        </Badge>{'    '} {props.answer.body}
         <div>
-        by {props.answer.answerer_name}, {props.answer.date} | Helpful? <Button variant="link" onClick={() => setHelpful(true)} >{helpfulButton}</Button> | {renderReportButton()}
+        <em><small>by {props.answer.answerer_name}, {props.answer.date} | Helpful? <Button size="sm" variant="link" onClick={() => setHelpful(true)} >{helpfulButton}</Button> | {renderReportButton()} </small></em>
         </div>
-      </div>
+      </Card.Body>
     )
   } else {
     return (

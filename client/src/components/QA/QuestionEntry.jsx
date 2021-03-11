@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Accordion, Card, Badge, Col, Row, Popover, OverlayTrigger } from 'react-bootstrap';
 import AnswerList from './AnswerList.jsx';
 
 const QuestionEntry = (props) => {
 
-  const [allAnswers, setAllAnswers] = useState(props.question.answers);
+  if (!props.question) {
+    return (
+      <div></div>
+    )
+  }
 
   const [addAnswerFormVal, setAddAnswerFormVal] = useState('');
 
@@ -13,11 +17,13 @@ const QuestionEntry = (props) => {
 
   const [addAnswerFormEmail, setAddAnswerFormEmail] = useState('');
 
-  const [addAnswerFormPictures, setAddAnswerFormPictures] = useState([]);
+  const [addAnswerFormPictures, setAddAnswerFormPictures] = useState('');
 
   const [addAnswerToggle, setAddAnswerToggle] = useState(false);
 
   const [helpfulnessClicked, setHelpfulnessClicked] = useState(false);
+
+  //console.log('PROPS', props)
 
   const [helpfulnessButton, setHelpfulnessButton] = useState(`Yes(${props.question.question_helpfulness})`);
 
@@ -42,12 +48,12 @@ const QuestionEntry = (props) => {
     if ( addAnswerFormVal === '' || addAnswerFormName === '' || addAnswerFormEmail === '' ) {
       throw ('You must enter the following:')
     } else {
-      axios.post(`/qa/questions/:${props.question.question_id}/answers`,{
+      axios.post(`/qa/questions/${props.question.question_id}/answers`,{
         data: {
           body: addAnswerFormVal,
           name: addAnswerFormName,
           email: addAnswerFormEmail,
-          photos: '',
+          photos: addAnswerFormPictures,
         }
       }).then(setAddAnswerFormVal(''))
         .then(setAddAnswerFormName(''))
@@ -71,25 +77,6 @@ const QuestionEntry = (props) => {
 
   const renderAnswerQForm = () => {
     if (addAnswerToggle) {
-      // return (
-      //   <div>
-      //     Your Answer (mandatory)
-      //     <input value={addAnswerFormVal} onChange={updateAnswerFormVal} placeholder='answer question...'></input>
-      //     What is your nickname (mandatory)
-      //     <input value={addAnswerFormName} onChange={updateAnswerFormName} placeholder='Example: jack543!' required></input>
-      //     <div>For privacy reasons, do not use your full name or email address</div>
-      //     Your email (mandatory)
-      //     <input type='email' value={addAnswerFormEmail} onChange={updateAnswerFormEmail} placeholder='Example: jack@email.com' required></input>
-      //     <div>For authentication reasons, you will not be emailed</div>
-
-      //     {/* PUT IMAGE INPUT HERE */}
-      //     Photo URL (optional)
-
-      //     {renderThumbnails()}
-
-      //     <Button variant="primary" onClick={submitAnswer}>Submit Answer</Button>
-      //   </div>
-      // )
 
       return (
         <Form>
@@ -140,13 +127,40 @@ const QuestionEntry = (props) => {
     }
   }, [helpfulnessClicked]);
 
+  // return (
+  //   <div>
+  //     Q:{props.question.question_body}
+  //     <span> Helpful? <Button variant="link" onClick={() => setHelpfulnessClicked('true')} >{helpfulnessButton}</Button> |</span><Button variant="link" onClick={() => setAddAnswerToggle(!addAnswerToggle)}>Answer Question</Button>
+  //     {renderAnswerQForm()}
+  //     <AnswerList answers={allAnswers}/>
+  //   </div>
+  // )
   return (
-    <div>
-      Q:{props.question.question_body}
-      <span> Helpful? <Button variant="link" onClick={() => setHelpfulnessClicked('true')} >{helpfulnessButton}</Button> |</span><Button variant="link" onClick={() => setAddAnswerToggle(!addAnswerToggle)}>Answer Question</Button>
-      {renderAnswerQForm()}
-      <AnswerList answers={allAnswers}/>
-    </div>
+    <Accordion defaultActiveKey='0'>
+      <Card>
+        <Card.Header>
+          <Row>
+          <Col sm={7}>
+            <big><b><Badge pill variant="dark">
+              Q:
+            </Badge>{'     '}{props.question.question_body}</b></big>
+          </Col>
+          <Col sm={5}>
+            <small>
+              <span> Helpful?
+              <Button size="sm" variant="link" onClick={() => setHelpfulnessClicked('true')} >{helpfulnessButton}</Button> |</span>
+              <OverlayTrigger trigger='click' placement='bottom' overlay={renderAnswerQForm}>
+                <Button size="sm" variant="link" onClick={() => setAddAnswerToggle(!addAnswerToggle)}>Answer Question</Button>
+              </OverlayTrigger>
+            </small>
+          </Col>
+          </Row>
+
+        </Card.Header>
+        {renderAnswerQForm()}
+        <AnswerList answers={props.question.answers}/>
+      </Card>
+    </Accordion>
   )
 }
 

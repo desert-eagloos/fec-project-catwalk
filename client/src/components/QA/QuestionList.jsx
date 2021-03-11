@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Accordion } from 'react-bootstrap';
 import QuestionEntry from './QuestionEntry';
 import axios from 'axios';
 
@@ -79,19 +79,6 @@ const QuestionList = (props) => {
 
   const renderAskQuestionForm = () => {
     if (addQuestionToggle) {
-      // return (
-      //   <div>
-      //     Your Question (mandatory)
-      //     <input value={addQFormVal} onChange={updateQFormVal} placeholder='ask question...' required></input>
-      //     What is your nickname (mandatory)
-      //     <input value={addQFormName} onChange={updateQFormName} placeholder='Example: jackson11!' required></input>
-      //     <div>For privacy reasons, do not use your full name or email address</div>
-      //     Your email (mandatory)
-      //     <input type='email' value={addQFormEmail} onChange={updateQFormEmail} placeholder='Why did you like the product or not?' required></input>
-      //     <div>For authentication reasons, you will not be emailed</div>
-      //     <Button variant="primary" onClick={submitQuestion}>Submit Question</Button>
-      //   </div>
-      // )
 
       return (
         <Form>
@@ -148,6 +135,7 @@ const QuestionList = (props) => {
       {renderAskQuestionForm()}
     </div>
   )
+
 }
 
 export default QuestionList;
