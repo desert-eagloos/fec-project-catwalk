@@ -66,16 +66,6 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
               <h3>
                 Questions and Answers
               </h3>
-              <form
-                className=""
-              >
-                <input
-                  className="form-control"
-                  onChange={[Function]}
-                  placeholder="Have a question? Search for answers…"
-                  type="tesxt"
-                />
-              </form>
             </div>
           </div>
         </div>

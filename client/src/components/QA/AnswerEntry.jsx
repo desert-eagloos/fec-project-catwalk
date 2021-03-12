@@ -10,13 +10,7 @@ const AnswerEntry = (props) => {
 
   const [helpful, setHelpful] = useState(false);
 
-
-  const [helpfulButton, setHelpfulButton] = useState(`Yes(0)`);
-
-
-  //My code run infinate loops with this line
-  //setHelpfulButton(`Yes(${props.answer.helpfulness})`)
-
+  const [helpfulButton, setHelpfulButton] = useState(`Yes(${props.answer.helpfulness})`);
 
   const displayName = () => {
     if (props.answer.answerer_name === "seller") {
@@ -73,9 +67,9 @@ const AnswerEntry = (props) => {
       <Card.Body>
         <Badge pill variant="secondary">
           A:
-        </Badge>{'    '} {props.answer.body}
+        </Badge> {'   '} {props.answer.body}
         <div>
-        <em><small>by {props.answer.answerer_name}, {props.answer.date} | Helpful? <Button size="sm" variant="link" onClick={() => setHelpful(true)} >{helpfulButton}</Button> | {renderReportButton()} </small></em>
+        <em><small>by {props.answer.answerer_name}, {props.answer.date.slice(0, 10)} | Helpful? <Button size="sm" variant="link" onClick={() => setHelpful(true)} >{helpfulButton}</Button> | {renderReportButton()} </small></em>
         </div>
       </Card.Body>
     )
