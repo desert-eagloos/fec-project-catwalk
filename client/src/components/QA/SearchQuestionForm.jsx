@@ -4,7 +4,7 @@ import { Form, FormControl } from 'react-bootstrap'
 
 const SearchQuestionForm = (props) => {
 
-  console.log(props);
+  // console.log(props);
   const [searchBarVal, setSearchBarVal] = useState('');
 
 
