@@ -29,6 +29,7 @@ function Overview({ product }) {
 
   // UPDATE PRODUCTS ASYNCHRONOUSLY
   useEffect(() => {
+    setIsLoading(true);
     const asyncFunc = async () => {
       const newStylesGetRes = await getStylesByProductId(product.id);
       const reformattedResponse = await helpers.reformatStyleGetResponse(newStylesGetRes.data);
@@ -49,7 +50,8 @@ function Overview({ product }) {
   }, [product]);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (isLoading === false) {
+      setPriceByStyle(helpers.filterPriceBySelectedStyle(styleOptions, selectedStyle));
       setCartOptions(helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle));
       setPhotosByStyle(helpers.filterPhotosBySelectedStyle(styleOptions, selectedStyle));
     }

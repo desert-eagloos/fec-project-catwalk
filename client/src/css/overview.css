@@ -19,6 +19,9 @@
 }
 
 .sale-price-decoration {
-  text-decoration: line-through;
   color: red;
+}
+
+.original-price-decoration {
+  text-decoration: line-through;
 }
