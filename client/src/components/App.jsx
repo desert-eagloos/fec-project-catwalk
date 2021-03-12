@@ -78,7 +78,8 @@ function App() {
             <Overview product={product} />
           </Row>
           <Row className="mb-4">
-            <QARoot id={18201} />
+            {/* {product && <QARoot productID={product.id} />} */}
+            <QARoot product={product} />
           </Row>
           <Row className="mb-4">
             <RandR productId={product} />
