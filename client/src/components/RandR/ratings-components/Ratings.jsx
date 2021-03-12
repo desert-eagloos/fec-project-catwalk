@@ -2,14 +2,14 @@ import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
-import Rating from 'react-rating';
+import Stars from '../../common/Stars';
 
 import RatingsBreakdown from './subcomponents/RatingsBreakdown';
 import FitRating from './subcomponents/FitRating';
 import ComfortRating from './subcomponents/ComfortRating';
 import { RatingContext } from '../../common/AppContext';
 
-import { getAverageRating, convertRatingsToNumberType, roundToNearestQuarter } from '../../../utils/ratings';
+import { getAverageRating, convertRatingsToNumberType } from '../../../utils/ratings';
 
 import '../../../css/RandR/Ratings/Ratings.css';
 
@@ -43,13 +43,14 @@ function Ratings({ productId }) {
       <Row className="mb-2">
         <Col sm={2}><h2 className="fs-1 fw-bold">{rating}</h2></Col>
         <Col className="align-items-start">
-          <Rating
+          <Stars rating={rating} fractions={4} readOnly />
+          {/* <Rating
             emptySymbol="fa fa-star-o"
             fullSymbol="fa fa-star"
             initialRating={roundToNearestQuarter(rating)}
             fractions={4}
             readonly
-          />
+          /> */}
         </Col>
       </Row>
       <Row className="mb-2">
