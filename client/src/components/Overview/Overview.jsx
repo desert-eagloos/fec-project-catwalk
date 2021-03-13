@@ -69,8 +69,9 @@ function Overview({ product }) {
   return (
     <Container data-test="overview-container" className="overview-component">
       <Row>
+
         <Col>
-          <Carousel>
+          <Carousel style={{ boxShadow: '.5rem .5rem 1rem' }}>
             {_.map(photosByStyle, (entry, key) => {
               let image = 'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg';
               if (entry.fullSize !== null) image = entry.fullSize;
