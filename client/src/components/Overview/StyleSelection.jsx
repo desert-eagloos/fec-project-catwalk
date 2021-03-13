@@ -18,7 +18,7 @@ function StyleSelection({
   selectedStyle,
 }) {
   return (
-    <Container>
+    <Container className="mb-4 mt-4">
       <p>
         {'Style '}
         <FontAwesomeIcon icon={faChevronRight} />

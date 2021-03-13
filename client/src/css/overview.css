@@ -4,12 +4,17 @@
 }
 
 .carousel-img {
-  min-width:450px;
+  min-width:450;
   min-height:650px;
   width:450px;
   height:650px;
   object-fit:scale-down;
-  background-color: black;
+  background-color: white;
+}
+
+.overview-social-media {
+  display: flex;
+  justify-content: flex-start;
 }
 
 

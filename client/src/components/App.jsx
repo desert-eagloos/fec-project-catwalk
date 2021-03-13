@@ -43,48 +43,48 @@ function App() {
       <Row className="mb-4 mt-4">
         <header><h1 className="page-branding logo page-banner">PROJECT CATWALK</h1></header>
       </Row>
-      <Form>
-        <Form.Group controlId="searchNewProductById">
-          <Form.Label>Search New Product By ID</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Enter Product ID"
-            onChange={(event) => {
+      <Row className="mb-4 mt-4">
+        <Form>
+          <Form.Group controlId="searchNewProductById">
+            <Form.Label>Search New Product By ID</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Enter Product ID"
+              onChange={(event) => {
+                event.preventDefault();
+                setSearchBarInput(event.target.value);
+              }}
+            />
+          </Form.Group>
+          <Button
+            variant="secondary"
+            type="submit"
+            onClick={async (event) => {
               event.preventDefault();
-              setSearchBarInput(event.target.value);
+              const newSearchResults = await fetchData(Number(searchBarInput));
+              if (newSearchResults === 'Error') {
+                console.log('error');
+              } else {
+                setProduct(newSearchResults);
+              }
             }}
-          />
-        </Form.Group>
-        <Button
-          variant="secondary"
-          type="submit"
-          onClick={async (event) => {
-            event.preventDefault();
-            const newSearchResults = await fetchData(Number(searchBarInput));
-            if (newSearchResults === 'Error') {
-              console.log('error');
-            } else {
-              setProduct(newSearchResults);
-            }
-          }}
-        >
-          Submit
-        </Button>
-      </Form>
+          >
+            Submit
+          </Button>
+        </Form>
+      </Row>
 
       <RatingContext.Provider value={ratingValue}>
-        <Container>
-          <Row className="mb-4">
-            <Overview product={product} />
-          </Row>
-          <Row className="mb-4">
-            {/* {product && <QARoot productID={product.id} />} */}
-            <QARoot product={product} />
-          </Row>
-          <Row className="mb-4">
-            <RandR product={product} />
-          </Row>
-        </Container>
+        <Row className="mb-4 mt-4">
+          <Overview product={product} />
+        </Row>
+        <Row className="mb-4 mt-4">
+          {/* {product && <QARoot productID={product.id} />} */}
+          {/* <QARoot product={product} /> */}
+        </Row>
+        <Row className="mb-4 mt-4">
+          <RandR product={product} />
+        </Row>
       </RatingContext.Provider>
     </Container>
   );

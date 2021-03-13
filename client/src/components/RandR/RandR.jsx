@@ -17,7 +17,7 @@ function RandR({ product }) {
   return (
     <Container>
       <Row>
-        <h3 className="text-uppercase">Ratings and Reviews</h3>
+        <Col><h3 className="text-uppercase">Ratings and Reviews</h3></Col>
       </Row>
       <Row>
         <Col className="col-4 ratings">
