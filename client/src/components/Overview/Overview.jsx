@@ -12,6 +12,7 @@ import StyleSelection from './StyleSelection';
 import ProductInfoA from './ProductInfoA';
 import AddToCart from './AddToCart';
 import '../../css/overview.css';
+import { getAverageRating } from '../../utils/ratings';
 
 const _ = require('underscore');
 const helpers = require('./OverviewHelpers');
@@ -24,17 +25,21 @@ function Overview({ product }) {
   const [cartOptions, setCartOptions] = useState(null);
   const [photosByStyle, setPhotosByStyle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [overallRating, setOverallRating] = useState(0);
+  const [numberOfReviews, setNumberOfReviews] = useState(0);
 
   const getStylesByProductId = async (productId) => axios.get(`/products/${productId}/styles`);
 
   // UPDATE PRODUCTS ASYNCHRONOUSLY
   useEffect(() => {
+    setIsLoading(true);
     const asyncFunc = async () => {
       const newStylesGetRes = await getStylesByProductId(product.id);
       const reformattedResponse = await helpers.reformatStyleGetResponse(newStylesGetRes.data);
+      const starResponse = await axios.get(`/reviews/meta?productId=${product.id}`);
       const defaultStyle = await helpers.findDefaultStyle(reformattedResponse);
       const defaultPrice = await helpers.findDefaultPrice(reformattedResponse);
-      return Promise.all([reformattedResponse, defaultStyle, defaultPrice]);
+      return Promise.all([reformattedResponse, defaultStyle, defaultPrice, starResponse]);
     };
     asyncFunc()
       .then((values) => {
@@ -43,13 +48,18 @@ function Overview({ product }) {
         setPriceByStyle(values[2]);
         setCartOptions(helpers.filterCartOptionsBySelectedStyle(values[0], values[1]));
         setPhotosByStyle(helpers.filterPhotosBySelectedStyle(values[0], values[1]));
+        setOverallRating(Number(getAverageRating(values[3].data.ratings)));
+        setNumberOfReviews(_.reduce(
+          values[3].data.ratings, (total, rating) => total + Number(rating), 0,
+        ));
         setIsLoading(false);
       })
       .catch();
   }, [product]);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (isLoading === false) {
+      setPriceByStyle(helpers.filterPriceBySelectedStyle(styleOptions, selectedStyle));
       setCartOptions(helpers.filterCartOptionsBySelectedStyle(styleOptions, selectedStyle));
       setPhotosByStyle(helpers.filterPhotosBySelectedStyle(styleOptions, selectedStyle));
     }
@@ -57,53 +67,55 @@ function Overview({ product }) {
 
   if (isLoading) return (<></>);
   return (
-    <>
-      <Container className="overview-component">
-        <Row>
-          <Col>
-            <Carousel>
-              {_.map(photosByStyle, (entry, key) => {
-                let image = 'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg';
-                if (entry.fullSize !== null) image = entry.fullSize;
-
-                return (
-                  <Carousel.Item
-                    key={key}
-                  >
-                    <img
-                      className="carousel-img d-block w-100"
-                      src={image}
-                      alt="Missing"
-                    />
-                  </Carousel.Item>
-                );
-              })}
-            </Carousel>
-          </Col>
-          <Col>
-            <ProductInfoA
-              product={product}
-              priceByStyle={priceByStyle}
-            />
-            <StyleSelection
-              styleOptions={styleOptions}
-              changeSelectedStyle={setSelectedStyle}
-              changePhotosByStyle={setPhotosByStyle}
-              selectedStyle={selectedStyle}
-            />
-            <AddToCart cartOptions={cartOptions} />
-          </Col>
-        </Row>
-      </Container>
+    <Container data-test="overview-container" className="overview-component">
       <Row>
-        <div className="overview overview-production-information-b">
-          <div className="overview overview-product-description">
-            <h4>{product.slogan}</h4>
-            {product.description}
-          </div>
-        </div>
+        <Col>
+          <Carousel>
+            {_.map(photosByStyle, (entry, key) => {
+              let image = 'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg';
+              if (entry.fullSize !== null) image = entry.fullSize;
+
+              return (
+                <Carousel.Item
+                  key={key}
+                >
+                  <img
+                    className="carousel-img d-block w-100"
+                    src={image}
+                    alt="Missing"
+                  />
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
+        </Col>
+        <Col>
+          <ProductInfoA
+            product={product}
+            priceByStyle={priceByStyle}
+            overallRating={overallRating}
+            numberOfReviews={numberOfReviews}
+          />
+          <StyleSelection
+            styleOptions={styleOptions}
+            changeSelectedStyle={setSelectedStyle}
+            changePhotosByStyle={setPhotosByStyle}
+            selectedStyle={selectedStyle}
+          />
+          <AddToCart cartOptions={cartOptions} />
+        </Col>
       </Row>
-    </>
+      <Row className="mb-4 mt-4">
+        <Col>
+          <div className="overview overview-production-information-b">
+            <div className="overview overview-product-description">
+              <h4>{product.slogan}</h4>
+              {product.description}
+            </div>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
