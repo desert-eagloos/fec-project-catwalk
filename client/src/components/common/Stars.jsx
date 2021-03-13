@@ -48,10 +48,11 @@ export default function Stars({
 Stars.defaultProps = {
   readOnly: false,
   handleStarRating: () => { },
+  rating: 0,
 };
 
 Stars.propTypes = {
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.number,
   fractions: PropTypes.number.isRequired,
   readOnly: PropTypes.bool,
   handleStarRating: PropTypes.func,

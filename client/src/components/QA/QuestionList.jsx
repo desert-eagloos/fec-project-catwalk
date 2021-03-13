@@ -128,12 +128,11 @@ const QuestionList = (props) => {
           <QuestionEntry question={question} key={index}/>
         )
       })}
-      {/* {renderMoreQuestionsButton()} */}
-      <Button variant="primary" onClick={handleShow}>Ask A Question</Button>
+      <Button id='showAskQFormButton' variant="primary" onClick={handleShow}>Ask A Question</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>What would you like to ask?</Modal.Title>
+          <Modal.Title id='questionFormTitle'>What would you like to ask?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {renderAlert()}

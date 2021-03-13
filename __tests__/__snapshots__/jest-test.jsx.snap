@@ -63,7 +63,9 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
             <div
               className="col"
             >
-              <h3>
+              <h3
+                id="title"
+              >
                 Questions and Answers
               </h3>
             </div>
