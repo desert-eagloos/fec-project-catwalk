@@ -4,13 +4,13 @@ import { Form, FormControl } from 'react-bootstrap'
 
 const SearchQuestionForm = (props) => {
 
+<<<<<<< HEAD
   // console.log(props);
+=======
+>>>>>>> develop
   const [searchBarVal, setSearchBarVal] = useState('');
 
-
-
   const updateSearchBarVal = (e) => {
-    console.log(e.target.value);
     setSearchBarVal(e.target.value)
   }
 
@@ -19,14 +19,12 @@ const SearchQuestionForm = (props) => {
       let filteredQuestions = props.originalData.results.filter((question) => {
         return question.question_body.toLowerCase().indexOf(searchBarVal.toLowerCase()) !== -1;
       })
-      console.log('filteredQuestions', filteredQuestions);
       props.setData({
         "product_id": props.data.product_id,
         "results": filteredQuestions
       })
-    } else if (searchBarVal.length > 0 && searchBarVal.length < 3) {
-      let filteredQuestions = props.originalData;
-      console.log('filteredQuestions', filteredQuestions);
+    } else if (props.originalData && searchBarVal.length < 3) {
+      let filteredQuestions = props.originalData.results.slice();
       props.setData({
         "product_id": props.originalData.product_id,
         "results": filteredQuestions

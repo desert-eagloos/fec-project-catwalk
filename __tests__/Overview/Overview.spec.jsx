@@ -14,12 +14,12 @@ describe('Creates Overview Component', () => {
       /**
        * CREATES AN INSTANCE OF YOUR COMPONENT USING JEST
        */
-      const overviewComponent = renderer.create(<Overview />);
+      const wrapper = renderer.create(<Overview />);
       /**
        * CREATES A SNAPSHOT OBJECT OF THE ELEMENT TREE
        * SIMILAR TO A SHALLOW COPY. DOESN'T CREATE USE WRITTEN COMPONENTS
        */
-      const json = overviewComponent.toJSON();
+      const json = wrapper.toJSON();
       /* COMPARES INSTANCE TO THE SHALLOW COPY */
       expect(json).toMatchSnapshot();
     });
@@ -51,11 +51,11 @@ describe('Creates Overview Component', () => {
       /**
        * CREATES A SHALLOW COPY
        */
-      const shallowCopyOfProductInfoA = shallow(<ProductInfoA />);
+      const wrapper = shallow(<ProductInfoA />);
       /**
        * CREATES AN INSTANCE OF THE SHALLOW COPY TO TEST TO TEST FOR STATE
        */
-      const instanceOfProductInfoA = shallowCopyOfProductInfoA.instance();
+      const instance = wrapper.instance();
       /*
        * TESTS TO IF PRODUCTINFOA IS HAS A STATE
        * IN THIS CASE PRODUCTINFO A IS NOT A STATEFUL COMPONENT.
@@ -68,7 +68,8 @@ describe('Creates Overview Component', () => {
       /**
        * CREATES A SHALLOW COPY
        */
-      const shallowCopyOfProductInfoA = shallow(<ProductInfoA price />);
+      const shallowCopyOfProductInfoA = shallow(<ProductInfoA />);
+
     });
   });
 });

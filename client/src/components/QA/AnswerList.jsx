@@ -101,7 +101,7 @@ const AnswerList = (props) => {
         })
       }
       {
-        sortedAnswers.map((answer, index) => {
+        sortedAnswers.slice(0, 5).map((answer, index) => {
           return (
             <Accordion.Collapse eventKey='1' key={index}>
               <AnswerEntry answer={answer} key={index}/>
