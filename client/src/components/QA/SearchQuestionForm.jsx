@@ -1,18 +1,12 @@
 import React, { useState, useEffect, } from 'react';
 import { Form, FormControl } from 'react-bootstrap'
 
-
 const SearchQuestionForm = (props) => {
-
-<<<<<<< HEAD
-  // console.log(props);
-=======
->>>>>>> develop
   const [searchBarVal, setSearchBarVal] = useState('');
 
   const updateSearchBarVal = (e) => {
-    setSearchBarVal(e.target.value)
-  }
+    setSearchBarVal(e.target.value);
+  };
 
   useEffect (() => {
     if (searchBarVal.length > 2) {
