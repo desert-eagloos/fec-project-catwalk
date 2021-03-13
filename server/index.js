@@ -120,7 +120,6 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
-//GET QUESTIONS
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
     headers: {
@@ -138,20 +137,20 @@ app.get('/qa/questions/:id', (req, res) => {
     });
 });
 
-//POST QUESTION
 app.post('/qa/questions/:id', (req, res) => {
   const obj = {
     body: req.body.data.body,
     name: req.body.data.name,
     email: req.body.data.email,
-    product_id: parseInt(req.body.data.id)
-  }
+    product_id: (Number(req.body.data.id)),
+  };
   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, obj,
-  {
-    headers: {
-      Authorization: config.TOKEN,
-      'Content-Type': 'application/json',
-  }})
+    {
+      headers: {
+        Authorization: config.TOKEN,
+        'Content-Type': 'application/json',
+      },
+    })
     .then((response) => {
       res.status(201);
       console.log('Question Posted');
@@ -163,23 +162,20 @@ app.post('/qa/questions/:id', (req, res) => {
     });
 });
 
-//POST ANSWER
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   const obj = {
     body: req.body.data.body,
     name: req.body.data.name,
     email: req.body.data.email,
     photos: [req.body.data.photos],
-  }
-  console.log("obj", obj);
+  };
   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/answers`, obj,
     {
-    headers: {
-      Authorization: config.TOKEN,
-      'Content-Type': 'application/json',
-    }}
-
-  )
+      headers: {
+        Authorization: config.TOKEN,
+        'Content-Type': 'application/json',
+      },
+    })
     .then((response) => {
       res.status(201);
       res.send(response.data);
@@ -191,12 +187,11 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
     });
 });
 
-//MARK QUESTION AS HELPFUL
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/helpful`, {}, {
     headers: {
-      Authorization: config.TOKEN
-    }
+      Authorization: config.TOKEN,
+    },
   })
     .then((response) => {
       res.status(200);
@@ -208,12 +203,11 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
     });
 });
 
-//REPORT A QUESTION
 app.put('/qa/questions/:question_id/report', (req, res) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions/${req.params.question_id}/report`, {}, {
     headers: {
-      Authorization: config.TOKEN
-    }
+      Authorization: config.TOKEN,
+    },
   })
     .then((response) => {
       res.status(200);
@@ -225,12 +219,11 @@ app.put('/qa/questions/:question_id/report', (req, res) => {
     });
 });
 
-//MARK AN ANSWER AS HELPFUL
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/answers/${req.params.answer_id}/helpful`, {}, {
     headers: {
-      Authorization: config.TOKEN
-    }
+      Authorization: config.TOKEN,
+    },
   })
     .then((response) => {
       res.status(200);
@@ -242,12 +235,11 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
     });
 });
 
-//REPORT AN ANSWER
 app.put('/qa/questions/:answer_id/report', (req, res) => {
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/answers/${req.params.answer_id}/report`, {}, {
     headers: {
-      Authorization: config.TOKEN
-    }
+      Authorization: config.TOKEN,
+    },
   })
     .then((response) => {
       res.status(200);
@@ -258,7 +250,6 @@ app.put('/qa/questions/:answer_id/report', (req, res) => {
       console.log('ERROR REPORTING ANSWER', error);
     });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}!`);
