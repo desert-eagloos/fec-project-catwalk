@@ -194,7 +194,6 @@ app.put('/reviews/:id/report', (req, res) => {
     });
 });
 
-//GET QUESTIONS
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
     headers: {

@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Accordion, Modal, Alert } from 'react-bootstrap';
-import QuestionEntry from './QuestionEntry';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import {
+  Button, Form, Modal, Alert,
+} from 'react-bootstrap';
+import QuestionEntry from './QuestionEntry';
 
-const QuestionList = (props) => {
+const QuestionList = ({ data }) => {
+  const [questionData, setQuestionData] = useState(data.results);
 
-  const setData = props.setData;
+  const init = [questionData[0], questionData[1], questionData[2], questionData[3]];
 
-  const [allData, setAllData] = useState(props.data);
-
-  const [questionData, setQuestionData] = useState(props.data.results);
-
-  const [firstFour, setFirstFour] = useState([questionData[0], questionData[1], questionData[2], questionData[3]]);
+  const [firstFour, setFirstFour] = useState(init);
 
   const [questions, setQuestions] = useState(firstFour);
 
   useEffect(() => {
-    setQuestionData(props.data.results);
-    setAllData(props.data);
-    let four = [props.data.results[0], props.data.results[1], props.data.results[2], props.data.results[3]];
+    setQuestionData(data.results);
+    const four = [data.results[0], data.results[1], data.results[2], data.results[3]];
     setFirstFour(four);
     setQuestions(four);
+  }, [data]);
 
-  }, [props.data])
+  const open = false;
 
-  const [open, setOpen] = useState(false);
-
+  // eslint-disable-next-line no-unused-vars
   const [moreButton, setMoreButton] = useState('More Answered Questions');
-
-  const [addQuestionToggle, setAddQuestionToggle] = useState(false);
 
   const [addQFormVal, setAddQFormVal] = useState('');
 
@@ -44,75 +41,60 @@ const QuestionList = (props) => {
 
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleShowAlert = () => setShowAlert(true);
-
-  const toggleQuestions = () => {
-    setOpen(!open);
-  }
-
   const updateQFormVal = (e) => {
     setAddQFormVal(e.target.value);
-  }
+  };
 
   const updateQFormName = (e) => {
     setAddQFormName(e.target.value);
-  }
+  };
 
   const updateQFormEmail = (e) => {
     setAddQFormEmail(e.target.value);
-  }
+  };
 
   const renderAlert = () => {
     if (showAlert) {
       return (
         <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
-          <Alert.Heading>Oh snap! You're missing a field!</Alert.Heading>
+          <Alert.Heading>Oh snap! You are missing a field!</Alert.Heading>
           <p>
             Be sure to check that all of the mandatory fields are fillout correctly.
           </p>
         </Alert>
-      )
+      );
     }
-  }
+    return (<></>);
+  };
 
   const submitQuestion = () => {
-    if ( addQFormVal === '' || addQFormName === '' || addQFormEmail === '' ) {
+    if (addQFormVal === '' || addQFormName === '' || addQFormEmail === '') {
       setShowAlert(true);
     } else {
       handleClose();
-      let oldData = questions;
+      const oldData = questions;
       setQuestions([...oldData, {
         answers: {},
         asker_name: addQFormName,
         question_body: addQFormVal,
-        question_date: "just now",
-        question_helpfulness: 0
+        question_date: 'just now',
+        question_helpfulness: 0,
       }]);
-      console.log('new questions', questions);
-      axios.post(`/qa/questions/${props.data.product_id}`,{
+      axios.post(`/qa/questions/${data.product_id}`, {
         data: {
           body: addQFormVal,
           name: addQFormName,
           email: addQFormEmail,
-          id: props.data.product_id
-        }
+          id: data.product_id,
+        },
       }).then(setAddQFormVal(''))
         .then(setAddQFormName(''))
-        .then(setAddQFormEmail(''))
+        .then(setAddQFormEmail(''));
     }
-  }
-
-  const renderMoreQuestionsButton = () => {
-    if (props.data.results.length > 4) {
-      return (
-        (<Button variant="primary" onClick={() => toggleQuestions()}>{moreButton}</Button>)
-      )
-    }
-  }
+  };
 
   useEffect(() => {
     if (open) {
-      console.log('questionData', questionData);
       setQuestions(questionData);
       setMoreButton('Show Less');
     } else {
@@ -123,16 +105,19 @@ const QuestionList = (props) => {
 
   return (
     <div>
-      {questions.map((question, index) => {
-        return (
-          <QuestionEntry question={question} key={index}/>
-        )
-      })}
-      <Button id='showAskQFormButton' variant="primary" onClick={handleShow}>Ask A Question</Button>
+      {
+        questions.map((question) => (
+          <QuestionEntry
+            question={question}
+            key={question.question_id}
+          />
+        ))
+      }
+      <Button id="showAskQFormButton" variant="primary" onClick={handleShow}>Ask A Question</Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title id='questionFormTitle'>What would you like to ask?</Modal.Title>
+          <Modal.Title id="questionFormTitle">What would you like to ask?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {renderAlert()}
@@ -140,24 +125,22 @@ const QuestionList = (props) => {
 
             <Form.Group controlId="formBasicText">
               <Form.Label>Your Question (mandatory)</Form.Label>
-              <Form.Control onChange={updateQFormVal} as="textarea" rows={3} placeholder='ask question...' required/>
-              <Form.Text className="text-muted">
-              </Form.Text>
+              <Form.Control onChange={updateQFormVal} as="textarea" rows={3} placeholder="ask question..." required />
             </Form.Group>
 
             <Form.Group controlId="formBasicName">
               <Form.Label>What is your nickname (mandatory)</Form.Label>
-              <Form.Control onChange={updateQFormName} type="text" placeholder='Example: jack543!' required/>
+              <Form.Control onChange={updateQFormName} type="text" placeholder="Example: jack543!" required />
               <Form.Text className="text-muted">
-              For privacy reasons, do not use your full name or email address
+                For privacy reasons, do not use your full name or email address
               </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Your email (mandatory)</Form.Label>
-              <Form.Control onChange={updateQFormEmail} type="email" placeholder='Example: jack@email.com' required/>
+              <Form.Control onChange={updateQFormEmail} type="email" placeholder="Example: jack@email.com" required />
               <Form.Text className="text-muted">
-              For authentication reasons, you will not be emailed
+                For authentication reasons, you will not be emailed
               </Form.Text>
             </Form.Group>
 
@@ -171,8 +154,55 @@ const QuestionList = (props) => {
         </Modal.Footer>
       </Modal>
     </div>
-  )
+  );
+};
 
-}
+QuestionList.propTypes = {
+  data: PropTypes.shape({
+    product_id: PropTypes.string,
+    results: PropTypes.arrayOf({
+      question_id: PropTypes.number,
+      question_body: PropTypes.string,
+      question_date: PropTypes.string,
+      asker_name: PropTypes.string,
+      question_helpfulness: PropTypes.number,
+      reported: PropTypes.bool,
+      answers: PropTypes.shape({
+        id: PropTypes.number,
+        body: PropTypes.string,
+        date: PropTypes.string,
+        answerer_name: PropTypes.string,
+        helpfulness: PropTypes.number,
+        photos: PropTypes.arrayOf(PropTypes.string),
+      }),
+    }),
+  }),
+};
+
+QuestionList.defaultProps = {
+  data: {
+    product_id: '18445',
+    results: [
+      {
+        question_id: 117660,
+        question_body: 'Reprehenderit ut quibusdam qui.',
+        question_date: '2020-06-17T00:00:00.000Z',
+        asker_name: 'Cody.Boehm',
+        question_helpfulness: 37,
+        reported: false,
+        answers: {
+          id: 1113855,
+          body: 'A quo pariatur quae laudantium.',
+          date: '2021-01-10T00:00:00.000Z',
+          answerer_name: 'Isaias.Labadie54',
+          helpfulness: 7,
+          photos: [
+            'https://images.unsplash.com/photo-1554136920-a1df2909d8f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80',
+          ],
+        },
+      },
+    ],
+  },
+};
 
 export default QuestionList;

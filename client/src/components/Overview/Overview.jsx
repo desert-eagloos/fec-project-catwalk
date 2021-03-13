@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import StyleSelection from './StyleSelection';
-import ProductInfoA from './ProductInfoA';
+import ProductionInfoA from './ProductInfoA';
 import AddToCart from './AddToCart';
 import '../../css/overview.css';
 
@@ -81,7 +81,7 @@ function Overview({ product }) {
             </Carousel>
           </Col>
           <Col>
-            <ProductInfoA
+            <ProductionInfoA
               product={product}
               priceByStyle={priceByStyle}
             />
