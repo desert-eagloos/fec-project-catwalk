@@ -26,6 +26,8 @@ const Reviews = ({ productId }) => {
   const [showMoreReviewsButton, setShowMoreReviewsButton] = useState(true);
   const [showAddReviewForm, setShowAddReviewForm] = useState(false);
   const [showReviewSubmitted, setShowReviewSubmitted] = useState(false);
+  const [showHelpfulButtonSubmitted, setShowHelpfulButtonSubmitted] = useState(false);
+  const [showReportButtonSubmitted, setShowReportButtonSubmitted] = useState(false);
   const [productCharacteristics, setProductCharacteristics] = useState({});
   const [characteristicsRating, setCharacteristicsRating] = useState({});
   const [userReviewRatings, setUserReviewRatings] = useState({
@@ -43,6 +45,10 @@ const Reviews = ({ productId }) => {
   const handleCloseAddReviewForm = () => setShowAddReviewForm(false);
   const handleShowReviewSubmitted = () => setShowReviewSubmitted(true);
   const handleCloseSuccessForm = () => setShowReviewSubmitted(false);
+  const handleShowHelpfulButtonSubmitted = () => setShowHelpfulButtonSubmitted(true);
+  const handleCloseHelpfulButtonSubmitted = () => setShowHelpfulButtonSubmitted(false);
+  const handleShowReportButtonSubmitted = () => setShowReportButtonSubmitted(true);
+  const handleCloseReportButtonSubmitted = () => setShowReportButtonSubmitted(false);
   const handleUserReviewRatings = (e) => {
     setUserReviewRatings((prevState) => ({
       ...prevState,
@@ -66,6 +72,28 @@ const Reviews = ({ productId }) => {
     if (response.status === 201) {
       handleCloseAddReviewForm();
       handleShowReviewSubmitted();
+    }
+  };
+
+  const handleHelpfulButton = async (id) => {
+    const response = await axios.put(`/reviews/${id}/helpful`);
+    if (response.status === 204) {
+      const reviewIndex = allReviews.findIndex((review) => review.review_id === id);
+      const allReviewsCopy = allReviews.slice();
+      allReviewsCopy[reviewIndex].helpfulness += 1;
+      setAllReviews(allReviewsCopy);
+      handleShowHelpfulButtonSubmitted();
+    }
+  };
+
+  const handleReportButton = async (id) => {
+    const response = await axios.put(`/reviews/${id}/report`);
+    if (response.status === 204) {
+      const reviewIndex = allReviews.findIndex((review) => review.review_id === id);
+      const allReviewsCopy = allReviews.slice();
+      allReviewsCopy.splice(reviewIndex, 1);
+      setAllReviews(allReviewsCopy);
+      handleShowReportButtonSubmitted();
     }
   };
 
@@ -93,7 +121,7 @@ const Reviews = ({ productId }) => {
 
   const getReviews = () => allReviews.slice(0, reviewCount);
 
-  const getProductCharacteristics = async () => {
+  const getProductCharacteristics = async () => async () => {
     const result = await axios.get(`/reviews/meta?productId=${productId}`);
     const { characteristics } = result.data;
     setProductCharacteristics(_.map(characteristics, (characteristic, key) => {
@@ -154,7 +182,33 @@ const Reviews = ({ productId }) => {
           <Card.Footer>
             <Row>
               <Col>
-                {`Helpful? Yes (${review.helpfulness}) | Report`}
+                Helpful?
+                <Button variant="link" size="sm" onClick={() => handleHelpfulButton(review.review_id)}>Yes</Button>
+                <Modal show={showHelpfulButtonSubmitted} onHide={handleCloseHelpfulButtonSubmitted} centered size="sm">
+                  <Modal.Header>
+                    <Modal.Title>You found this review helpful</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Thank you for the feedback.
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button onClick={handleCloseHelpfulButtonSubmitted}>Close</Button>
+                  </Modal.Footer>
+                </Modal>
+                {`(${review.helpfulness})`}
+                &nbsp;|
+                <Button variant="link" size="sm" onClick={() => handleReportButton(review.review_id)}>Report</Button>
+                <Modal show={showReportButtonSubmitted} onHide={handleCloseReportButtonSubmitted} centered size="sm">
+                  <Modal.Header>
+                    <Modal.Title>This review has been reported</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Thank you for the report.
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button onClick={handleCloseReportButtonSubmitted}>Close</Button>
+                  </Modal.Footer>
+                </Modal>
               </Col>
             </Row>
           </Card.Footer>
@@ -336,10 +390,24 @@ const Reviews = ({ productId }) => {
   );
 
   useEffect(async () => {
-    const unsortedReviews = await getAllReviewsFromAPI();
-    setAllReviews(unsortedReviews);
+    const reviews = await getAllReviewsFromAPI();
+    const prodChars = await getProductCharacteristics();
+
+    setAllReviews(reviews);
+    setProductCharacteristics(prodChars);
+
     setShowMoreReviewsButton(!showMoreReviewsButton);
-    getProductCharacteristics();
+    setIsLoading(false);
+  }, []);
+
+  useEffect(async () => {
+    const reviews = await getAllReviewsFromAPI();
+    const prodChars = await getProductCharacteristics();
+
+    setAllReviews(reviews);
+    setProductCharacteristics(prodChars);
+
+    setShowMoreReviewsButton(!showMoreReviewsButton);
     setIsLoading(false);
   }, [productId]);
 

@@ -151,7 +151,44 @@ app.post('/reviews', (req, res) => {
       res.send(response.data);
     })
     .catch((error) => {
-      console.log(error);
+      res.status(401);
+      res.send(error);
+    });
+});
+
+// MARK A REVIEW AS HELPFUL
+app.put('/reviews/:id/helpful', (req, res) => {
+  const headers = {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/${req.params.id}/helpful`, {}, headers)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(401);
+      res.send(error);
+    });
+});
+
+// REPORT A REVIEW
+app.put('/reviews/:id/report', (req, res) => {
+  const headers = {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/${req.params.id}/report`, {}, headers)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
       res.status(401);
       res.send(error);
     });
