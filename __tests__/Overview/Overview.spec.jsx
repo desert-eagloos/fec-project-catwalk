@@ -11,10 +11,14 @@ describe('Creates Overview Component', () => {
   describe('Overview Snapshot Test', () => {
     /* TEST FUNCTION AND DESCRIPTION */
     test('Overview', () => {
-      /* CREATES AN INSTANCE OF YOUR COMPONENT USING JEST */
+      /**
+       * CREATES AN INSTANCE OF YOUR COMPONENT USING JEST
+       */
       const overviewComponent = renderer.create(<Overview />);
-      /* CREATES A SNAPSHOT OBJECT OF THE ELEMENT TREE */
-      /* SIMILAR TO A SHALLOW COPY. DOESN'T CREATE USE WRITTEN COMPONENTS */
+      /**
+       * CREATES A SNAPSHOT OBJECT OF THE ELEMENT TREE
+       * SIMILAR TO A SHALLOW COPY. DOESN'T CREATE USE WRITTEN COMPONENTS
+       */
       const json = overviewComponent.toJSON();
       /* COMPARES INSTANCE TO THE SHALLOW COPY */
       expect(json).toMatchSnapshot();
@@ -61,7 +65,10 @@ describe('Creates Overview Component', () => {
     });
 
     test('ProductInfoA Renders Props Correctly', () => {
-
+      /**
+       * CREATES A SHALLOW COPY
+       */
+      const shallowCopyOfProductInfoA = shallow(<ProductInfoA price />);
     });
   });
 });
