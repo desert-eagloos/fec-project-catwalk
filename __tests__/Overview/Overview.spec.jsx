@@ -21,7 +21,7 @@ describe('Creates Overview Component', () => {
     test('Finds Empty Tags in Overview When isLoad is true', () => {
       const wrapper = shallow(<Overview />);
       console.log(wrapper.debug({ verbose: true }));
-      console.log(wrapper.state(isLoading));
+      // console.log(wrapper.state(isLoading));
     });
   });
 });

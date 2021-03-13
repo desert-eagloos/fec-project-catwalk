@@ -9,7 +9,7 @@ import {
 import axios from 'axios';
 
 import { RatingContext } from './common/AppContext';
-import QARoot from './QA/QARoot';
+// import QARoot from './QA/QARoot';
 import Overview from './Overview/Overview';
 
 /* --- Import Module Components --- */
@@ -63,6 +63,7 @@ function App() {
               event.preventDefault();
               const newSearchResults = await fetchData(Number(searchBarInput));
               if (newSearchResults === 'Error') {
+                // eslint-disable-next-line no-console
                 console.log('error');
               } else {
                 setProduct(newSearchResults);
