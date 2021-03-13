@@ -78,11 +78,11 @@ const AnswerEntry = ({ answer }) => {
   );
 };
 
-AnswerEntry.propTypes = {
-  date: React.PropTypes.string,
-  body: React.PropTypes.string,
-  answerer_name: React.PropTypes.string,
-  helpfulness: React.PropTypes.number,
-};
+// AnswerEntry.propTypes = {
+//   date: React.PropTypes.string,
+//   body: React.PropTypes.string,
+//   answerer_name: React.PropTypes.string,
+//   helpfulness: React.PropTypes.number,
+// };
 
 export default AnswerEntry;

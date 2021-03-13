@@ -122,8 +122,6 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-=======
 // POST A REVIEW FOR A CERTAIN PRODUCT
 app.post('/reviews', (req, res) => {
   console.log(req.body);
@@ -197,7 +195,6 @@ app.put('/reviews/:id/report', (req, res) => {
 });
 
 //GET QUESTIONS
->>>>>>> develop
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
     headers: {
@@ -227,11 +224,7 @@ app.post('/qa/questions/:id', (req, res) => {
       headers: {
         Authorization: config.TOKEN,
         'Content-Type': 'application/json',
-<<<<<<< HEAD
       },
-=======
-      }
->>>>>>> develop
     })
     .then((response) => {
       res.status(201);
@@ -256,15 +249,8 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
       headers: {
         Authorization: config.TOKEN,
         'Content-Type': 'application/json',
-<<<<<<< HEAD
       },
     })
-=======
-      }
-    }
-
-  )
->>>>>>> develop
     .then((response) => {
       res.status(201);
       res.send(response.data);
