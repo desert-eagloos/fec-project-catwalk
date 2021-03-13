@@ -9,30 +9,11 @@ import SearchQuestionForm from './SearchQuestionForm.jsx';
 
 const QARoot = (props) => {
 
-  //console.log('props', props);
-
   const [id, setID] = useState(props.product.id);
-
-  //setID(props.productID);
-
-  //console.log('id', id);
 
   const [data, setData] = useState();
 
   let [originalData, setOriginalData] = useState();
-
-  // useEffect (() => {
-  //   if (props.productID){
-  //     axios.get(`/qa/questions/${id}`)
-  //       .then((res) => {
-  //         setOriginalData(res.data);
-  //         setData(res.data);
-  //       })
-  //   }
-  // }, [props.productID])
-
-
-
 
   useEffect(() => {
     const asyncFunc = async () => {
@@ -41,13 +22,11 @@ const QARoot = (props) => {
 
       }
       var qaGetResponce = await qaGetReq(props.product.id);
-      //console.log('qaGetResponce', qaGetResponce);
       return qaGetResponce.data;
     };
 
     asyncFunc()
     .then((res) => {
-      //console.log("res", res);
       setOriginalData(res);
       setData(res);
       setID(parseInt(res.product_id))
@@ -61,7 +40,6 @@ const QARoot = (props) => {
       return (
         <QuestionList
         data={data}
-        setData={setData}
         />
       )
     } else {
@@ -78,7 +56,7 @@ const QARoot = (props) => {
       <Container fluid>
         <Row>
           <Col>
-            <h3>Questions and Answers</h3>
+            <h3 id='title'>Questions and Answers</h3>
             {originalData && <SearchQuestionForm
             originalData={originalData}
             data={data}

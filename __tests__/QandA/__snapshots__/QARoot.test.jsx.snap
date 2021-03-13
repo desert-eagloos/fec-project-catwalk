@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creates Question Search Bar Question Search Bar 1`] = `
+<form
+  className=""
+>
+  <input
+    className="form-control"
+    onChange={[Function]}
+    placeholder="Have a question? Search for answers…"
+    type="tesxt"
+  />
+</form>
+`;
