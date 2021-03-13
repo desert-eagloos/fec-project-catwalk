@@ -6,10 +6,12 @@ import {
 } from 'react-bootstrap';
 import QuestionEntry from './QuestionEntry';
 
+const _ = require('underscore');
+
 const QuestionList = ({ data }) => {
   const [questionData, setQuestionData] = useState(data.results);
 
-  const init = [questionData[0], questionData[1], questionData[2], questionData[3]];
+  const init = _.map(data.results, (entry) => entry).slice(0, 3);
 
   const [firstFour, setFirstFour] = useState(init);
 
@@ -17,7 +19,7 @@ const QuestionList = ({ data }) => {
 
   useEffect(() => {
     setQuestionData(data.results);
-    const four = [data.results[0], data.results[1], data.results[2], data.results[3]];
+    const four = _.map(data.results, (entry) => entry).slice(0, 3);
     setFirstFour(four);
     setQuestions(four);
   }, [data]);
@@ -160,22 +162,22 @@ const QuestionList = ({ data }) => {
 QuestionList.propTypes = {
   data: PropTypes.shape({
     product_id: PropTypes.string,
-    results: PropTypes.arrayOf({
+    results: PropTypes.arrayOf(PropTypes.shape({
       question_id: PropTypes.number,
       question_body: PropTypes.string,
       question_date: PropTypes.string,
       asker_name: PropTypes.string,
       question_helpfulness: PropTypes.number,
       reported: PropTypes.bool,
-      answers: PropTypes.shape({
+      answers: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
         body: PropTypes.string,
         date: PropTypes.string,
         answerer_name: PropTypes.string,
         helpfulness: PropTypes.number,
         photos: PropTypes.arrayOf(PropTypes.string),
-      }),
-    }),
+      })),
+    })),
   }),
 };
 
@@ -190,7 +192,7 @@ QuestionList.defaultProps = {
         asker_name: 'Cody.Boehm',
         question_helpfulness: 37,
         reported: false,
-        answers: {
+        answers: [{
           id: 1113855,
           body: 'A quo pariatur quae laudantium.',
           date: '2021-01-10T00:00:00.000Z',
@@ -199,7 +201,7 @@ QuestionList.defaultProps = {
           photos: [
             'https://images.unsplash.com/photo-1554136920-a1df2909d8f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80',
           ],
-        },
+        }],
       },
     ],
   },

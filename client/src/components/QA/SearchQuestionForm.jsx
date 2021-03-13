@@ -35,41 +35,41 @@ const SearchQuestionForm = ({ data, originalData, setData }) => {
 SearchQuestionForm.propTypes = {
   data: PropTypes.shape({
     product_id: PropTypes.string,
-    results: PropTypes.arrayOf({
+    results: PropTypes.arrayOf(PropTypes.shape({
       question_id: PropTypes.number,
       question_body: PropTypes.string,
       question_date: PropTypes.string,
       asker_name: PropTypes.string,
       question_helpfulness: PropTypes.number,
       reported: PropTypes.bool,
-      answers: PropTypes.shape({
+      answers: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
         body: PropTypes.string,
         date: PropTypes.string,
         answerer_name: PropTypes.string,
         helpfulness: PropTypes.number,
         photos: PropTypes.arrayOf(PropTypes.string),
-      }),
-    }),
+      })),
+    })),
   }),
   originalData: PropTypes.shape({
     product_id: PropTypes.string,
-    results: PropTypes.arrayOf({
+    results: PropTypes.arrayOf(PropTypes.shape({
       question_id: PropTypes.number,
       question_body: PropTypes.string,
       question_date: PropTypes.string,
       asker_name: PropTypes.string,
       question_helpfulness: PropTypes.number,
       reported: PropTypes.bool,
-      answers: PropTypes.shape({
+      answers: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number,
         body: PropTypes.string,
         date: PropTypes.string,
         answerer_name: PropTypes.string,
         helpfulness: PropTypes.number,
         photos: PropTypes.arrayOf(PropTypes.string),
-      }),
-    }),
+      })),
+    })),
   }),
   setData: PropTypes.func,
 };
@@ -84,7 +84,7 @@ SearchQuestionForm.defaultProps = {
         asker_name: 'Cody.Boehm',
         question_helpfulness: 37,
         reported: false,
-        answers: {
+        answers: [{
           id: 1113855,
           body: 'A quo pariatur quae laudantium.',
           date: '2021-01-10T00:00:00.000Z',
@@ -93,7 +93,7 @@ SearchQuestionForm.defaultProps = {
           photos: [
             'https://images.unsplash.com/photo-1554136920-a1df2909d8f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80',
           ],
-        },
+        }],
       },
     ],
   },
@@ -107,7 +107,7 @@ SearchQuestionForm.defaultProps = {
         asker_name: 'Cody.Boehm',
         question_helpfulness: 37,
         reported: false,
-        answers: {
+        answers: [{
           id: 1113855,
           body: 'A quo pariatur quae laudantium.',
           date: '2021-01-10T00:00:00.000Z',
@@ -116,7 +116,7 @@ SearchQuestionForm.defaultProps = {
           photos: [
             'https://images.unsplash.com/photo-1554136920-a1df2909d8f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80',
           ],
-        },
+        }],
       },
     ],
   },

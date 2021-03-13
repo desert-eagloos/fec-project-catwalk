@@ -68,7 +68,7 @@ app.post('/add-to-cart', (req, res) => {
     },
   })
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.status(201);
       res.send(response.data);
     })
@@ -202,6 +202,7 @@ app.get('/qa/questions/:id', (req, res) => {
     },
   })
     .then((response) => {
+      console.log(response.data);
       res.status(200);
       res.send(response.data);
     })

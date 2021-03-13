@@ -6,35 +6,36 @@ import AnswerEntry from './AnswerEntry';
 const _ = require('underscore');
 
 const AnswerList = ({ answers }) => {
-  const sortedAnswers = [];
   const sortAns = () => {
     const helpfulNums = [];
+
     _.each(answers, (answer) => {
       const help = answer.helpfulness;
       helpfulNums.push(help);
     });
+
     const sortedNums = helpfulNums.sort((a, b) => b - a);
+
     const innerFunc = (index) => {
+      const result = [];
       if (index < sortedNums.length) {
         _.each(answers, (answer) => {
           if (sortedNums[index] === answer.helpfulness) {
-            sortedAnswers.push(answers);
+            result.push(answers);
           }
         });
         innerFunc(index + 1);
       }
+      return result;
     };
-    innerFunc(0);
+
+    return innerFunc(0);
   };
+  const [sortedAnswers] = useState(sortAns());
 
-  sortAns();
-
-  const firstTwoAns = [sortedAnswers[0], sortedAnswers[1]];
-
+  const firstTwoAns = [sortedAnswers[0][0], sortedAnswers[0][1]];
   const [open, setOpen] = useState(false);
-
   const [eventKeyToggle, setEventKeyToggle] = useState('0');
-
   const [moreButton, setMoreButton] = useState('More Answers');
 
   const renderMoreAnswersButton = () => {
@@ -63,14 +64,14 @@ const AnswerList = ({ answers }) => {
   return (
     <div>
       {
-        firstTwoAns.map((answer) => (
+        _.map(firstTwoAns, (answer) => (
           <Accordion.Collapse eventKey="0" key={answer.id}>
             <AnswerEntry answer={answer} key={answer.id} />
           </Accordion.Collapse>
         ))
       }
       {
-        sortedAnswers.slice(0, 5).map((answer) => (
+        sortedAnswers[0].slice(0, 5).map((answer) => (
           <Accordion.Collapse eventKey="1" key={answer.id}>
             <AnswerEntry answer={answer} key={answer.id} />
           </Accordion.Collapse>
@@ -82,7 +83,7 @@ const AnswerList = ({ answers }) => {
 };
 
 AnswerList.propTypes = {
-  answers: PropTypes.shape({
+  answers: PropTypes.arrayOf(PropTypes.shape({
     answer: PropTypes.shape({
       id: PropTypes.number,
       date: PropTypes.string,
@@ -90,11 +91,11 @@ AnswerList.propTypes = {
       answerer_name: PropTypes.string,
       helpfulness: PropTypes.number,
     }),
-  }),
+  })),
 };
 
 AnswerList.defaultProps = {
-  answers: {
+  answers: [{
     answer: {
       id: 1,
       date: 'Turtle',
@@ -102,7 +103,7 @@ AnswerList.defaultProps = {
       answerer_name: 'Turkey',
       helpfulness: 2,
     },
-  },
+  }],
 };
 
 export default AnswerList;

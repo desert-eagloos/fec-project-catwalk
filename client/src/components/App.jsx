@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const defaultSearch = await fetchData(18201);
+      const defaultSearch = await fetchData(18080);
       setProduct(defaultSearch);
     })();
   }, []);

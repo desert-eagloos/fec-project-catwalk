@@ -5,11 +5,8 @@ import { Button, Card, Badge } from 'react-bootstrap';
 
 const AnswerEntry = ({ answer }) => {
   const [reported, setReported] = useState(false);
-
   const [reportedButton, setReportedButton] = useState('Report');
-
   const [helpful, setHelpful] = useState(false);
-
   const [helpfulButton, setHelpfulButton] = useState(`Yes(${answer.helpfulness})`);
 
   const reportAnswer = () => {

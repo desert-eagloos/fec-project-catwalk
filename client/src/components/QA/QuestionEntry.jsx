@@ -14,17 +14,11 @@ const QuestionEntry = ({ question }) => {
   }
 
   const [addAnswerFormVal, setAddAnswerFormVal] = useState('');
-
   const [addAnswerFormName, setAddAnswerFormName] = useState('');
-
   const [addAnswerFormEmail, setAddAnswerFormEmail] = useState('');
-
   const [addAnswerFormPictures, setAddAnswerFormPictures] = useState('');
-
   const [helpfulnessClicked, setHelpfulnessClicked] = useState(false);
-
   const [helpfulnessButton, setHelpfulnessButton] = useState(`Yes(${question.question_helpfulness})`);
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -77,6 +71,7 @@ const QuestionEntry = ({ question }) => {
     }
   }, [helpfulnessClicked]);
 
+  console.log(question);
   return (
     <Accordion defaultActiveKey="0">
       <Card>
@@ -88,8 +83,8 @@ const QuestionEntry = ({ question }) => {
                   <Badge pill variant="dark">
                     Q:
                   </Badge>
-                  {'     '}
-                  {question.question_body}
+                  &nbsp;
+                  {`${question.questions_body}`}
                 </b>
               </big>
             </Col>
@@ -159,33 +154,33 @@ const QuestionEntry = ({ question }) => {
 };
 
 QuestionEntry.propTypes = {
-  question: PropTypes.arrayOf(PropTypes.shape({
+  question: PropTypes.shape({
     question_id: PropTypes.number,
     question_body: PropTypes.string,
     question_date: PropTypes.string,
     asker_name: PropTypes.string,
     question_helpfulness: PropTypes.number,
     reported: PropTypes.bool,
-    answers: PropTypes.shape({
+    answers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
       body: PropTypes.string,
       date: PropTypes.string,
       answerer_name: PropTypes.string,
       helpfulness: PropTypes.number,
       photos: PropTypes.arrayOf(PropTypes.string),
-    }),
-  })),
+    })),
+  }),
 };
 
 QuestionEntry.defaultProps = {
-  question: [{
+  question: {
     question_id: 117660,
     question_body: 'Reprehenderit ut quibusdam qui.',
     question_date: '2020-06-17T00:00:00.000Z',
     asker_name: 'Cody.Boehm',
     question_helpfulness: 37,
     reported: false,
-    answers: {
+    answers: [{
       id: 1113855,
       body: 'A quo pariatur quae laudantium.',
       date: '2021-01-10T00:00:00.000Z',
@@ -194,8 +189,8 @@ QuestionEntry.defaultProps = {
       photos: [
         'https://images.unsplash.com/photo-1554136920-a1df2909d8f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80',
       ],
-    },
-  }],
+    }],
+  },
 };
 
 export default QuestionEntry;
