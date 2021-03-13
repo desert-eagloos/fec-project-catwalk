@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -7,18 +7,24 @@ import '../../css/RandR/RandR.css';
 import Ratings from './ratings-components/Ratings';
 import Reviews from './review-components/Reviews';
 
-function RandR({ id }) {
+function RandR({ product }) {
+  const [productId, setProductId] = useState(product.id);
+
+  useEffect(() => {
+    setProductId(product.id);
+  }, [product, productId]);
+
   return (
     <Container>
       <Row>
-        <h2>Ratings and Reviews</h2>
+        <h3 className="text-uppercase">Ratings and Reviews</h3>
       </Row>
       <Row>
         <Col className="col-4 ratings">
-          <Ratings productId={id} />
+          <Ratings productId={productId} />
         </Col>
         <Col className="col-8 reviews">
-          <Reviews productId={id} />
+          <Reviews productId={productId} />
         </Col>
       </Row>
     </Container>
@@ -26,11 +32,15 @@ function RandR({ id }) {
 }
 
 RandR.defaultProps = {
-  id: 18201,
+  product: {
+    id: 18201,
+  },
 };
 
 RandR.propTypes = {
-  id: PropTypes.number,
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }),
 };
 
 export default RandR;

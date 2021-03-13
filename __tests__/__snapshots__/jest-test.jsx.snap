@@ -82,9 +82,11 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
         <div
           className="row"
         >
-          <h2>
+          <h3
+            className="text-uppercase"
+          >
             Ratings and Reviews
-          </h2>
+          </h3>
         </div>
         <div
           className="row"

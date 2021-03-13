@@ -82,7 +82,7 @@ function App() {
             <QARoot product={product} />
           </Row>
           <Row className="mb-4">
-            <RandR productId={product} />
+            <RandR product={product} />
           </Row>
         </Container>
       </RatingContext.Provider>

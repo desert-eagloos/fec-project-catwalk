@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 export default function ComfortRating({ comfortValue }) {
-  const value = ((comfortValue / 5) * 100) ?? 50;
+  const value = ((comfortValue / 5) * 100) || 50;
 
   return (
     <>

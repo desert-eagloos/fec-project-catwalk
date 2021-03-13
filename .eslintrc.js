@@ -20,7 +20,11 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
+<<<<<<< HEAD
     'react', //'jest',
+=======
+    'react', // 'jest',
+>>>>>>> develop
   ],
   rules: {
   },

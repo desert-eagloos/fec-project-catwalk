@@ -77,6 +77,7 @@ app.post('/add-to-cart', (req, res) => {
     });
 });
 
+// GET A LIST OF REVIEWS FOR A CERTAIN PRODUCT
 app.get('/reviews', (req, res) => {
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews', {
     headers: {
@@ -100,6 +101,7 @@ app.get('/reviews', (req, res) => {
     });
 });
 
+// GET THE METADATA FOR A CERTAIN PRODUCT
 app.get('/reviews/meta', (req, res) => {
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/meta', {
     params: {
@@ -120,6 +122,82 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
+=======
+// POST A REVIEW FOR A CERTAIN PRODUCT
+app.post('/reviews', (req, res) => {
+  console.log(req.body);
+  const data = {
+    product_id: req.body.product_id,
+    rating: req.body.rating,
+    summary: req.body.summary,
+    body: req.body.body,
+    recommend: Boolean(req.body.recommend),
+    name: req.body.name,
+    email: req.body.email,
+    photos: req.body.photos,
+    characteristics: req.body.characteristics,
+  };
+
+  const headers = {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews', data, headers)
+    .then((response) => {
+      console.log(response.data);
+      res.status(201);
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.status(401);
+      res.send(error);
+    });
+});
+
+// MARK A REVIEW AS HELPFUL
+app.put('/reviews/:id/helpful', (req, res) => {
+  const headers = {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/${req.params.id}/helpful`, {}, headers)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(401);
+      res.send(error);
+    });
+});
+
+// REPORT A REVIEW
+app.put('/reviews/:id/report', (req, res) => {
+  const headers = {
+    headers: {
+      Authorization: config.TOKEN,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/reviews/${req.params.id}/report`, {}, headers)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      res.status(401);
+      res.send(error);
+    });
+});
+
+//GET QUESTIONS
+>>>>>>> develop
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
     headers: {
@@ -149,7 +227,11 @@ app.post('/qa/questions/:id', (req, res) => {
       headers: {
         Authorization: config.TOKEN,
         'Content-Type': 'application/json',
+<<<<<<< HEAD
       },
+=======
+      }
+>>>>>>> develop
     })
     .then((response) => {
       res.status(201);
@@ -174,8 +256,15 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
       headers: {
         Authorization: config.TOKEN,
         'Content-Type': 'application/json',
+<<<<<<< HEAD
       },
     })
+=======
+      }
+    }
+
+  )
+>>>>>>> develop
     .then((response) => {
       res.status(201);
       res.send(response.data);
