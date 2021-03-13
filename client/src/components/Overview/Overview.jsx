@@ -60,7 +60,7 @@ function Overview({ product }) {
   if (isLoading) return (<></>);
   return (
     <>
-      <Container className="overview-component">
+      <Container data-test="overview-container" className="overview-component">
         <Row>
           <Col>
             <Carousel>
