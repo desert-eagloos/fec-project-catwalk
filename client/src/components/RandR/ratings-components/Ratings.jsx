@@ -21,20 +21,27 @@ function Ratings({ productId }) {
     comfortRating: 0,
   });
 
-  useEffect(() => {
-    const getRatings = async () => {
-      const response = await axios.get(`/reviews/meta?productId=${productId}`);
-      setProductRatings({
-        ratings: convertRatingsToNumberType(response.data.ratings),
-        overallRating: Number(getAverageRating(response.data.ratings)),
-        fitRating: Number(response.data.characteristics.Fit.value),
-        comfortRating: Number(response.data.characteristics.Comfort.value),
-      });
-      setLoading(false);
-    };
-    getRatings();
+  const getRatings = async () => async () => {
+    const response = await axios.get(`/reviews/meta?productId=${productId}`);
+    setProductRatings({
+      ratings: convertRatingsToNumberType(response.data.ratings),
+      overallRating: Number(getAverageRating(response.data.ratings)),
+      fitRating: Number(response.data.characteristics.Fit.value),
+      comfortRating: Number(response.data.characteristics.Comfort.value),
+    });
     setLoading(false);
-  }, [productId, productRatings]);
+  };
+
+  useEffect(async () => {
+    const ratings = await getRatings();
+    setProductRatings(ratings);
+    setLoading(false);
+  }, []);
+
+  useEffect(async () => {
+    const ratings = await getRatings();
+    setProductRatings(ratings);
+  }, [productId]);
 
   if (isLoading) {
     return <div>Loading Ratings...</div>;
