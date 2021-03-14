@@ -31,7 +31,7 @@ app.get('/products/', (req, res) => {
 });
 
 app.get('/products/:productId', (req, res) => {
-  console.log('Testing Form(remove me later index.js line 34)', req.params.productId);
+  // console.log('Testing Form(remove me later index.js line 34)', req.params.productId);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/products/${req.params.productId}`, {
     headers: {
       Authorization: config.TOKEN,
