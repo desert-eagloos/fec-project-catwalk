@@ -8,7 +8,7 @@ exports[`Creates Question Search Bar Question Search Bar 1`] = `
     className="form-control"
     onChange={[Function]}
     placeholder="Have a question? Search for answers…"
-    type="tesxt"
+    type="text"
   />
 </form>
 `;
