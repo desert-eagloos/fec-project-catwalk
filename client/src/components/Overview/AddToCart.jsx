@@ -66,7 +66,7 @@ function AddToCart({ cartOptions }) {
           id="dropdown-basic-button"
           title={sizeDropdownMenuText}
           show={navigateToSizeSelection}
-          variant="secondary"
+          variant="primary"
           onClick={() => {
             setNavigateToSizeSelection(!navigateToSizeSelection);
           }}
@@ -111,7 +111,7 @@ function AddToCart({ cartOptions }) {
       <Button
         type="button"
         className="overview overview-add-to-cart-button"
-        variant="secondary"
+        variant="primary"
         onClick={(event) => {
           event.preventDefault();
           if (selectedSize === null) {
@@ -137,7 +137,7 @@ function AddToCart({ cartOptions }) {
         <DropdownButton
           id="dropdown-basic-button"
           title={quantityDropdownMenuText}
-          variant="secondary"
+          variant="primary"
           disabled={quantityDropdownMenuStatus}
         >
           {_.map(_.range(1, quantityOptionsOfSelectedSize + 1), (quantity) => (

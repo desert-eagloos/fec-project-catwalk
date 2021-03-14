@@ -71,7 +71,6 @@ const QuestionEntry = ({ question }) => {
     }
   }, [helpfulnessClicked]);
 
-  console.log(question);
   return (
     <Accordion defaultActiveKey="0">
       <Card>
