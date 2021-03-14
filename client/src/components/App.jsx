@@ -76,16 +76,18 @@ function App() {
       </Row>
 
       <RatingContext.Provider value={ratingValue}>
-        <Row className="mb-4 mt-4">
-          <Overview product={product} />
-        </Row>
-        <Row className="mb-4 mt-4">
+        <Container>
+          <Row className="mb-4">
+            <Overview product={product} />
+          </Row>
+          {/* <Row className="mb-4"> */}
           {/* {product && <QARoot productID={product.id} />} */}
           {/* <QARoot product={product} /> */}
-        </Row>
-        <Row className="mb-4 mt-4">
-          <RandR product={product} />
-        </Row>
+          {/* </Row> */}
+          <Row className="mb-4">
+            <RandR product={product} />
+          </Row>
+        </Container>
       </RatingContext.Provider>
     </Container>
   );
