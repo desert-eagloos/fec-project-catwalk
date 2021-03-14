@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect, useMemo } from 'react';
 
 import {
@@ -9,7 +10,7 @@ import {
 import axios from 'axios';
 
 import { RatingContext } from './common/AppContext';
-// import QARoot from './QA/QARoot';
+import QARoot from './QA/QARoot';
 import Overview from './Overview/Overview';
 
 /* --- Import Module Components --- */
@@ -33,7 +34,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const defaultSearch = await fetchData(18201);
+      const defaultSearch = await fetchData(18080);
       setProduct(defaultSearch);
     })();
   }, []);
@@ -80,10 +81,9 @@ function App() {
           <Row className="mb-4">
             <Overview product={product} />
           </Row>
-          {/* <Row className="mb-4"> */}
-          {/* {product && <QARoot productID={product.id} />} */}
-          {/* <QARoot product={product} /> */}
-          {/* </Row> */}
+          <Row className="mb-4">
+            <QARoot product={product} />
+          </Row>
           <Row className="mb-4">
             <RandR product={product} />
           </Row>

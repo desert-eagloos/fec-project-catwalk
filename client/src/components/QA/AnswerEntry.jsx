@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Button, Card, Badge } from 'react-bootstrap';
 
 const AnswerEntry = ({ answer }) => {
   const [reported, setReported] = useState(false);
-
   const [reportedButton, setReportedButton] = useState('Report');
-
   const [helpful, setHelpful] = useState(false);
-
   const [helpfulButton, setHelpfulButton] = useState(`Yes(${answer.helpfulness})`);
 
   const reportAnswer = () => {
-    console.log('reporting');
     axios.put(`/qa/questions/${answer.id}/report`);
   };
 
@@ -35,7 +32,6 @@ const AnswerEntry = ({ answer }) => {
   }, [reported]);
 
   const markAnswerHelpful = () => {
-    console.log('marking as helpful');
     axios.put(`/qa/answers/${answer.id}/helpful`);
   };
 
@@ -78,11 +74,24 @@ const AnswerEntry = ({ answer }) => {
   );
 };
 
-// AnswerEntry.propTypes = {
-//   date: React.PropTypes.string,
-//   body: React.PropTypes.string,
-//   answerer_name: React.PropTypes.string,
-//   helpfulness: React.PropTypes.number,
-// };
+AnswerEntry.propTypes = {
+  answer: PropTypes.shape({
+    id: PropTypes.number,
+    date: PropTypes.string,
+    body: PropTypes.string,
+    answerer_name: PropTypes.string,
+    helpfulness: PropTypes.number,
+  }),
+};
+
+AnswerEntry.defaultProps = {
+  answer: {
+    id: 1,
+    date: 'Turtle',
+    body: 'Duck',
+    answerer_name: 'Turkey',
+    helpfulness: 2,
+  },
+};
 
 export default AnswerEntry;

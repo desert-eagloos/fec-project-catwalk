@@ -68,7 +68,7 @@ app.post('/add-to-cart', (req, res) => {
     },
   })
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.status(201);
       res.send(response.data);
     })
@@ -194,7 +194,6 @@ app.put('/reviews/:id/report', (req, res) => {
     });
 });
 
-//GET QUESTIONS
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/qa/questions?product_id=${req.params.id}`, {
     headers: {
@@ -203,6 +202,7 @@ app.get('/qa/questions/:id', (req, res) => {
     },
   })
     .then((response) => {
+      console.log(response.data);
       res.status(200);
       res.send(response.data);
     })

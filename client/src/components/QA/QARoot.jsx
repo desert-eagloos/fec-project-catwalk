@@ -2,53 +2,67 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
-import testData from './testData.js';
-import QuestionList from './QuestionList.jsx';
-import SearchQuestionForm from './SearchQuestionForm.jsx';
+import QuestionList from './QuestionList';
+import SearchQuestionForm from './SearchQuestionForm';
 
+const _ = require('underscore');
 
-const QARoot = (props) => {
-
-  const [id, setID] = useState(props.product.id);
-
+const QARoot = ({ product }) => {
+  const [id, setID] = useState(product.id);
   const [data, setData] = useState();
+  const [originalData, setOriginalData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
-  let [originalData, setOriginalData] = useState();
+  const restructureResponseData = (resData) => ({
+    product_id: resData.product_id,
+    results: _.map(resData.results, (answers) => ({
+      question_id: answers.question_id,
+      questions_body: answers.question_body,
+      questions_date: answers.question_date,
+      asker_name: answers.asker_name,
+      question_helpfulness: answers.question_helpfulness,
+      reported: answers.reported,
+      answers: _.map(answers.answers, (answer) => ({
+        id: answer.id,
+        body: answer.body,
+        date: answer.date,
+        answerer_name: answer.answerer_name,
+        helpfulness: answer.helpfulness,
+        photos: answer.photos,
+      })),
+    })),
+  });
 
   useEffect(() => {
     const asyncFunc = async () => {
-      var qaGetReq = async (id) => {
-        return axios.get(`/qa/questions/${id}`)
-
-      }
-      var qaGetResponce = await qaGetReq(props.product.id);
-      return qaGetResponce.data;
+      const qaGetReq = async (idp) => axios.get(`/qa/questions/${idp}`);
+      const qaGetResponse = await qaGetReq(product.id);
+      return qaGetResponse.data;
     };
 
     asyncFunc()
-    .then((res) => {
-      setOriginalData(res);
-      setData(res);
-      setID(parseInt(res.product_id))
-    })
-    .catch();
-
-  }, [props.product]);
+      .then((res) => {
+        const restructuredData = restructureResponseData(res);
+        // console.log(restructuredData);
+        setOriginalData(restructuredData);
+        setData(restructuredData);
+        setID(Number(restructuredData.product_id));
+        setIsLoading(true);
+      })
+      .catch();
+  }, [product]);
 
   const renderQuestionList = () => {
-    if (data) {
+    if (isLoading) {
       return (
-        <QuestionList
-        data={data}
-        />
-      )
-    } else {
-      {'No Questions'}
+        <QuestionList data={data} />
+      );
     }
-  }
+    return (<></>);
+  };
 
   if (id === null) {
-    return (<></>)
+    return (<></>);
   }
 
   return (
@@ -56,19 +70,16 @@ const QARoot = (props) => {
       <Container fluid>
         <Row>
           <Col>
-            <h3 id='title'>Questions and Answers</h3>
-            {originalData && <SearchQuestionForm
-            originalData={originalData}
-            data={data}
-            setData={setData}
-            />}
+            <h3 id="title">Questions and Answers</h3>
+            {originalData
+            && <SearchQuestionForm originalData={originalData} data={data} setData={setData} />}
             {renderQuestionList()}
           </Col>
         </Row>
       </Container>
     </div>
-  )
-}
+  );
+};
 
 QARoot.propTypes = {
   product: PropTypes.shape({
@@ -86,7 +97,7 @@ QARoot.propTypes = {
 
 QARoot.defaultProps = {
   product: {
-    id: 18201,
+    id: 18080,
     campus: 'hr-bld',
     slogan: 'Odit dolorem nemo id tempora qui.',
     description: 'A sapiente hic. Facilis et sit voluptatem. Ex sunt reiciendis qui ut perferendis qui soluta quod.',
