@@ -12,6 +12,11 @@ html, body {
   justify-content: center;
 }
 
+.overview-component {
+  display: flex;
+  flex-direction: column;
+}
+
 * {
   font-family: 'Libre Baskerville', serif;
   color: #4A2737;

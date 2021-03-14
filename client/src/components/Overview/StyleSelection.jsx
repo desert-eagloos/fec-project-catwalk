@@ -4,9 +4,10 @@ import {
   Row,
   Col,
   Image,
+  OverlayTrigger,
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faCheck } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 const _ = require('underscore');
@@ -17,7 +18,7 @@ function StyleSelection({
   selectedStyle,
 }) {
   return (
-    <Container>
+    <Container className="mb-4 mt-4">
       <p>
         {'Style '}
         <FontAwesomeIcon icon={faChevronRight} />
@@ -26,6 +27,13 @@ function StyleSelection({
       <Row lg={4}>
         {_.map(styleOptions.results, (entry) => (
           <Col key={entry.style_id}>
+            {/* <OverlayTrigger
+              placement="right-end"
+              delay={{ show: 250, hide: 400 }}
+              trigger="click"
+              ref={React.forwardRef()}
+              overlay=<FontAwesomeIcon icon={faCheck} />
+            > */}
             <Image
               id={entry.name}
               className="style-selection-thumbnails"
@@ -35,6 +43,7 @@ function StyleSelection({
                 changeSelectedStyle(event.target.id);
               }}
             />
+            {/* </OverlayTrigger> */}
           </Col>
         ))}
       </Row>
