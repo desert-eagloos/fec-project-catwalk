@@ -49,44 +49,68 @@ exports[`Welcome (Snapshot) Welcome renders App.jsx 1`] = `
     </form>
   </div>
   <div
-    className="mb-4 mt-4 row"
-  />
-  <div
-    className="mb-4 mt-4 row"
-  />
-  <div
-    className="mb-4 mt-4 row"
+    className="container"
   >
     <div
-      className="container"
+      className="mb-4 row"
+    />
+    <div
+      className="mb-4 row"
     >
-      <div
-        className="row"
-      >
+      <div>
         <div
-          className="col"
+          className="container-fluid"
         >
-          <h3
-            className="text-uppercase"
+          <div
+            className="row"
           >
-            Ratings and Reviews
-          </h3>
+            <div
+              className="col"
+            >
+              <h3
+                id="title"
+              >
+                Questions and Answers
+              </h3>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <div
+      className="mb-4 row"
+    >
       <div
-        className="row"
+        className="container"
       >
         <div
-          className="col-4 ratings col"
+          className="row"
         >
-          <div>
-            Loading Ratings...
+          <div
+            className="col"
+          >
+            <h3
+              className="text-uppercase"
+            >
+              Ratings and Reviews
+            </h3>
           </div>
         </div>
         <div
-          className="col-8 reviews col"
+          className="row"
         >
-          Reviews are loading...
+          <div
+            className="col-4 ratings col"
+          >
+            <div>
+              Loading Ratings...
+            </div>
+          </div>
+          <div
+            className="col-8 reviews col"
+          >
+            Reviews are loading...
+          </div>
         </div>
       </div>
     </div>
