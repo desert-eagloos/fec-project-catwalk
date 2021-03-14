@@ -10,7 +10,7 @@ const SearchQuestionForm = ({ data, originalData, setData }) => {
   useEffect(() => {
     if (searchBarVal.length > 2) {
       const filteredQuestions = originalData.results.filter((question) => (
-        question.question_body.toLowerCase().indexOf(searchBarVal.toLowerCase()) !== -1
+        question.questions_body.toLowerCase().indexOf(searchBarVal.toLowerCase()) !== -1
       ));
       setData({
         product_id: data.product_id,

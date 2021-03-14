@@ -13,6 +13,7 @@ const QuestionEntry = ({ question }) => {
     );
   }
 
+  const [answers, setAnswers] = useState(question.answers)
   const [addAnswerFormVal, setAddAnswerFormVal] = useState('');
   const [addAnswerFormName, setAddAnswerFormName] = useState('');
   const [addAnswerFormEmail, setAddAnswerFormEmail] = useState('');
@@ -46,6 +47,14 @@ const QuestionEntry = ({ question }) => {
       // eslint-disable-next-line no-throw-literal
       throw ('Not all required entries are filled out');
     } else {
+      const newAns = {
+        body: addAnswerFormVal,
+        answerer_name: addAnswerFormName,
+        date: 'just now',
+        helpfulness: 0,
+      };
+      setAnswers([...answers, newAns]);
+      handleClose();
       axios.post(`/qa/questions/${question.question_id}/answers`, {
         data: {
           body: addAnswerFormVal,
@@ -71,7 +80,6 @@ const QuestionEntry = ({ question }) => {
     }
   }, [helpfulnessClicked]);
 
-  console.log(question);
   return (
     <Accordion defaultActiveKey="0">
       <Card>
@@ -147,7 +155,7 @@ const QuestionEntry = ({ question }) => {
           </Row>
 
         </Card.Header>
-        <AnswerList answers={question.answers} />
+        <AnswerList answers={answers} />
       </Card>
     </Accordion>
   );

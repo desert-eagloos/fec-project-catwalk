@@ -39,7 +39,7 @@ const AnswerList = ({ answers }) => {
   const [moreButton, setMoreButton] = useState('More Answers');
 
   const renderMoreAnswersButton = () => {
-    if (sortedAnswers.length > 2) {
+    if (sortedAnswers[0].length > 2) {
       return (
         <Accordion.Toggle as={Button} onClick={() => setOpen(!open)} variant="link" eventKey={eventKeyToggle}>
           {moreButton}
